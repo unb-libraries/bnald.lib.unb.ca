@@ -1,0 +1,22 @@
+uuid: fb98ec28-5f62-4712-9e24-323bcf983ea0
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bnald_lib_unb_ca
+_core:
+  default_config_hash: Q0O8VLpO77ye4M5LHIbEcSjH9GkXujB8O_eBgbwoin4
+id: tabs
+theme: bnald_lib_unb_ca
+region: content
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

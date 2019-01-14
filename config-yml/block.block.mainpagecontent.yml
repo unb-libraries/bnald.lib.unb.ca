@@ -1,0 +1,22 @@
+uuid: 08533f76-ce27-47b5-8644-2e98fba93de5
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bnald_lib_unb_ca
+_core:
+  default_config_hash: AtLzkZsHHgcsNAEbXbpTT1uIhmbSWkJH4NkKUZxMvWw
+id: mainpagecontent
+theme: bnald_lib_unb_ca
+region: content
+weight: 1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: visible
+visibility: {  }
