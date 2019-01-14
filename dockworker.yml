@@ -1,0 +1,9 @@
+dockworker:
+  version: 1.0
+  instance:
+    project_prefix: BNALD
+    name: bnald.lib.unb.ca
+    upstream_image:
+      - unblibraries/drupal:alpine-nginx-php7-8.x-composer
+      - mysql:5.7
+  options:

@@ -1,0 +1,51 @@
+version: '3.6'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    command: mysqld --skip-name-resolve --max_allowed_packet=64M
+    env_file:
+      - ./env/mysql.env
+    expose:
+     - "3306"
+    networks:
+      - bnald.lib.unb.ca
+
+  drupal-solr-lib-unb-ca:
+    image: unblibraries/solr-drupal:7.x
+    expose:
+      - "8983"
+    networks:
+      - bnald.lib.unb.ca
+    entrypoint:
+      - docker-entrypoint-multiple.sh
+      - references.bnald.lib.unb.ca:/solr-conf
+
+  bnald.lib.unb.ca:
+    build:
+      context: .
+      args:
+        - COMPOSER_DEPLOY_DEV=dev
+    restart: always
+    container_name: bnald.lib.unb.ca
+    depends_on:
+      - mysql
+    expose:
+      - "80"
+    networks:
+      - bnald.lib.unb.ca
+    ports:
+      - "3099:80"
+    env_file:
+      - ./env/drupal.env
+    volumes:
+      - ./config-yml:/app/configuration
+      - ./content:/app/content
+      - ./custom/modules:/app/modules/custom
+      - ./custom/themes:/app/themes/custom
+      - ./tests:/app/tests
+
+networks:
+  bnald.lib.unb.ca:
+    name: bnald.lib.unb.ca

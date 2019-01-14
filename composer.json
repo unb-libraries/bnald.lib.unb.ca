@@ -1,0 +1,22 @@
+{
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "name": "unb-libraries/bnald.lib.unb.ca",
+  "description": "Scaffold and provision local development for bnald.lib.unb.ca",
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    }
+  },
+  "require": {
+    "twbs/bootstrap-sass": "^3.4.0"
+  },
+  "require-dev": {
+    "unb-libraries/dockworker": "^8.0.0"
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "vendor/bin/dockworker git:setup-hooks"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+    "authors": [
+        {
+            "name": "UNB Libraries libsupport@unb.ca",
+            "role": "Creator"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "description": "Drupal 8 component of bnald.lib.unb.ca",
+    "extra": {
+        "enable-patching": true,
+        "installer-paths": {
+            "core": [
+                "type:drupal-core"
+            ],
+            "drush/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ]
+        },
+        "patches": {}
+    },
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "name": "unb-libraries/bnald.lib.unb.ca",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "drupal/bootstrap": "3.16",
+        "drupal/config_update": "1.5",
+        "drupal/core": "8.6.5",
+        "drupal/externalauth": "1.0",
+        "drupal/features": "3.7",
+        "drupal/google_analytics": "2.2",
+        "drupal/ldap": "3.0-beta3",
+        "drupal/pathauto": "1.1",
+        "drupal/paragraphs": "1.5",
+        "drupal/redis": "1.0-rc2",
+        "drupal/search_api": "1.11",
+        "drupal/search_api_autocomplete": "1.1",
+        "drupal/search_api_solr": "2.3",
+        "drupal/token": "1.0",
+        "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x",
+        "unb-libraries/drupal-builder": "^8.0.0"
+    },
+    "require-dev": {
+        "unb-libraries/drupal-development-libraries": "^8.0.0"
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ]
+    },
+    "type": "project"
+}
