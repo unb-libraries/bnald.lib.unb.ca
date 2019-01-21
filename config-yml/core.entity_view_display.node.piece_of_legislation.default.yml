@@ -1,0 +1,28 @@
+uuid: dd931142-7dbc-4187-8f8a-21564113c357
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.piece_of_legislation.field_author
+    - node.type.piece_of_legislation
+  module:
+    - user
+id: node.piece_of_legislation.default
+targetEntityType: node
+bundle: piece_of_legislation
+mode: default
+content:
+  field_author:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

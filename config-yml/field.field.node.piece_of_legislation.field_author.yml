@@ -1,0 +1,19 @@
+uuid: 73f31cc9-58f5-4a92-9e86-e4ec4ae506ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author
+    - node.type.piece_of_legislation
+id: node.piece_of_legislation.field_author
+field_name: field_author
+entity_type: node
+bundle: piece_of_legislation
+label: Author
+description: 'Enter the author of the legislation'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
