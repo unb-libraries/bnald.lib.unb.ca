@@ -1,0 +1,27 @@
+uuid: 4ac6f0ae-6645-427c-8155-689901399a3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_supplementary_files_for_pa
+    - node.type.page
+  module:
+    - file
+id: node.page.field_supplementary_files_for_pa
+field_name: field_supplementary_files_for_pa
+entity_type: node
+bundle: page
+label: 'Supplementary Files for Page'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: ''
+  file_extensions: 'txt pdf doc'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
