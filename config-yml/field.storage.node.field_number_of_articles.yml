@@ -1,0 +1,20 @@
+uuid: 89b1b26b-7b39-4826-8dd0-dbfa411125e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_number_of_articles
+field_name: field_number_of_articles
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

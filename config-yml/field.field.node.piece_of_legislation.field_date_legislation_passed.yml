@@ -1,0 +1,21 @@
+uuid: 901ad499-3858-45f6-9af4-d52ef7ba7ae7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_legislation_passed
+    - node.type.piece_of_legislation
+  module:
+    - datetime
+id: node.piece_of_legislation.field_date_legislation_passed
+field_name: field_date_legislation_passed
+entity_type: node
+bundle: piece_of_legislation
+label: 'Date Legislation Passed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

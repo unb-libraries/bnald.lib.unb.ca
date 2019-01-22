@@ -11,8 +11,8 @@ third_party_settings:
     parent: 'main:'
 name: 'Piece of Legislation'
 type: piece_of_legislation
-description: 'This is a piece of legislation'
+description: ''
 help: ''
-new_revision: true
-preview_mode: 1
+new_revision: false
+preview_mode: 0
 display_submitted: true

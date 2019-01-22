@@ -1,0 +1,19 @@
+uuid: 70f0e25a-0b3e-4d5a-a8da-4d366a1379c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_item_notes
+field_name: field_item_notes
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

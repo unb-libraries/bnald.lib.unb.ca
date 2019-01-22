@@ -1,0 +1,19 @@
+uuid: 01032829-91b7-41ea-96a1-cfe8cb88d551
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legislation_title
+    - node.type.piece_of_legislation
+id: node.piece_of_legislation.field_legislation_title
+field_name: field_legislation_title
+entity_type: node
+bundle: piece_of_legislation
+label: 'Legislation Title'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,19 @@
+uuid: 00926145-357b-49cd-9f32-efa2e6517aa4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_legislation_title
+field_name: field_legislation_title
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

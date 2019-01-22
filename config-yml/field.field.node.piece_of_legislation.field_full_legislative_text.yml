@@ -1,0 +1,19 @@
+uuid: 3069ce83-7343-451f-91ec-bd2ad54b50cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_full_legislative_text
+    - node.type.piece_of_legislation
+id: node.piece_of_legislation.field_full_legislative_text
+field_name: field_full_legislative_text
+entity_type: node
+bundle: piece_of_legislation
+label: 'Full Legislative Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

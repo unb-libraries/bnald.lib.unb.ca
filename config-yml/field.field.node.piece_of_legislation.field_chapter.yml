@@ -1,16 +1,16 @@
-uuid: 73f31cc9-58f5-4a92-9e86-e4ec4ae506ae
+uuid: 2bfbf03c-d4f4-4e26-8700-c5569fed5883
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_author
+    - field.storage.node.field_chapter
     - node.type.piece_of_legislation
-id: node.piece_of_legislation.field_author
-field_name: field_author
+id: node.piece_of_legislation.field_chapter
+field_name: field_chapter
 entity_type: node
 bundle: piece_of_legislation
-label: Author
-description: 'Enter the author of the legislation'
+label: Chapter
+description: ''
 required: false
 translatable: false
 default_value: {  }

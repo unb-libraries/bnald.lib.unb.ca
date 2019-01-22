@@ -1,0 +1,29 @@
+uuid: ce98d645-ff42-4d52-a37d-78d6d2dd3589
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_concepts
+    - node.type.piece_of_legislation
+    - taxonomy.vocabulary.concepts
+id: node.piece_of_legislation.field_concepts
+field_name: field_concepts
+entity_type: node
+bundle: piece_of_legislation
+label: Concepts
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      concepts: concepts
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
