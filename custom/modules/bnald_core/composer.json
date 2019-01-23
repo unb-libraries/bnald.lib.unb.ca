@@ -1,0 +1,14 @@
+{
+  "name": "drupal/bnald_core",
+  "type": "drupal-module",
+  "description": "Core functionality for BNALD, such as Entity Types",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/bnald_core",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/bnald_core",
+    "source": "http://cgit.drupalcode.org/bnald_core"
+  },
+  "require": { }
+}

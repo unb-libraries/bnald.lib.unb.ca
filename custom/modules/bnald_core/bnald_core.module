@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains bnald_core.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function bnald_core_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bnald_core module.
+    case 'help.page.bnald_core':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Core functionality for BNALD, such as Entity Types') . '</p>';
+      return $output;
+
+    default:
+  }
+}
