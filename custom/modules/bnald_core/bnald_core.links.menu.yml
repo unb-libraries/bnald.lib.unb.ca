@@ -1,0 +1,14 @@
+
+# Piece of Legislation menu items definition
+entity.piece_legislation.collection:
+  title: 'Piece of Legislation list'
+  route_name: entity.piece_legislation.collection
+  description: 'List Piece of Legislation entities'
+  parent: system.admin_structure
+  weight: 100
+
+piece_legislation.admin.structure.settings:
+  title: 'Piece of Legislation settings'
+  description: 'Configure Piece of Legislation entities'
+  route_name: piece_legislation.settings
+  parent: system.admin_structure
