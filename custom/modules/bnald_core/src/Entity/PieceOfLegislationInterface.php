@@ -14,26 +14,138 @@ use Drupal\user\EntityOwnerInterface;
  */
 interface PieceOfLegislationInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
-  // Add get/set methods for your configuration properties here.
-
   /**
-   * Gets the Piece of Legislation name.
+   * Gets the title of the Piece of Legislation.
    *
    * @return string
-   *   Name of the Piece of Legislation.
+   *   Title of the Piece of Legislation.
    */
-  public function getName();
+  public function getLegislationTitle();
 
   /**
-   * Sets the Piece of Legislation name.
+   * Sets the title for the Piece of Legislation .
    *
-   * @param string $name
-   *   The Piece of Legislation name.
+   * @param string $title
+   *   The title of the Piece of Legislation.
    *
    * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
    *   The called Piece of Legislation entity.
    */
-  public function setName($name);
+  public function setLegislationTitle($title);
+
+  /**
+   * Gets the legislative summary of the Piece of Legislation.
+   *
+   * @return string
+   *   Legislative summary of this Piece of Legislation.
+   */
+  public function getLegislativeSummary();
+
+  /**
+   * Sets the legislative summary for this Piece of Legislation.
+   *
+   * @param string $summary
+   *   The legislative summary of this Piece of Legislation.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setLegislativeSummary($summary);
+
+  /**
+   * Gets the legislative full text of the Piece of Legislation.
+   *
+   * @return string
+   *   Legislative full text of this Piece of Legislation.
+   */
+  public function getLegislativeFullText();
+
+  /**
+   * Sets the legislative full text for this Piece of Legislation.
+   *
+   * @param string $full_text
+   *   The legislative full text of this Piece of Legislation.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setLegislativeFullText($full_text);
+
+  /**
+   * Gets any item notes associated with this Piece of Legislation.
+   *
+   * @return string
+   *   Item notes associated with this Piece of Legislation.
+   */
+  public function getItemNotes();
+
+  /**
+   * Sets item notes for this Piece of Legislation.
+   *
+   * @param string $notes
+   *   The item notes of this Piece of Legislation.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setItemNotes($notes);
+
+  /**
+   * Gets the year this Piece of Legislation was passed.
+   *
+   * @return int
+   *   The year this Piece of Legislation was passed.
+   */
+  public function getYearPassed();
+
+  /**
+   * Sets the year this Piece of Legislation was passed.
+   *
+   * @param int $year
+   *   The year this Piece of Legislation was passed.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setYearPassed($year);
+
+  /**
+   * Gets the chapter this Piece of Legislation appears in.
+   *
+   * @return string
+   *   The chapter this Piece of Legislation appears in.
+   */
+  public function getChapter();
+
+  /**
+   * Sets the chapter this Piece of Legislation appears in.
+   *
+   * @param string $chapter
+   *   The chapter this Piece of Legislation appears in.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setChapter($chapter);
+
+  /**
+   * Gets the sort key of the chapter this Piece of Legislation appears in.
+   *
+   * @return string
+   *   The sort key of the chapter this Piece of Legislation appears in.
+   */
+  public function getChapterSort();
+
+  /**
+   * Sets the sort key of the chapter this Piece of Legislation appears in.
+   *
+   * @param string $sort_key
+   *   The sort key of the chapter this Piece of Legislation appears in.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setChapterSort($sort_key);
 
   /**
    * Gets the Piece of Legislation creation timestamp.

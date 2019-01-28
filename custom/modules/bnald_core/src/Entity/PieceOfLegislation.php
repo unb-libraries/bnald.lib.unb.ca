@@ -42,7 +42,7 @@ use Drupal\user\UserInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
- *     "label" = "name",
+ *     "label" = "legislation_title",
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "langcode" = "langcode",
@@ -63,6 +63,9 @@ use Drupal\user\UserInterface;
  * )
  */
 class PieceOfLegislation extends RevisionableContentEntityBase implements PieceOfLegislationInterface {
+
+  const MIN_YEAR = 1758;
+  const MAX_YEAR = 1867;
 
   use EntityChangedTrait;
 
@@ -117,15 +120,109 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
   /**
    * {@inheritdoc}
    */
-  public function getName() {
-    return $this->get('name')->value;
+  public function getLegislationTitle() {
+    return $this->get('legislation_title');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setName($name) {
-    $this->set('name', $name);
+  public function setLegislationTitle($title) {
+    $this->set('legislation_title', $title);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLegislativeSummary() {
+    return $this->get('legislative_summary');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLegislativeSummary($summary) {
+    $this->set('legislative_summary', $summary);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLegislativeFullText() {
+    return $this->get('legislative_full_text');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLegislativeFullText($full_text) {
+    $this->set('legislative_full_text', $full_text);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getItemNotes() {
+    return $this->get('item_notes');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setItemNotes($notes) {
+    $this->set('item_notes', $notes);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getYearPassed() {
+    return $this->get('year_passed');
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * Value must be within PieceOfLegislation::MIN_YEAR and PieceOfLegislation::MAX_YEAR.
+   */
+  public function setYearPassed($year) {
+    if ($year >= self::MIN_YEAR && $year <= self::MAX_YEAR) {
+      $this->set('year_passed', $year);
+    }
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChapter() {
+    return $this->get('chapter');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setChapter($chapter) {
+    $this->set('chapter', $chapter);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChapterSort() {
+    return $this->get('chapter_sort');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setChapterSort($sort_key) {
+    $this->set('chapter_sort', $sort_key);
     return $this;
   }
 
@@ -195,6 +292,134 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['legislation_title'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Legislation Title'))
+      ->setRequired(TRUE)
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'max_length' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 2,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 6,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['number_articles'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Number of Articles'))
+      ->setRequired(TRUE)
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'min' => '0',
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 4,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 5,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['legislative_summary'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Legislative Summary'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'max_length' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 8,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 10,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['legislative_full'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Legislative Full Text'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'max_length' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 9,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 11,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['item_notes'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Item Notes'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'max_length' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 10,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 12,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['year_passed'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Year Passed'))
+      ->setDescription(t('The Year this Piece of Legislation passed.'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'min' => self::MIN_YEAR,
+        'max' => self::MAX_YEAR,
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 13,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 2,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['chapter'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Chapter'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setDisplayOptions('view', [
+        'weight' => 14,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 3,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['chapter_sort'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Chapter Sort'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setDisplayOptions('view', [
+        'type' => 'hidden',
+        'weight' => 15,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'hidden',
+        'weight' => 4,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
       ->setDescription(t('The user ID of author of the Piece of Legislation entity.'))
@@ -209,7 +434,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ])
       ->setDisplayOptions('form', [
         'type' => 'entity_reference_autocomplete',
-        'weight' => 5,
+        'weight' => 98,
         'settings' => [
           'match_operator' => 'CONTAINS',
           'size' => '60',
@@ -220,28 +445,6 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Piece of Legislation entity.'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 50,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE);
-
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('A boolean indicating whether the Piece of Legislation is published.'))
@@ -249,7 +452,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => -3,
+        'weight' => 99,
       ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')

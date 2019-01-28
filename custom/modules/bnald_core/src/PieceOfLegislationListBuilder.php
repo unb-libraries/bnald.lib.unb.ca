@@ -17,8 +17,8 @@ class PieceOfLegislationListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Piece of Legislation ID');
-    $header['name'] = $this->t('Name');
+    $header['id'] = $this->t('ID');
+    $header['legislation_title'] = $this->t('Legislation Title');
     return $header + parent::buildHeader();
   }
 
@@ -28,7 +28,7 @@ class PieceOfLegislationListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\bnald_core\Entity\PieceOfLegislation */
     $row['id'] = $entity->id();
-    $row['name'] = Link::createFromRoute(
+    $row['legislation_title'] = Link::createFromRoute(
       $entity->label(),
       'entity.piece_legislation.edit_form',
       ['piece_legislation' => $entity->id()]
