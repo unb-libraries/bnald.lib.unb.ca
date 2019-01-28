@@ -66,6 +66,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
 
   const MIN_YEAR = 1758;
   const MAX_YEAR = 1867;
+  const MIN_ARTICLES = 0;
 
   use EntityChangedTrait;
 
@@ -137,6 +138,23 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    */
   public function getLegislativeSummary() {
     return $this->get('legislative_summary');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNumberOfArticles() {
+    return $this->get('number_articles');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNumberOfArticles($number) {
+    if ($number >= self::MIN_ARTICLES) {
+      $this->set('number_articles', $number);
+    }
+    return $this;
   }
 
   /**
@@ -316,6 +334,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ->setTranslatable(FALSE)
       ->setSettings([
         'min' => '0',
+        'min' => self::MIN_ARTICLES,
       ])
       ->setDisplayOptions('view', [
         'weight' => 4,

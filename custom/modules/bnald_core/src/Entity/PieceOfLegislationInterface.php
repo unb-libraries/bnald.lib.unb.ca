@@ -34,6 +34,25 @@ interface PieceOfLegislationInterface extends ContentEntityInterface, RevisionLo
   public function setLegislationTitle($title);
 
   /**
+   * Gets the title of the Piece of Legislation.
+   *
+   * @return int
+   *   Number of Articles this Piece of Legislation consists of.
+   */
+  public function getNumberOfArticles();
+
+  /**
+   * Sets the number of articles this Piece of Legislation consists of.
+   *
+   * @param int $number
+   *   The number of articles.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setNumberOfArticles($number);
+
+  /**
    * Gets the legislative summary of the Piece of Legislation.
    *
    * @return string
