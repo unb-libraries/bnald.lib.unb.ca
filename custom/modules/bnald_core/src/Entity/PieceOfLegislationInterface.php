@@ -190,6 +190,25 @@ interface PieceOfLegislationInterface extends ContentEntityInterface, RevisionLo
   public function setItemNotes($notes);
 
   /**
+   * Gets the Piece Of Legislation's Source Document.
+   *
+   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
+   *   The SourceDocument entity.
+   */
+  public function getSourceDocument();
+
+  /**
+   * Sets the Piece Of Legislation's Source Document.
+   *
+   * @param \Drupal\bnald_core\Entity\SourceDocumentInterface $source_document
+   *   The SourceDocument entity.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislation
+   *   The called Piece Of Legislation entity.
+   */
+  public function setSourceDocument(SourceDocumentInterface $source_document);
+
+  /**
    * Gets the year this Piece of Legislation was passed.
    *
    * @return int

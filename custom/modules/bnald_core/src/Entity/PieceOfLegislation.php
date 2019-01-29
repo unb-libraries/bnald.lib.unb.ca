@@ -279,8 +279,34 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
   /**
    * {@inheritdoc}
    */
+  public function getSourceDocument() {
+    return $this->get('source_document')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSourceDocumentId() {
+    $entity = $this->get('source_document')->entity;
+    if (!empty($entity)) {
+      return $entity->id();
+    }
+    return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSourceDocument(SourceDocumentInterface $source_document) {
+    $this->set('source_document', $source_document->id());
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getYearPassed() {
-    return $this->get('year_passed');
+    return $this->get('year_passed')->value;
   }
 
   /**
@@ -534,6 +560,42 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
+
+    $fields['source_document'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Source Document'))
+      ->setDescription(t('The Source Document of the Piece of Legislation'))
+      ->setSettings(
+        [
+          'target_type' => 'source_document',
+          'handler' => 'default',
+        ]
+      )
+      ->setCardinality(1)
+      ->setRequired(TRUE)
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setDisplayOptions(
+        'view',
+        [
+          'label' => 'above',
+          'weight' => 0,
+        ]
+      )
+      ->setDisplayOptions(
+        'form',
+        [
+          'type' => 'entity_reference_autocomplete',
+          'weight' => 0,
+          'settings' => [
+            'match_operator' => 'CONTAINS',
+            'size' => '60',
+            'autocomplete_type' => 'tags',
+            'placeholder' => '',
+          ],
+        ]
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['year_passed'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Year Passed'))

@@ -19,7 +19,9 @@ class PieceOfLegislationListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['id'] = $this->t('ID');
     $header['legislation_title'] = $this->t('Legislation Title');
+    $header['year'] = $this->t('Year');
     $header['province'] = $this->t('Province');
+    $header['source'] = $this->t('Source Document');
     return $header + parent::buildHeader();
   }
 
@@ -34,8 +36,13 @@ class PieceOfLegislationListBuilder extends EntityListBuilder {
       'entity.piece_legislation.edit_form',
       ['piece_legislation' => $entity->id()]
     );
+    $row['year'] = $entity->getYearPassed();
+
     $province = $entity->getProvince();
     $row['province'] = isset($province) ? $province->label() : '';
+
+    $source = $entity->getSourceDocument();
+    $row['source'] = isset($source) ? $source->label() : '';
 
     return $row + parent::buildRow($entity);
   }
