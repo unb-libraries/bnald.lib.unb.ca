@@ -54,6 +54,36 @@ interface PieceOfLegislationInterface extends ContentEntityInterface, RevisionLo
   public function setLegislationTitle($title);
 
   /**
+   * Gets all 'Jurisdictional Relevance' terms associated with this Piece of Legislation.
+   *
+   * @return \Drupal\taxonomy\TermInterface[]
+   *   An array of 'Jurisdictional Relevance' terms related to this Piece of Legislation.
+   */
+  public function getJurisdictionalRelevance();
+
+  /**
+   * Adds a 'Jurisdictional Relevance' term to the end of the list.
+   *
+   * @param \Drupal\taxonomy\TermInterface $term_to_add
+   *   The 'Jurisdictional Relevance' term to add.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function appendJurisdictionalRelevance(TermInterface $term_to_add);
+
+  /**
+   * Removes the given 'Jurisdictional Relevance' term.
+   *
+   * @param \Drupal\taxonomy\TermInterface $term_to_remove
+   *   The 'Jurisdictional Relevance' term to remove.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function removeJurisdictionalRelevance(TermInterface $term_to_remove);
+
+  /**
    * Gets the title of the Piece of Legislation.
    *
    * @return int
@@ -71,6 +101,36 @@ interface PieceOfLegislationInterface extends ContentEntityInterface, RevisionLo
    *   The called Piece of Legislation entity.
    */
   public function setNumberOfArticles($number);
+
+  /**
+   * Gets all 'Concept' terms associated with this Piece of Legislation.
+   *
+   * @return \Drupal\taxonomy\TermInterface[]
+   *   An array of 'Jurisdictional Relevance' terms related to this Piece of Legislation.
+   */
+  public function getConcepts();
+
+  /**
+   * Adds a 'Concept' term to the end of the list.
+   *
+   * @param \Drupal\taxonomy\TermInterface $term_to_add
+   *   The 'Concept' term to add.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function appendConcept(TermInterface $term_to_add);
+
+  /**
+   * Removes the given 'Concept' term.
+   *
+   * @param \Drupal\taxonomy\TermInterface $term_to_remove
+   *   The 'Concept' term to remove.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function removeConcept(TermInterface $term_to_remove);
 
   /**
    * Gets the legislative summary of the Piece of Legislation.

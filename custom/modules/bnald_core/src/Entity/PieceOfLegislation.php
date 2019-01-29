@@ -8,6 +8,7 @@ use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\UserInterface;
 
@@ -152,8 +153,33 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
   /**
    * {@inheritdoc}
    */
-  public function getLegislativeSummary() {
-    return $this->get('legislative_summary');
+  public function getJurisdictionalRelevance() {
+    $terms = $this->get('jurisdictional_relevance')->referencedEntities();
+    return $terms;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function appendJurisdictionalRelevance($term_to_add) {
+    $terms = $this->get('jurisdictional_relevance');
+    $terms->appendItem($term_to_add);
+    $this->set('jurisdictional_relevance', $terms);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function removeJurisdictionalRelevance($term_to_remove) {
+    $terms = $this->get('jurisdictional_relevance');
+    foreach ($terms as $index => $term) {
+      if ($term === $term_to_remove) {
+        $terms->removeitem($index);
+        break;
+      }
+    }
+    return $this;
   }
 
   /**
@@ -171,6 +197,45 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       $this->set('number_articles', $number);
     }
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getConcepts() {
+    $terms = $this->get('concepts')->referencedEntities();
+    return $terms;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function appendConcept($term_to_add) {
+    $terms = $this->get('concepts');
+    $terms->appendItem($term_to_add);
+    $this->set('concepts', $terms);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function removeConcept($term_to_remove) {
+    $terms = $this->get('concepts');
+    foreach ($terms as $index => $term) {
+      if ($term === $term_to_remove) {
+        $terms->removeitem($index);
+        break;
+      }
+    }
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLegislativeSummary() {
+    return $this->get('legislative_summary');
   }
 
   /**
@@ -363,13 +428,33 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
 
+    $fields['jurisdictional_relevance'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Jurisdictional Relevance'))
+      ->setRevisionable(TRUE)
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'target_type' => 'taxonomy_term',
+        'handler_settings' => [
+          'jurisdictional_relevance' => 'jurisdictional_relevance',
+        ],
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 3,
+      ])
+      ->setDisplayOptions(('form'), [
+        'target' => 'jurisdictional_relevance',
+        'weight' => 9,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
     $fields['number_articles'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Number of Articles'))
       ->setRequired(TRUE)
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([
-        'min' => '0',
         'min' => self::MIN_ARTICLES,
       ])
       ->setDisplayOptions('view', [
@@ -377,6 +462,27 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ])
       ->setDisplayOptions('form', [
         'weight' => 5,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['concepts'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Concepts'))
+      ->setRevisionable(TRUE)
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'target_type' => 'taxonomy_term',
+        'handler_settings' => [
+          'concepts' => 'concepts',
+        ],
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 5,
+      ])
+      ->setDisplayOptions(('form'), [
+        'target' => 'concepts',
+        'weight' => 7,
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
