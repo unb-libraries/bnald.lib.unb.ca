@@ -5,6 +5,7 @@ namespace Drupal\bnald_core\Entity;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\taxonomy\TermInterface;
 use Drupal\user\EntityOwnerInterface;
 
 /**
@@ -13,6 +14,25 @@ use Drupal\user\EntityOwnerInterface;
  * @ingroup bnald_core
  */
 interface PieceOfLegislationInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
+
+  /**
+   * Gets the province this Piece of Legislation applies to.
+   *
+   * @return \Drupal\taxonomy\TermInterface
+   *   Province of the Piece of Legislation.
+   */
+  public function getProvince();
+
+  /**
+   * Sets the province this Piece of Legislation applies to.
+   *
+   * @param \Drupal\taxonomy\TermInterface $province
+   *   The province of the Piece of Legislation.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setProvince(TermInterface $province);
 
   /**
    * Gets the title of the Piece of Legislation.

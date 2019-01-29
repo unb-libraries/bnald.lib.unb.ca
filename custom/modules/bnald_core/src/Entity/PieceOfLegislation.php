@@ -8,6 +8,7 @@ use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\taxonomy\TermInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -116,6 +117,21 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProvince() {
+    return $this->get('province')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setProvince(TermInterface $province) {
+    $this->set('province', $province->id());
+    return $this;
   }
 
   /**
@@ -309,6 +325,26 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
+
+    $fields['province'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Province'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'target_type' => 'taxonomy_term',
+        'handler_settings' => [
+          'provinces' => 'provinces',
+        ],
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 1,
+      ])
+      ->setDisplayOptions(('form'), [
+        'target' => 'provinces',
+        'weight' => 8,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['legislation_title'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Legislation Title'))

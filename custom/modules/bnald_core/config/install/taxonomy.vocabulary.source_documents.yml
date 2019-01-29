@@ -1,9 +1,0 @@
-uuid: 1a7b36d8-5cdf-4628-bbcf-96c199444810
-langcode: en
-status: true
-dependencies: {  }
-name: 'Source Documents'
-vid: source_documents
-description: '1851'
-hierarchy: 0
-weight: 0
