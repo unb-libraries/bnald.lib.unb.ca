@@ -1,0 +1,22 @@
+{#
+/**
+ * @file source_document.html.twig
+ * Default theme implementation to present Source Document data.
+ *
+ * This template is used when viewing Source Document pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_source_document()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('source_document') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

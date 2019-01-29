@@ -12,3 +12,17 @@ piece_legislation.admin.structure.settings:
   description: 'Configure Piece of Legislation entities'
   route_name: piece_legislation.settings
   parent: system.admin_structure
+
+# Source Document menu items definition
+entity.source_document.collection:
+  title: 'Source Document list'
+  route_name: entity.source_document.collection
+  description: 'List Source Document entities'
+  parent: system.admin_structure
+  weight: 100
+
+source_document.admin.structure.settings:
+  title: 'Source Document settings'
+  description: 'Configure Source Document entities'
+  route_name: source_document.settings
+  parent: system.admin_structure

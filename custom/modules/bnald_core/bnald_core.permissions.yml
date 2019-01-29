@@ -28,3 +28,33 @@ revert all piece of legislation revisions:
 delete all piece of legislation revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Piece of Legislation revisions</em> and <em>delete rights</em> for piece of legislation entities in question or <em>administer piece of legislation entities</em>.'
+add source document entities:
+  title: 'Create new Source Document entities'
+
+administer source document entities:
+  title: 'Administer Source Document entities'
+  description: 'Allow to access the administration form to configure Source Document entities.'
+  restrict access: true
+
+delete source document entities:
+  title: 'Delete Source Document entities'
+
+edit source document entities:
+  title: 'Edit Source Document entities'
+
+view published source document entities:
+  title: 'View published Source Document entities'
+
+view unpublished source document entities:
+  title: 'View unpublished Source Document entities'
+
+view all source document revisions:
+  title: 'View all Source Document revisions'
+
+revert all source document revisions:
+  title: 'Revert all Source Document revisions'
+  description: 'Role requires permission <em>view Source Document revisions</em> and <em>edit rights</em> for source document entities in question or <em>administer source document entities</em>.'
+
+delete all source document revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Source Document revisions</em> and <em>delete rights</em> for source document entities in question or <em>administer source document entities</em>.'

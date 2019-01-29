@@ -25,3 +25,30 @@ entity.piece_legislation.delete_form:
   title: Delete
   weight: 10
 
+# Source Document routing definition
+source_document.settings_tab:
+  route_name: source_document.settings
+  title: 'Settings'
+  base_route: source_document.settings
+
+entity.source_document.canonical:
+  route_name: entity.source_document.canonical
+  base_route: entity.source_document.canonical
+  title: 'View'
+
+entity.source_document.edit_form:
+  route_name: entity.source_document.edit_form
+  base_route: entity.source_document.canonical
+  title: 'Edit'
+
+entity.source_document.version_history:
+  route_name: entity.source_document.version_history
+  base_route: entity.source_document.canonical
+  title: 'Revisions'
+
+entity.source_document.delete_form:
+  route_name:  entity.source_document.delete_form
+  base_route:  entity.source_document.canonical
+  title: Delete
+  weight: 10
+

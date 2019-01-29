@@ -3,3 +3,8 @@ entity.piece_legislation.add_form:
   title: 'Add Piece of Legislation'
   appears_on:
     - entity.piece_legislation.collection
+entity.source_document.add_form:
+  route_name: entity.source_document.add_form
+  title: 'Add Source Document'
+  appears_on:
+    - entity.source_document.collection
