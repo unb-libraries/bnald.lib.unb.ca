@@ -324,6 +324,34 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
   /**
    * {@inheritdoc}
    */
+  public function getPdfTranscript() {
+    return $this->get('pdf_transcript')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPdfTranscript($pdf) {
+    return $this->set('pdf_transcript', $pdf);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPdfOriginal() {
+    return $this->get('pdf_original')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPdfOriginal($pdf) {
+    return $this->set('pdf_original', $pdf);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getChapter() {
     return $this->get('chapter');
   }
@@ -541,6 +569,38 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ])
       ->setDisplayOptions('form', [
         'weight' => 11,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['pdf_transcript'] = BaseFieldDefinition::create('file')
+      ->setLabel(t('PDF of the Transcribed Act'))
+      ->setTranslatable(FALSE)
+      ->setRevisionable(FALSE)
+      ->setRequired(TRUE)
+      ->setSettings([
+        'file_extensions' => 'pdf',
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 0,
+      ])->setDisplayOptions('form', [
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['pdf_original'] = BaseFieldDefinition::create('file')
+      ->setLabel(t('PDF of the Original Act'))
+      ->setTranslatable(FALSE)
+      ->setRevisionable(FALSE)
+      ->setRequired(TRUE)
+      ->setSettings([
+        'file_extensions' => 'pdf',
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 0,
+      ])->setDisplayOptions('form', [
+        'weight' => 0,
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);

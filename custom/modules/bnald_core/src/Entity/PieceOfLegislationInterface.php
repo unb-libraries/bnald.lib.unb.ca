@@ -5,6 +5,7 @@ namespace Drupal\bnald_core\Entity;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\file\FileInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\EntityOwnerInterface;
 
@@ -226,6 +227,44 @@ interface PieceOfLegislationInterface extends ContentEntityInterface, RevisionLo
    *   The called Piece of Legislation entity.
    */
   public function setYearPassed($year);
+
+  /**
+   * Gets the PDF of the Transcribed Act for this Piece of Legislation.
+   *
+   * @return \Drupal\file\FileInterface
+   *   The PDF file entity.
+   */
+  public function getPdfTranscript();
+
+  /**
+   * Sets the PDF of the Transcribed Act for this Piece of Legislation.
+   *
+   * @param \Drupal\file\FileInterface $pdf
+   *   The PDF file entity.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setPdfTranscript(FileInterface $pdf);
+
+  /**
+   * Gets the PDF of the Original Act for this Piece of Legislation.
+   *
+   * @return \Drupal\file\FileInterface
+   *   The PDF file entity.
+   */
+  public function getPdfOriginal();
+
+  /**
+   * Sets the PDF of the Original Act for this Piece of Legislation.
+   *
+   * @param \Drupal\file\FileInterface $pdf
+   *   The PDF file entity.
+   *
+   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   *   The called Piece of Legislation entity.
+   */
+  public function setPdfOriginal(FileInterface $pdf);
 
   /**
    * Gets the chapter this Piece of Legislation appears in.
