@@ -4,4 +4,4 @@ description: 'Core functionality for BNALD, such as Entity Types'
 core: 8.x
 package: 'BNALD'
 dependencies:
-  - file
+  - pdfpreview

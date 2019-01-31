@@ -599,6 +599,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       ])
       ->setDisplayOptions('view', [
         'weight' => 0,
+        'type' => 'pdfpreview',
       ])->setDisplayOptions('form', [
         'weight' => 0,
       ])
