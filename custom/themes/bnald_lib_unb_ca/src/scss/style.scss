@@ -1,2 +1,106 @@
 // If you wish to compile/extend Bootstrap then uncomment line below and disable subtheme CDN
 @import '../../../../../vendor/twbs/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'colors';
+
+body {
+  background-color: $color_background_primary;
+  color: $color_text_primary;
+}
+
+.page-header {
+  border-bottom: 0;
+}
+
+.navbar-default {
+  background-color: $color_background_secondary;
+  color: $color_text_secondary;
+  border: 0;
+  border-radius: 0;
+
+  .navbar-nav li {
+
+    &:hover {
+      background-color: $color_background_secondary_lighter;
+
+      a {
+        color: $color_text_secondary;
+      }
+    }
+
+    a {
+      color: $color_text_secondary;
+    }
+  }
+
+  .navbar-nav li.active, .navbar-nav li.open {
+    a {
+      background-color: $color_highlight;
+      color: $color_text_secondary;
+
+      &:hover {
+        background-color: $color_background_secondary_lighter;
+        color: $color_text_secondary;
+      }
+    }
+
+    .dropdown-menu {
+      background-color: $color_background_primary;
+      border: 1px solid $color_background_primary_darker;
+
+      li a {
+        background-color: $color_background_primary;
+        color: $color_text_primary;
+
+        &:hover {
+          background-color: $color_highlight;
+          color: $color_text_secondary;
+        }
+      }
+    }
+  }
+
+}
+
+table {
+  border: 1px solid $color_background_primary_darker;
+}
+
+th {
+  background-color: $color_background_secondary;
+  color: $color_text_secondary;
+
+  a {
+    color: $color_text_secondary;
+
+    &:hover {
+      color: $color_text_secondary;
+      text-decoration: underline;
+    }
+  }
+}
+
+a {
+  color: $color_text_primary;
+  font-weight: bold;
+
+  &:hover {
+    color: $color_highlight;
+    text-decoration: none;
+  }
+}
+
+.footer {
+  background-color: $color_background_secondary;
+  border-top: 0;
+
+  .nav a {
+    color: $color_text_secondary;
+
+    &:hover {
+      background-color: $color_background_secondary;
+      text-decoration: underline;
+    }
+  }
+}
+
+
