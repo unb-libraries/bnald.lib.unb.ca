@@ -2,6 +2,8 @@ uuid: 74b76d00-d52c-4dcd-b1a5-99e6a8677dfa
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: '-hkDDeagrC6wbfFyCJEkS1wpFS-M5Jly-zYHRgOxqDw'
 name: Provinces
 vid: provinces
 description: ''

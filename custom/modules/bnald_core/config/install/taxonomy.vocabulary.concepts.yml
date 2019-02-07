@@ -2,6 +2,8 @@ uuid: 23db2272-64db-47ad-beb6-843d7d8c0537
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: ZD1bW1FFR84Vo9ZDjU4Q5_gijsaWBnLk2r6_xlSM1PU
 name: Concepts
 vid: concepts
 description: ''

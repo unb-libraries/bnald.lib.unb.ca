@@ -1,0 +1,23 @@
+uuid: cf20d297-b4ff-4907-bf30-c89455c998fe
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: provinces
+label: Provinces
+type: 'canonical_entities:taxonomy_term'
+pattern: 'provinces/[term:name]'
+selection_criteria:
+  8be5c81e-ed07-4766-b750-57b8defe4dc3:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      provinces: provinces
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 8be5c81e-ed07-4766-b750-57b8defe4dc3
+selection_logic: and
+weight: -5
+relationships: {  }

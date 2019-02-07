@@ -1,0 +1,23 @@
+uuid: febf7989-4925-4f1c-b8f0-6a6850d84a4b
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: concepts
+label: Concepts
+type: 'canonical_entities:taxonomy_term'
+pattern: 'concepts/[term:name]'
+selection_criteria:
+  395594fa-ccfc-4ed9-959d-c6cd64b50015:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      concepts: concepts
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 395594fa-ccfc-4ed9-959d-c6cd64b50015
+selection_logic: and
+weight: -5
+relationships: {  }
