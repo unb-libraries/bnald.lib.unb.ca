@@ -2,7 +2,9 @@ uuid: 6b39b69c-fd43-4a30-9ba7-e7d113c05005
 langcode: en
 status: true
 dependencies: {  }
-name: 'Printer Name'
+_core:
+  default_config_hash: HrqzdZHaxe73P5hXznUNkyUU1PziivX5BklhQbSjX_4
+name: Printers
 vid: printer_name
 description: ''
 hierarchy: 0

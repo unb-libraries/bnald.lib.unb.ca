@@ -2,7 +2,9 @@ uuid: d87b5de3-f7c7-4d86-8b2c-6b6bfe7e1160
 langcode: en
 status: true
 dependencies: {  }
-name: Regions
+_core:
+  default_config_hash: fJsTNMOGnwXhwP4Bf0BUS_MWMb-Esyy7K4yNh4NZTiU
+name: Locations
 vid: regions
 description: ''
 hierarchy: 0
