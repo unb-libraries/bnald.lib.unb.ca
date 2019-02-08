@@ -7,15 +7,34 @@ body {
   color: $color_text_primary;
 }
 
+header {
+  background-color: $color_background_secondary;
+  border-bottom: 10px solid $color_highlight;
+}
+
+h1.title {
+  padding: 0 15px;
+  margin-top: 60px;
+
+  a {
+    color: $color_text_secondary;
+
+    &:hover {
+      color: $color_text_primary_darker;
+    }
+  }
+}
+
 .page-header {
   border-bottom: 0;
 }
 
-.navbar-default {
-  background-color: $color_background_secondary;
+.navbar-default, .navbar-collapse {
   color: $color_text_secondary;
   border: 0;
   border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
 
   .navbar-nav li {
 
@@ -32,12 +51,15 @@ body {
     }
   }
 
-  .navbar-nav li.active, .navbar-nav li.open {
-    a {
+  .nav, .navbar-nav {
+    li.active a, li.open a {
       background-color: $color_highlight;
       color: $color_text_secondary;
+      border: 0;
+    }
 
-      &:hover {
+    a {
+      &:hover, &:focus {
         background-color: $color_background_secondary_lighter;
         color: $color_text_secondary;
       }

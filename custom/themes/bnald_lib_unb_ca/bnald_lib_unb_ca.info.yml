@@ -10,9 +10,8 @@ libraries:
   - bnald_lib_unb_ca/global-styling
 
 regions:
-  navigation: 'Navigation'
+  header: 'Header'
   navigation_collapsible: 'Navigation (Collapsible)'
-  header: 'Top Bar'
   highlighted: 'Highlighted'
   help: 'Help'
   content: 'Content'
