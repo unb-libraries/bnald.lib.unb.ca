@@ -2,7 +2,7 @@ country:
   default: ''
 first_day: 0
 timezone:
-  default: America/Moncton
+  default: UTC
   user:
     configurable: true
     warn: false

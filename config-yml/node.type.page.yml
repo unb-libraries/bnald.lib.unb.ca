@@ -1,4 +1,4 @@
-uuid: 0d6eb6da-ed4b-4d58-a3b8-f2818972362e
+uuid: e52444fa-98e1-416d-ac44-74ed4ec6f640
 langcode: en
 status: true
 dependencies:
@@ -11,8 +11,8 @@ third_party_settings:
     parent: 'main:'
 name: Page
 type: page
-description: 'Descriptive page of text.'
+description: ''
 help: ''
-new_revision: false
+new_revision: true
 preview_mode: 1
-display_submitted: false
+display_submitted: true

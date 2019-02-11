@@ -10,5 +10,9 @@
     "issues": "https://www.drupal.org/project/issues/bnald_core",
     "source": "http://cgit.drupalcode.org/bnald_core"
   },
-  "require": { }
+  "require": {
+    "drupal/pathauto": "1.1",
+    "drupal/pdfpreview": "1.1",
+    "drupal/tvi": "1.1"
+  }
 }

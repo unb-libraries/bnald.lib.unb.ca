@@ -1,0 +1,7 @@
+enable_override: 1
+view: provinces
+view_display: default
+inherit_settings: 1
+pass_arguments: 0
+_core:
+  default_config_hash: Yqx1q2jrKonjhHXI0kBL01ceSxqo5ON0CKvQmrcSf78

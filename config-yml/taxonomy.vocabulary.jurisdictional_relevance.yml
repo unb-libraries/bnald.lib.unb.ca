@@ -1,0 +1,11 @@
+uuid: b1ab23cb-574c-4f75-bfeb-ac506f94acce
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 4fI0haRlAVDImO7SsUzFPmIs8Bwx4I0MQFPMjungXSU
+name: 'Jurisdictional Relevance'
+vid: jurisdictional_relevance
+description: ''
+hierarchy: 0
+weight: 0

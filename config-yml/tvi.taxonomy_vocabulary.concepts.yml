@@ -1,0 +1,7 @@
+enable_override: 1
+view: concepts
+view_display: default
+inherit_settings: 1
+pass_arguments: 0
+_core:
+  default_config_hash: EJ4VGFOQ9OxadSZ8uUkVuR9VpXxU0pPUd4H-HAlYjK8

@@ -1,7 +1,7 @@
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
-  url: 'http://localhost:3099/themes/contrib/bootstrap/favicon.ico'
+  url: 'http://local-bnald.lib.unb.ca:3099/themes/contrib/bootstrap/favicon.ico'
   use_default: true
 features:
   comment_user_picture: true

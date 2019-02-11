@@ -1,0 +1,7 @@
+enable_override: 1
+view: printed_in
+view_display: default
+inherit_settings: 1
+pass_arguments: 0
+_core:
+  default_config_hash: ppKgxkq6sWzxIJlB4gmj7fl2nuQAbY6-jIuDKfW-8VQ

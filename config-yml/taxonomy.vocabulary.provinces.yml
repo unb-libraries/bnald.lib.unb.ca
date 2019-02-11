@@ -1,0 +1,11 @@
+uuid: 74b76d00-d52c-4dcd-b1a5-99e6a8677dfa
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: IrSOeFCSOGaSQZ9PwwaGS5FPuXW8adZ0mDR2Lwj_M4g
+name: Provinces
+vid: provinces
+description: ''
+hierarchy: 0
+weight: 0

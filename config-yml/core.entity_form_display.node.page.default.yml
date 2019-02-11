@@ -1,16 +1,11 @@
-uuid: dd0452e5-cd76-4f03-9dc0-ead711ad6ea9
+uuid: 81ebaf2f-10ad-48ab-b9e2-6b475c78b7e6
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.page.body
-    - field.field.node.page.field_images_for_page
-    - field.field.node.page.field_supplementary_files_for_pa
-    - image.style.thumbnail
     - node.type.page
   module:
-    - file
-    - image
     - path
     - text
 id: node.page.default
@@ -33,21 +28,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_images_for_page:
-    weight: 122
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
-  field_supplementary_files_for_pa:
-    weight: 123
-    settings:
-      progress_indicator: throbber
-    third_party_settings: {  }
-    type: file_generic
-    region: content
   path:
     type: path
     weight: 30
