@@ -22,3 +22,16 @@ function bnald_core_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function bnald_core_theme($existing, $type, $theme, $path) {
+  return [
+    'piece_legislation' => [
+      'variables' => [
+        'piece_legislation' => NULL,
+      ],
+    ],
+  ];
+}

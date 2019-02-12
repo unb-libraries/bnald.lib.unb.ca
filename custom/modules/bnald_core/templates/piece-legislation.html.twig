@@ -1,0 +1,62 @@
+{#
+/**
+ * @file piece-legislation.html.twig
+ * Default theme implementation to present Piece of Legislation data.
+ *
+ * This template is used when viewing Piece of Legislation pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_piece_legislation()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('piece_legislation') }}>
+  <ul>
+    <li>
+      <span class="field--label">{{ 'Province'|trans }}</span>
+      <a class="field--value" href="#">
+        {{ piece_legislation.getProvince().label() }}
+      </a>
+    </li><li>
+      <span class="field--label">{{ 'Chapter'|trans }}</span>
+      <span class="field--value">{{ piece_legislation.getChapter() }}</span>
+    </li><li>
+      <span class="field--label">{{ 'Year'|trans }}</span>
+      <span class="field--value">{{ piece_legislation.getYearPassed() }}</span>
+    </li><li>
+      <span class="field--label">{{ 'Concepts'|trans }}</span>
+      <ul class="field--value tag-list">
+        {% for concept in piece_legislation.getConcepts() %}
+          <li class="label label-default">
+            <a href="#">
+              {{ concept.label() }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li><li>
+      <span class="field--label">{{ 'Jurisdictional Relevance'|trans }}</span>
+      <ul class="field--value tag-list">
+        {% for jr in piece_legislation.getJurisdictionalRelevance() %}
+          <li class="label label-default"><a href="#">{{ jr.label() }}</a></li>
+        {% endfor %}
+      </ul>
+    </li><li>
+      <span class="field--label">{{ 'Articles'|trans }}</span>
+      <span class="field--value">{{ piece_legislation.getNumberOfArticles() }}</span>
+    </li><li>
+      <span class="field--label">{{ 'Source'|trans }}</span>
+      <a class="field--value" href="{{ url( 'entity.source_document.canonical', { 'source_document': piece_legislation.getSourceDocumentId() } ) }}">
+        {{ piece_legislation.getSourceDocument().label() }}
+      </a>
+    </li><li>
+      <span class="field--label">{{ 'Summary'|trans }}</span>
+      <span class="field--value">{{ piece_legislation.getLegislativeSummary() }}</span>
+    </li>
+  </ul>
+</div>

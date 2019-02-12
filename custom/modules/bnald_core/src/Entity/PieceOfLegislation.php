@@ -51,15 +51,15 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/piece_legislation/{piece_legislation}",
- *     "add-form" = "/admin/structure/piece_legislation/add",
- *     "edit-form" = "/admin/structure/piece_legislation/{piece_legislation}/edit",
- *     "delete-form" = "/admin/structure/piece_legislation/{piece_legislation}/delete",
- *     "version-history" = "/admin/structure/piece_legislation/{piece_legislation}/revisions",
- *     "revision" = "/admin/structure/piece_legislation/{piece_legislation}/revisions/{piece_legislation_revision}/view",
- *     "revision_revert" = "/admin/structure/piece_legislation/{piece_legislation}/revisions/{piece_legislation_revision}/revert",
- *     "revision_delete" = "/admin/structure/piece_legislation/{piece_legislation}/revisions/{piece_legislation_revision}/delete",
- *     "collection" = "/admin/structure/piece_legislation",
+ *     "canonical" = "/legislative-items/{piece_legislation}",
+ *     "add-form" = "/legislative-items/add",
+ *     "edit-form" = "/legislative-items/{piece_legislation}/edit",
+ *     "delete-form" = "/legislative-items/{piece_legislation}/delete",
+ *     "version-history" = "/legislative-items/{piece_legislation}/revisions",
+ *     "revision" = "/legislative-items/{piece_legislation}/revisions/{piece_legislation_revision}/view",
+ *     "revision_revert" = "/legislative-items/{piece_legislation}/revisions/{piece_legislation_revision}/revert",
+ *     "revision_delete" = "/legislative-items/{piece_legislation}/revisions/{piece_legislation_revision}/delete",
+ *     "collection" = "/legislative-items",
  *   },
  *   field_ui_base_route = "piece_legislation.settings"
  * )
@@ -139,7 +139,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    * {@inheritdoc}
    */
   public function getLegislationTitle() {
-    return $this->get('legislation_title');
+    return $this->get('legislation_title')->value;
   }
 
   /**
@@ -186,7 +186,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    * {@inheritdoc}
    */
   public function getNumberOfArticles() {
-    return $this->get('number_articles');
+    return $this->get('number_articles')->value;
   }
 
   /**
@@ -235,7 +235,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    * {@inheritdoc}
    */
   public function getLegislativeSummary() {
-    return $this->get('legislative_summary');
+    return $this->get('legislative_summary')->value;
   }
 
   /**
@@ -250,7 +250,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    * {@inheritdoc}
    */
   public function getLegislativeFullText() {
-    return $this->get('legislative_full_text');
+    return $this->get('legislative_full_text')->value;
   }
 
   /**
@@ -265,7 +265,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    * {@inheritdoc}
    */
   public function getItemNotes() {
-    return $this->get('item_notes');
+    return $this->get('item_notes')->value;
   }
 
   /**
@@ -353,7 +353,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    * {@inheritdoc}
    */
   public function getChapter() {
-    return $this->get('chapter');
+    return $this->get('chapter')->value;
   }
 
   /**
@@ -368,7 +368,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
    * {@inheritdoc}
    */
   public function getChapterSort() {
-    return $this->get('chapter_sort');
+    return $this->get('chapter_sort')->value;
   }
 
   /**

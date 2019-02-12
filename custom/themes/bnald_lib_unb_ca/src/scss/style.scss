@@ -83,6 +83,40 @@ h1.title {
 
 }
 
+.region-content ul {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    margin-bottom: 10px;
+
+    .field--label {
+      display: block;
+      color: $color_highlight;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    .field--value {
+      font-size: large;
+    }
+  }
+}
+
+ul .label-default {
+  display: inline;
+  margin-right: 5px;
+  background-color: $color_background_secondary;
+
+  a {
+    color: $color_text_secondary;
+  }
+
+  &:hover {
+    background-color: $color_highlight;
+  }
+}
+
 table {
   border: 1px solid $color_background_primary_darker;
 }
