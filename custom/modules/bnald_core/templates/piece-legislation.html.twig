@@ -18,10 +18,9 @@
 <div{{ attributes.addClass('piece_legislation') }}>
   <ul>
     <li>
+      {% set province = piece_legislation.getProvince() %}
       <span class="field--label">{{ 'Province'|trans }}</span>
-      <a class="field--value" href="#">
-        {{ piece_legislation.getProvince().label() }}
-      </a>
+      <a class="field--value" href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': province.id() }) }}">{{ province.label() }}</a>
     </li><li>
       <span class="field--label">{{ 'Chapter'|trans }}</span>
       <span class="field--value">{{ piece_legislation.getChapter() }}</span>
@@ -33,9 +32,7 @@
       <ul class="field--value tag-list">
         {% for concept in piece_legislation.getConcepts() %}
           <li class="label label-default">
-            <a href="#">
-              {{ concept.label() }}
-            </a>
+            <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': concept.id() }) }}">{{ concept.label() }}</a>
           </li>
         {% endfor %}
       </ul>
@@ -43,7 +40,9 @@
       <span class="field--label">{{ 'Jurisdictional Relevance'|trans }}</span>
       <ul class="field--value tag-list">
         {% for jr in piece_legislation.getJurisdictionalRelevance() %}
-          <li class="label label-default"><a href="#">{{ jr.label() }}</a></li>
+          <li class="label label-default">
+            <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': jr.id() }) }}">{{ jr.label() }}</a>
+          </li>
         {% endfor %}
       </ul>
     </li><li>
