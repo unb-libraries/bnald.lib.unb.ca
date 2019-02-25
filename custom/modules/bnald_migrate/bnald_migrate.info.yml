@@ -1,0 +1,9 @@
+name: 'BNALD Migrate'
+type: module
+description: 'Contains migrations to import D7 data for entities and taxonomy terms provided by BNALD Core.'
+core: 8.x
+package: 'BNALD'
+dependencies:
+  - bnald_core
+  - migrate_tools
+  - migrate_drupal
