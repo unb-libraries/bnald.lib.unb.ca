@@ -1,0 +1,50 @@
+id: source_documents
+label: 'Source Documents Taxonomy Terms to Source Document Entities'
+migration_group: bnald
+migration_tags:
+  - Drupal 7
+deriver: Drupal\taxonomy\Plugin\migrate\D7TaxonomyTermDeriver
+source:
+  plugin: d7_taxonomy_term
+  key: migrate
+  bundle: source_documents
+process:
+  id: tid
+  title: name
+  langcode:
+    plugin: default_value
+    default_value: 'und'
+  short_title: field_abbreviated_title
+  year:
+    -
+      plugin: extract
+      source: field_date_printed
+      index:
+        - 0
+        - value
+      default: '0000'
+    -
+      plugin: substr
+      length: 4
+  printer:
+    plugin: migration_lookup
+    migration: d7_taxonomy_term:printer_name
+    source: field_printer
+  location:
+    plugin: migration_lookup
+    migration: d7_taxonomy_term:regions
+    source: field_location_printed
+  user_id:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  created: timestamp
+  changed: timestamp
+destination:
+  plugin: 'entity:source_document'
+migration_dependencies:
+  required:
+    - d7_taxonomy_term:printer_name
+    - d7_taxonomy_term:regions
