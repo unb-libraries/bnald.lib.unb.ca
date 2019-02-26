@@ -3,7 +3,6 @@ label: 'Source Documents Taxonomy Terms to Source Document Entities'
 migration_group: bnald
 migration_tags:
   - Drupal 7
-deriver: Drupal\taxonomy\Plugin\migrate\D7TaxonomyTermDeriver
 source:
   plugin: d7_taxonomy_term
   key: migrate
@@ -28,11 +27,11 @@ process:
       length: 4
   printer:
     plugin: migration_lookup
-    migration: d7_taxonomy_term:printer_name
+    migration: printers
     source: field_printer
   location:
     plugin: migration_lookup
-    migration: d7_taxonomy_term:regions
+    migration: regions
     source: field_location_printed
   user_id:
     plugin: default_value
@@ -46,5 +45,5 @@ destination:
   plugin: 'entity:source_document'
 migration_dependencies:
   required:
-    - d7_taxonomy_term:printer_name
-    - d7_taxonomy_term:regions
+    - printers
+    - regions
