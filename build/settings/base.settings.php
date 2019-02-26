@@ -25,3 +25,13 @@ if (isset($conf['chq_redis_cache_enabled']) && $conf['chq_redis_cache_enabled'])
 }
 
 // Add common includes below.
+
+$databases['migrate']['default'] = array (
+  'database'  => 'bnald',
+  'username'  => 'root',
+  'password'  => 'import',
+  'host'      => 'mysqlimport',
+  'port'      => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver'    => 'mysql',
+);

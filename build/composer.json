@@ -70,6 +70,7 @@
         "drupal/token": "1.5",
         "drupal/tvi": "1.0-beta2",
         "drupal/pdfpreview": "1.0-rc1",
+        "drupal/migrate_tools": "4.1",
         "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x",
         "unb-libraries/drupal-builder": "^8.0.0"
     },
