@@ -1,0 +1,55 @@
+id: piece_legislation
+label: 'Piece of Legislation Nodes to Piece of Legislation Entities'
+migration_group: bnald
+migration_tags:
+  - Drupal 7
+source:
+  plugin: d7_node
+  key: migrate
+  node_type: piece_of_legislation
+process:
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  province:
+    plugin: migration_lookup
+    migration: provinces
+    source: field_provinces
+  legislation_title: field_legislation_title
+  number_articles: field_number_of_articles
+  legislative_summary: field_legislative_summary
+  legislative_full: field_full_legislative_text
+  item_notes: field_item_notes
+  source_document:
+    plugin: migration_lookup
+    migration: source_documents
+    source: field_source_document
+  year_passed: field_date_legislation_passed
+  jurisdictional_relevance:
+    plugin: migration_lookup
+    migration: jurisdictional_relevances
+    source: field_jurisdictional_relevance
+  concepts:
+    plugin: migration_lookup
+    migration: concepts
+    source: field_concepts
+  chapter: field_chapter
+  chapter_sort: field_chapter_sort
+  user_id:
+    plugin: migration_lookup
+    migration: d7_user
+    source: node_uid
+  status: status
+  created: created
+  changed: timestamp
+destination:
+  plugin: entity:piece_legislation
+migration_dependencies:
+  required:
+    - d7_user
+    - concepts
+    - jurisdictional_relevances
+    - provinces
+    - source_documents

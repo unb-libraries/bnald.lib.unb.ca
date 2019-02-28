@@ -8,7 +8,6 @@ source:
   key: migrate
   bundle: source_documents
 process:
-  id: tid
   title: name
   langcode:
     plugin: default_value
