@@ -50,7 +50,15 @@ process:
     plugin: migration_lookup
     migration: source_documents
     source: field_source_document
-  year_passed: field_date_legislation_passed
+  year_passed:
+    - plugin: extract
+      source: field_date_legislation_passed
+      index:
+        - 0
+        - value
+      default: '0000'
+    - plugin: substr
+      length: 4
   jurisdictional_relevance:
     plugin: migration_lookup
     migration: jurisdictional_relevances
