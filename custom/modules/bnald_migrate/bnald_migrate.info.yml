@@ -7,3 +7,4 @@ dependencies:
   - bnald_core
   - migrate_tools
   - migrate_drupal
+  - migrate_file
