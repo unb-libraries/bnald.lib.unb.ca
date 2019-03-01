@@ -22,6 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @code
  * field_file:
  *   plugin: file_name
+ *   field: uri|filename(default)
  *   path: path/to/file
  *   source: fid
  * @endcode
@@ -59,11 +60,33 @@ class FileName extends ProcessPluginBase implements ContainerFactoryPluginInterf
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $records = $this->executeD7FileQueryWhereFileIdEquals($value);
     $record = $records->fetch();
-    return $this->pathTo($record['filename']);
+    $filename = $this->filenameFromRecord($record);
+    return $this->pathTo($filename);
   }
 
   /**
-   * A d7_file query extended by a where condition.
+   * Extracts the filename from the given record, based on the 'field' value.
+   *
+   * @param mixed $record
+   *   Record containing the file info.
+   *
+   * @return string
+   *   The filename
+   */
+  protected function filenameFromRecord($record) {
+    $key = isset($this->configuration['field']) ?: 'filename';
+    switch ($key) {
+      case 'uri':
+        return basename($record['uri']);
+
+      case 'filename':
+      default:
+        return $record['filename'];
+    }
+  }
+
+  /**
+   * A d7_file query extended to match a given entity file id.
    *
    * @param int $fid
    *   The file entity ID to query for.
