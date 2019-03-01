@@ -17,6 +17,30 @@ process:
     plugin: migration_lookup
     migration: provinces
     source: field_provinces
+  pdf_original:
+    -
+      plugin: extract
+      source: field_pdf_of_legislation
+      index:
+        - 0
+        - fid
+    -
+      plugin: file_name
+      path: '/app/content/files'
+      field: uri
+    -
+      plugin: file_import
+  pdf_transcript:
+    - plugin: extract
+      source: field_pdf_of_legislation_full_te
+      index:
+        - 0
+        - fid
+    - plugin: file_name
+      path: '/app/content/files'
+      field: uri
+    -
+      plugin: file_import
   legislation_title: field_legislation_title
   number_articles: field_number_of_articles
   legislative_summary: field_legislative_summary
