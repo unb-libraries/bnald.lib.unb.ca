@@ -27,20 +27,22 @@ process:
     -
       plugin: file_name
       path: '/app/content/files'
-      field: uri
     -
       plugin: file_import
+      skip_on_missing_source: true
   pdf_transcript:
-    - plugin: extract
+    -
+      plugin: extract
       source: field_pdf_of_legislation_full_te
       index:
         - 0
         - fid
-    - plugin: file_name
+    -
+      plugin: file_name
       path: '/app/content/files'
-      field: uri
     -
       plugin: file_import
+      skip_on_missing_source: true
   legislation_title: field_legislation_title
   number_articles: field_number_of_articles
   legislative_summary: field_legislative_summary

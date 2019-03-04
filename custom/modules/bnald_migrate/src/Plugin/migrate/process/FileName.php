@@ -4,6 +4,7 @@ namespace Drupal\bnald_migrate\Plugin\migrate\process;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\ProcessPluginBase;
@@ -56,33 +57,13 @@ class FileName extends ProcessPluginBase implements ContainerFactoryPluginInterf
 
   /**
    * {@inheritdoc}
+   *
+   * @throws \Drupal\migrate\MigrateSkipProcessException
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $records = $this->executeD7FileQueryWhereFileIdEquals($value);
     $record = $records->fetch();
-    $filename = $this->filenameFromRecord($record);
-    return $this->pathTo($filename);
-  }
-
-  /**
-   * Extracts the filename from the given record, based on the 'field' value.
-   *
-   * @param mixed $record
-   *   Record containing the file info.
-   *
-   * @return string
-   *   The filename
-   */
-  protected function filenameFromRecord($record) {
-    $key = isset($this->configuration['field']) ?: 'filename';
-    switch ($key) {
-      case 'uri':
-        return basename($record['uri']);
-
-      case 'filename':
-      default:
-        return $record['filename'];
-    }
+    return $this->pathTo($record);
   }
 
   /**
@@ -104,15 +85,21 @@ class FileName extends ProcessPluginBase implements ContainerFactoryPluginInterf
   /**
    * The path to the queried file, if configured, or the filename only.
    *
-   * @param string $filename
+   * @param mixed $record
    *   The name of the file.
    *
    * @return string
    *   The filepath and/or name
    */
-  private function pathTo(string $filename) {
-    $path = isset($this->configuration['path']) ? $this->configuration['path'] . DIRECTORY_SEPARATOR : '';
-    return $path . $filename;
+  private function pathTo($record) {
+    $dir = isset($this->configuration['path']) ? $this->configuration['path'] . DIRECTORY_SEPARATOR : 'public://';
+    foreach (['filename', 'uri'] as $filename_key) {
+      $path_to_file = $dir . basename($record[$filename_key]);
+      if (file_exists($path_to_file)) {
+        return $path_to_file;
+      }
+    }
+    return '';
   }
 
 }
