@@ -464,7 +464,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['chapter'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Chapter'))
-      ->setDescription(t('Which chapter of its source document this Legislation appears in.'))
+      ->setDescription(t('Which chapter of its source document did this Legislation appear in?'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setDisplayOptions('view', [
@@ -478,7 +478,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['year'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Year'))
-      ->setDescription(t('When this Legislation passed.'))
+      ->setDescription(t('When did this Legislation pass?'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([
@@ -496,7 +496,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['article_count'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Number of Articles'))
-      ->setDescription(t('How many articles this Legislation comprises.'))
+      ->setDescription(t('How many articles does this Legislation comprise?'))
       ->setRequired(TRUE)
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
@@ -514,20 +514,22 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['province'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Province'))
-      ->setDescription(t('Which (historical) province this Legislation applies to.'))
+      ->setDescription(t('Which (historical) province does/did this Legislation apply to?'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([
         'target_type' => 'taxonomy_term',
         'handler_settings' => [
-          'provinces' => 'provinces',
+          'target_bundles' => [
+            'provinces' => 'provinces',
+          ],
         ],
       ])
       ->setDisplayOptions('view', [
         'weight' => 4,
       ])
       ->setDisplayOptions(('form'), [
-        'target' => 'provinces',
+        'type' => 'options_select',
         'weight' => 4,
       ])
       ->setDisplayConfigurable('view', TRUE)
@@ -535,7 +537,6 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['summary'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Summary'))
-      ->setDescription(t('Summary of the legislative content.'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([
@@ -552,7 +553,6 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['full_text'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Full Text'))
-      ->setDescription(t('Full content of the Legislation.'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([
@@ -563,13 +563,16 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ])
       ->setDisplayOptions('form', [
         'weight' => 6,
+        'settings' => [
+          'rows' => 20,
+        ],
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['pdf_original'] = BaseFieldDefinition::create('file')
       ->setLabel(t('PDF (Original)'))
-      ->setDescription(t('Scanned PDF of the originally printed version of the Legislation.'))
+      ->setDescription(t('Upload a PDF of the originally printed version of the Legislation.'))
       ->setTranslatable(FALSE)
       ->setRevisionable(FALSE)
       ->setRequired(TRUE)
@@ -587,7 +590,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['pdf_transcribed'] = BaseFieldDefinition::create('file')
       ->setLabel(t('PDF (Transcribed)'))
-      ->setDescription(t('PDF of a transcribed copy of the Legislation'))
+      ->setDescription(t('Upload a PDF of a transcribed copy of the Legislation'))
       ->setTranslatable(FALSE)
       ->setRevisionable(FALSE)
       ->setRequired(TRUE)
@@ -605,20 +608,23 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['jurisdictional_relevance'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Jurisdictional Relevance'))
+      ->setDescription(t('Multiple selections possible.'))
       ->setRevisionable(TRUE)
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
       ->setTranslatable(FALSE)
       ->setSettings([
         'target_type' => 'taxonomy_term',
         'handler_settings' => [
-          'jurisdictional_relevance' => 'jurisdictional_relevance',
+          'target_bundles' => [
+            'jurisdictional_relevance' => 'jurisdictional_relevance',
+          ],
         ],
       ])
       ->setDisplayOptions('view', [
         'weight' => 9,
       ])
       ->setDisplayOptions(('form'), [
-        'target' => 'jurisdictional_relevance',
+        'type' => 'options_select',
         'weight' => 9,
       ])
       ->setDisplayConfigurable('view', TRUE)
@@ -626,28 +632,31 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['concepts'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Concepts'))
+      ->setDescription(t('Multiple selections possible.'))
       ->setRevisionable(TRUE)
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
       ->setTranslatable(FALSE)
       ->setSettings([
         'target_type' => 'taxonomy_term',
         'handler_settings' => [
-          'concepts' => 'concepts',
+          'target_bundles' => [
+            'concepts' => 'concepts',
+          ],
         ],
       ])
       ->setDisplayOptions('view', [
         'weight' => 10,
       ])
       ->setDisplayOptions(('form'), [
-        'target' => 'concepts',
+        'type' => 'options_select',
         'weight' => 10,
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['source'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Source Document'))
-      ->setDescription(t('The Source Document of the Legislation'))
+      ->setLabel(t('Source'))
+      ->setDescription(t('Which source document can this Legislation be found in?'))
       ->setSettings(
         [
           'target_type' => 'source_document',
@@ -669,13 +678,10 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
         'form',
         [
           'type' => 'entity_reference_autocomplete',
-          'weight' => 11,
           'settings' => [
-            'match_operator' => 'CONTAINS',
-            'size' => '60',
-            'autocomplete_type' => 'tags',
-            'placeholder' => '',
+            'placeholder' => 'Search by Title',
           ],
+          'weight' => 11,
         ]
       )
       ->setDisplayConfigurable('form', TRUE)
@@ -683,7 +689,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['notes'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Notes'))
-      ->setDescription(t('Notes related to this Legislation. Won\'t be visible to the public.'))
+      ->setDescription(t('Any notes related to this Legislation will not be visible to the public.'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([
@@ -708,14 +714,8 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
+        'type' => 'options_select',
         'weight' => 13,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
       ])
       ->setDisplayConfigurable('form', TRUE);
 
