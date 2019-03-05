@@ -18,7 +18,7 @@
 <div{{ attributes.addClass('legislation') }}>
   <ul>
     <li>
-      {% set province = legislation.getProvince() %}
+      {% set province = legislation.getSource().getProvince() %}
       <span class="field--label">{{ 'Province'|trans }}</span>
       <a class="field--value" href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': province.id() }) }}">{{ province.label() }}</a>
     </li><li>

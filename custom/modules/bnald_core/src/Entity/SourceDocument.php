@@ -166,6 +166,8 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
    */
   public function getYear() {
     return $this->get('year')->value;
+  public function getProvince() {
+    return $this->get('province')->entity;
   }
 
   /**
@@ -173,6 +175,8 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
    */
   public function setYear($year) {
     $this->set('year', $year);
+  public function setProvince(TermInterface $province) {
+    $this->set('province', $province->id());
     return $this;
   }
 
@@ -359,12 +363,24 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
     $fields['year'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Year Printed'))
       ->setDescription(t('The Year the Document was printed.'))
+    $fields['province'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Province'))
+      ->setDescription(t('Which (historical) province does/did this Document apply to?'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
-      ->setDisplayOptions('view', [
-        'weight' => 3,
+      ->setSettings([
+        'target_type' => 'taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'provinces' => 'provinces',
+          ],
+        ],
       ])
-      ->setDisplayOptions('form', [
+      ->setDisplayOptions('view', [
+        'weight' => 2,
+      ])
+      ->setDisplayOptions(('form'), [
+        'type' => 'options_select',
         'weight' => 2,
       ])
       ->setDisplayConfigurable('view', TRUE)

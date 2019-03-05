@@ -24,6 +24,10 @@ process:
     -
       plugin: substr
       length: 4
+  province:
+    plugin: migration_lookup
+    migration: provinces
+    source: field_province
   printer:
     plugin: migration_lookup
     migration: printers
@@ -44,5 +48,6 @@ destination:
   plugin: 'entity:source_document'
 migration_dependencies:
   required:
+    - provinces
     - printers
     - regions

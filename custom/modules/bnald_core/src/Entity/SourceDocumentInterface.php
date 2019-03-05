@@ -55,19 +55,30 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
    *
    * @param string $short_title
    *   The Short Title of the Source Document.
+   * Gets the Source Document Province entity.
    *
    * @return \Drupal\bnald_core\Entity\SourceDocument
    *   The called Source Document entity.
+   * @return \Drupal\taxonomy\TermInterface
+   *   Province of the SourceDocument.
    */
   public function setShortTitle($short_title);
+  public function getProvince();
 
   /**
    * Clears the Source Document Short Title value.
+   * Sets the Source Document Province entity.
    *
    * @return \Drupal\bnald_core\Entity\SourceDocument
    *   The called Source Document entity.
+   * @param \Drupal\taxonomy\TermInterface $province
+   *   The province of the SourceDocument.
+   *
+   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
+   *   The called SourceDocument entity.
    */
   public function clearShortTitle();
+  public function setProvince(TermInterface $province);
 
   /**
    * Gets the Source Document Printer entity.

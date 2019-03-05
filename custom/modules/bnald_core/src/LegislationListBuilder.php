@@ -20,7 +20,6 @@ class LegislationListBuilder extends EntityListBuilder {
     $header['id'] = $this->t('ID');
     $header['title'] = $this->t('Title');
     $header['year'] = $this->t('Year');
-    $header['province'] = $this->t('Province');
     $header['source'] = $this->t('Source Document');
     return $header + parent::buildHeader();
   }
@@ -37,9 +36,6 @@ class LegislationListBuilder extends EntityListBuilder {
       ['legislation' => $entity->id()]
     );
     $row['year'] = $entity->getYear();
-
-    $province = $entity->getProvince();
-    $row['province'] = isset($province) ? $province->label() : '';
 
     $source = $entity->getSource();
     $row['source'] = isset($source) ? $source->label() : '';

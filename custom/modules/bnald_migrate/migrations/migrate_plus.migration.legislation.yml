@@ -27,10 +27,6 @@ process:
       plugin: substr
       length: 4
   article_count: field_number_of_articles
-  province:
-    plugin: migration_lookup
-    migration: provinces
-    source: field_provinces
   summary: field_legislative_summary
   full_text: field_full_legislative_text
   pdf_original:
@@ -87,5 +83,4 @@ migration_dependencies:
     - d7_user
     - concepts
     - jurisdictional_relevances
-    - provinces
     - source_documents
