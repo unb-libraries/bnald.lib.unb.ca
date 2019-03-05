@@ -17,6 +17,82 @@ use Drupal\user\EntityOwnerInterface;
 interface LegislationInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
   /**
+   * Gets the title of the Legislation.
+   *
+   * @return string
+   *   Title of the Legislation.
+   */
+  public function getTitle();
+
+  /**
+   * Sets the title for the Legislation .
+   *
+   * @param string $title
+   *   The title of the Legislation.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setTitle($title);
+
+  /**
+   * Gets the chapter this Legislation appears in.
+   *
+   * @return string
+   *   The chapter this Legislation appears in.
+   */
+  public function getChapter();
+
+  /**
+   * Sets the chapter this Legislation appears in.
+   *
+   * @param string $chapter
+   *   The chapter this Legislation appears in.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setChapter($chapter);
+
+  /**
+   * Gets the year this Legislation was passed.
+   *
+   * @return int
+   *   The year this Legislation was passed.
+   */
+  public function getYear();
+
+  /**
+   * Sets the year this Legislation was passed.
+   *
+   * @param int $year
+   *   The year this Legislation was passed.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setYear($year);
+
+  /**
+   * Gets the title of the Legislation.
+   *
+   * @return int
+   *   Number of Articles this Legislation consists of.
+   */
+  public function getNumberOfArticles();
+
+  /**
+   * Sets the number of articles this Legislation consists of.
+   *
+   * @param int $number
+   *   The number of articles.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setNumberOfArticles($number);
+
+  /**
    * Gets the province this Legislation applies to.
    *
    * @return \Drupal\taxonomy\TermInterface
@@ -36,23 +112,80 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
   public function setProvince(TermInterface $province);
 
   /**
-   * Gets the title of the Legislation.
+   * Gets the legislative summary of the Legislation.
    *
    * @return string
-   *   Title of the Legislation.
+   *   Legislative summary of this Legislation.
    */
-  public function getLegislationTitle();
+  public function getSummary();
 
   /**
-   * Sets the title for the Legislation .
+   * Sets the legislative summary for this Legislation.
    *
-   * @param string $title
-   *   The title of the Legislation.
+   * @param string $summary
+   *   The legislative summary of this Legislation.
    *
    * @return \Drupal\bnald_core\Entity\LegislationInterface
    *   The called Legislation entity.
    */
-  public function setLegislationTitle($title);
+  public function setSummary($summary);
+
+  /**
+   * Gets the legislative full text of the Legislation.
+   *
+   * @return string
+   *   Legislative full text of this Legislation.
+   */
+  public function getFullText();
+
+  /**
+   * Sets the legislative full text for this Legislation.
+   *
+   * @param string $full_text
+   *   The legislative full text of this Legislation.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setFullText($full_text);
+
+  /**
+   * Gets the PDF of the Transcribed Act for this Legislation.
+   *
+   * @return \Drupal\file\FileInterface
+   *   The PDF file entity.
+   */
+  public function getPdfTranscribed();
+
+  /**
+   * Sets the PDF of the Transcribed Act for this Legislation.
+   *
+   * @param \Drupal\file\FileInterface $pdf
+   *   The PDF file entity.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setPdfTranscribed(FileInterface $pdf);
+
+  /**
+   * Gets the PDF of the Original Act for this Legislation.
+   *
+   * @return \Drupal\file\FileInterface
+   *   The PDF file entity.
+   */
+  public function getPdfOriginal();
+
+  /**
+   * Sets the PDF of the Original Act for this Legislation.
+   *
+   * @param \Drupal\file\FileInterface $pdf
+   *   The PDF file entity.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setPdfOriginal(FileInterface $pdf);
 
   /**
    * Gets all 'Jurisdictional Relevance' terms associated with this Legislation.
@@ -85,25 +218,6 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
   public function removeJurisdictionalRelevance(TermInterface $term_to_remove);
 
   /**
-   * Gets the title of the Legislation.
-   *
-   * @return int
-   *   Number of Articles this Legislation consists of.
-   */
-  public function getNumberOfArticles();
-
-  /**
-   * Sets the number of articles this Legislation consists of.
-   *
-   * @param int $number
-   *   The number of articles.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setNumberOfArticles($number);
-
-  /**
    * Gets all 'Concept' terms associated with this Legislation.
    *
    * @return \Drupal\taxonomy\TermInterface[]
@@ -134,42 +248,31 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
   public function removeConcept(TermInterface $term_to_remove);
 
   /**
-   * Gets the legislative summary of the Legislation.
+   * Gets the Legislation's Source Document.
    *
-   * @return string
-   *   Legislative summary of this Legislation.
+   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
+   *   The SourceDocument entity.
    */
-  public function getLegislativeSummary();
+  public function getSource();
 
   /**
-   * Sets the legislative summary for this Legislation.
+   * Gets the Legislation's Source ID.
    *
-   * @param string $summary
-   *   The legislative summary of this Legislation.
+   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
+   *   The SourceDocument entity.
+   */
+  public function getSourceId();
+
+  /**
+   * Sets the Legislation's Source Document.
    *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   * @param \Drupal\bnald_core\Entity\SourceDocumentInterface $source_document
+   *   The SourceDocument entity.
+   *
+   * @return \Drupal\bnald_core\Entity\Legislation
    *   The called Legislation entity.
    */
-  public function setLegislativeSummary($summary);
-
-  /**
-   * Gets the legislative full text of the Legislation.
-   *
-   * @return string
-   *   Legislative full text of this Legislation.
-   */
-  public function getLegislativeFullText();
-
-  /**
-   * Sets the legislative full text for this Legislation.
-   *
-   * @param string $full_text
-   *   The legislative full text of this Legislation.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setLegislativeFullText($full_text);
+  public function setSource(SourceDocumentInterface $source_document);
 
   /**
    * Gets any item notes associated with this Legislation.
@@ -191,101 +294,6 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
   public function setItemNotes($notes);
 
   /**
-   * Gets the Legislation's Source Document.
-   *
-   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
-   *   The SourceDocument entity.
-   */
-  public function getSourceDocument();
-
-  /**
-   * Sets the Legislation's Source Document.
-   *
-   * @param \Drupal\bnald_core\Entity\SourceDocumentInterface $source_document
-   *   The SourceDocument entity.
-   *
-   * @return \Drupal\bnald_core\Entity\Legislation
-   *   The called Legislation entity.
-   */
-  public function setSourceDocument(SourceDocumentInterface $source_document);
-
-  /**
-   * Gets the year this Legislation was passed.
-   *
-   * @return int
-   *   The year this Legislation was passed.
-   */
-  public function getYearPassed();
-
-  /**
-   * Sets the year this Legislation was passed.
-   *
-   * @param int $year
-   *   The year this Legislation was passed.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setYearPassed($year);
-
-  /**
-   * Gets the PDF of the Transcribed Act for this Legislation.
-   *
-   * @return \Drupal\file\FileInterface
-   *   The PDF file entity.
-   */
-  public function getPdfTranscript();
-
-  /**
-   * Sets the PDF of the Transcribed Act for this Legislation.
-   *
-   * @param \Drupal\file\FileInterface $pdf
-   *   The PDF file entity.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setPdfTranscript(FileInterface $pdf);
-
-  /**
-   * Gets the PDF of the Original Act for this Legislation.
-   *
-   * @return \Drupal\file\FileInterface
-   *   The PDF file entity.
-   */
-  public function getPdfOriginal();
-
-  /**
-   * Sets the PDF of the Original Act for this Legislation.
-   *
-   * @param \Drupal\file\FileInterface $pdf
-   *   The PDF file entity.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setPdfOriginal(FileInterface $pdf);
-
-  /**
-   * Gets the chapter this Legislation appears in.
-   *
-   * @return string
-   *   The chapter this Legislation appears in.
-   */
-  public function getChapter();
-
-  /**
-   * Sets the chapter this Legislation appears in.
-   *
-   * @param string $chapter
-   *   The chapter this Legislation appears in.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setChapter($chapter);
-
-  /**
    * Gets the sort key of the chapter this Legislation appears in.
    *
    * @return string
@@ -303,25 +311,6 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
    *   The called Legislation entity.
    */
   public function setChapterSort($sort_key);
-
-  /**
-   * Gets the Legislation creation timestamp.
-   *
-   * @return int
-   *   Creation timestamp of the Legislation.
-   */
-  public function getCreatedTime();
-
-  /**
-   * Sets the Legislation creation timestamp.
-   *
-   * @param int $timestamp
-   *   The Legislation creation timestamp.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setCreatedTime($timestamp);
 
   /**
    * Returns the Legislation published status indicator.
@@ -345,25 +334,6 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
   public function setPublished($published);
 
   /**
-   * Gets the Legislation revision creation timestamp.
-   *
-   * @return int
-   *   The UNIX timestamp of when this revision was created.
-   */
-  public function getRevisionCreationTime();
-
-  /**
-   * Sets the Legislation revision creation timestamp.
-   *
-   * @param int $timestamp
-   *   The UNIX timestamp of when this revision was created.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setRevisionCreationTime($timestamp);
-
-  /**
    * Gets the Legislation revision author.
    *
    * @return \Drupal\user\UserInterface
@@ -381,5 +351,43 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
    *   The called Legislation entity.
    */
   public function setRevisionUserId($uid);
+
+  /**
+   * Gets the Legislation creation timestamp.
+   *
+   * @return int
+   *   Creation timestamp of the Legislation.
+   */
+  public function getCreatedTime();
+
+  /**
+   * Sets the Legislation creation timestamp.
+   *
+   * @param int $timestamp
+   *   The Legislation creation timestamp.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setCreatedTime($timestamp);
+
+  /**
+   * Gets the Legislation revision creation timestamp.
+   *
+   * @return int
+   *   The UNIX timestamp of when this revision was created.
+   */
+  public function getRevisionCreationTime();
+
+  /**
+   * Sets the Legislation revision creation timestamp.
+   *
+   * @param int $timestamp
+   *   The UNIX timestamp of when this revision was created.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setRevisionCreationTime($timestamp);
 
 }

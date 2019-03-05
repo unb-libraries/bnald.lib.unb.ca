@@ -13,54 +13,52 @@ process:
     plugin: default_value
     source: language
     default_value: "und"
-  province:
-    plugin: migration_lookup
-    migration: provinces
-    source: field_provinces
-  pdf_original:
+  title: field_legislation_title
+  chapter: field_chapter
+  year:
     -
       plugin: extract
-      source: field_pdf_of_legislation
-      index:
-        - 0
-        - fid
-    -
-      plugin: file_name
-      path: '/app/content/files'
-    -
-      plugin: file_import
-      skip_on_missing_source: true
-  pdf_transcript:
-    -
-      plugin: extract
-      source: field_pdf_of_legislation_full_te
-      index:
-        - 0
-        - fid
-    -
-      plugin: file_name
-      path: '/app/content/files'
-    -
-      plugin: file_import
-      skip_on_missing_source: true
-  legislation_title: field_legislation_title
-  number_articles: field_number_of_articles
-  legislative_summary: field_legislative_summary
-  legislative_full: field_full_legislative_text
-  item_notes: field_item_notes
-  source_document:
-    plugin: migration_lookup
-    migration: source_documents
-    source: field_source_document
-  year_passed:
-    - plugin: extract
       source: field_date_legislation_passed
       index:
         - 0
         - value
       default: '0000'
-    - plugin: substr
+    -
+      plugin: substr
       length: 4
+  article_count: field_number_of_articles
+  province:
+    plugin: migration_lookup
+    migration: provinces
+    source: field_provinces
+  summary: field_legislative_summary
+  full_text: field_full_legislative_text
+  pdf_original:
+      -
+        plugin: extract
+        source: field_pdf_of_legislation
+        index:
+          - 0
+          - fid
+      -
+        plugin: file_name
+        path: '/app/content/files'
+      -
+        plugin: file_import
+        skip_on_missing_source: true
+  pdf_transcribed:
+      -
+        plugin: extract
+        source: field_pdf_of_legislation_full_te
+        index:
+          - 0
+          - fid
+      -
+        plugin: file_name
+        path: '/app/content/files'
+      -
+        plugin: file_import
+        skip_on_missing_source: true
   jurisdictional_relevance:
     plugin: migration_lookup
     migration: jurisdictional_relevances
@@ -69,7 +67,11 @@ process:
     plugin: migration_lookup
     migration: concepts
     source: field_concepts
-  chapter: field_chapter
+  source:
+    plugin: migration_lookup
+    migration: source_documents
+    source: field_source_document
+  notes: field_item_notes
   chapter_sort: field_chapter_sort
   user_id:
     plugin: migration_lookup

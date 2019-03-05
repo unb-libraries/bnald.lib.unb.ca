@@ -23,7 +23,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @code
  * field_file:
  *   plugin: file_name
- *   field: uri|filename(default)
  *   path: path/to/file
  *   source: fid
  * @endcode

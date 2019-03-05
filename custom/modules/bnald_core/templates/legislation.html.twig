@@ -50,8 +50,8 @@
       <span class="field--value">{{ legislation.getNumberOfArticles() }}</span>
     </li><li>
       <span class="field--label">{{ 'Source'|trans }}</span>
-      <a class="field--value" href="{{ url( 'entity.source_document.canonical', { 'source_document': legislation.getSourceDocumentId() } ) }}">
-        {{ legislation.getSourceDocument().label() }}
+      <a class="field--value" href="{{ url( 'entity.source_document.canonical', { 'source_document': legislation.getSourceId() } ) }}">
+        {{ legislation.getSource().label() }}
       </a>
     </li><li>
       <span class="field--label">{{ 'Summary'|trans }}</span>
