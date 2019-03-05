@@ -1,33 +1,33 @@
-add piece of legislation entities:
-  title: 'Create new Piece of Legislation entities'
+add legislation entities:
+  title: 'Create new Legislation entities'
 
-administer piece of legislation entities:
-  title: 'Administer Piece of Legislation entities'
-  description: 'Allow to access the administration form to configure Piece of Legislation entities.'
+administer legislation entities:
+  title: 'Administer Legislation entities'
+  description: 'Allow to access the administration form to configure Legislation entities.'
   restrict access: true
 
-delete piece of legislation entities:
-  title: 'Delete Piece of Legislation entities'
+delete legislation entities:
+  title: 'Delete Legislation entities'
 
-edit piece of legislation entities:
-  title: 'Edit Piece of Legislation entities'
+edit legislation entities:
+  title: 'Edit Legislation entities'
 
-view published piece of legislation entities:
-  title: 'View published Piece of Legislation entities'
+view published legislation entities:
+  title: 'View published Legislation entities'
 
-view unpublished piece of legislation entities:
-  title: 'View unpublished Piece of Legislation entities'
+view unpublished legislation entities:
+  title: 'View unpublished Legislation entities'
 
-view all piece of legislation revisions:
-  title: 'View all Piece of Legislation revisions'
+view all legislation revisions:
+  title: 'View all Legislation revisions'
 
-revert all piece of legislation revisions:
-  title: 'Revert all Piece of Legislation revisions'
-  description: 'Role requires permission <em>view Piece of Legislation revisions</em> and <em>edit rights</em> for piece of legislation entities in question or <em>administer piece of legislation entities</em>.'
+revert all legislation revisions:
+  title: 'Revert all Legislation revisions'
+  description: 'Role requires permission <em>view Legislation revisions</em> and <em>edit rights</em> for legislation entities in question or <em>administer legislation entities</em>.'
 
-delete all piece of legislation revisions:
+delete all legislation revisions:
   title: 'Delete all revisions'
-  description: 'Role requires permission to <em>view Piece of Legislation revisions</em> and <em>delete rights</em> for piece of legislation entities in question or <em>administer piece of legislation entities</em>.'
+  description: 'Role requires permission to <em>view Legislation revisions</em> and <em>delete rights</em> for legislation entities in question or <em>administer legislation entities</em>.'
 add source document entities:
   title: 'Create new Source Document entities'
 

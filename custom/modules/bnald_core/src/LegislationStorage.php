@@ -5,24 +5,24 @@ namespace Drupal\bnald_core;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\bnald_core\Entity\PieceOfLegislationInterface;
+use Drupal\bnald_core\Entity\LegislationInterface;
 
 /**
- * Defines the storage handler class for Piece of Legislation entities.
+ * Defines the storage handler class for Legislation entities.
  *
  * This extends the base storage class, adding required special handling for
- * Piece of Legislation entities.
+ * Legislation entities.
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationStorage extends SqlContentEntityStorage implements PieceOfLegislationStorageInterface {
+class LegislationStorage extends SqlContentEntityStorage implements LegislationStorageInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function revisionIds(PieceOfLegislationInterface $entity) {
+  public function revisionIds(LegislationInterface $entity) {
     return $this->database->query(
-      'SELECT vid FROM {piece_legislation_revision} WHERE id=:id ORDER BY vid',
+      'SELECT vid FROM {legislation_revision} WHERE id=:id ORDER BY vid',
       [':id' => $entity->id()]
     )->fetchCol();
   }
@@ -32,7 +32,7 @@ class PieceOfLegislationStorage extends SqlContentEntityStorage implements Piece
    */
   public function userRevisionIds(AccountInterface $account) {
     return $this->database->query(
-      'SELECT vid FROM {piece_legislation_field_revision} WHERE uid = :uid ORDER BY vid',
+      'SELECT vid FROM {legislation_field_revision} WHERE uid = :uid ORDER BY vid',
       [':uid' => $account->id()]
     )->fetchCol();
   }
@@ -40,8 +40,8 @@ class PieceOfLegislationStorage extends SqlContentEntityStorage implements Piece
   /**
    * {@inheritdoc}
    */
-  public function countDefaultLanguageRevisions(PieceOfLegislationInterface $entity) {
-    return $this->database->query('SELECT COUNT(*) FROM {piece_legislation_field_revision} WHERE id = :id AND default_langcode = 1', [':id' => $entity->id()])
+  public function countDefaultLanguageRevisions(LegislationInterface $entity) {
+    return $this->database->query('SELECT COUNT(*) FROM {legislation_field_revision} WHERE id = :id AND default_langcode = 1', [':id' => $entity->id()])
       ->fetchField();
   }
 
@@ -49,7 +49,7 @@ class PieceOfLegislationStorage extends SqlContentEntityStorage implements Piece
    * {@inheritdoc}
    */
   public function clearRevisionsLanguage(LanguageInterface $language) {
-    return $this->database->update('piece_legislation_revision')
+    return $this->database->update('legislation_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
       ->execute();

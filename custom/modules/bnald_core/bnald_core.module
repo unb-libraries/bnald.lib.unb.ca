@@ -28,9 +28,9 @@ function bnald_core_help($route_name, RouteMatchInterface $route_match) {
  */
 function bnald_core_theme($existing, $type, $theme, $path) {
   return [
-    'piece_legislation' => [
+    'legislation' => [
       'variables' => [
-        'piece_legislation' => NULL,
+        'legislation' => NULL,
       ],
     ],
   ];

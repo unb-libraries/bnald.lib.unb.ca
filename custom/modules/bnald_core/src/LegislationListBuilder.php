@@ -7,11 +7,11 @@ use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Link;
 
 /**
- * Defines a class to build a listing of Piece of Legislation entities.
+ * Defines a class to build a listing of Legislation entities.
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationListBuilder extends EntityListBuilder {
+class LegislationListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
@@ -29,12 +29,12 @@ class PieceOfLegislationListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\bnald_core\Entity\PieceOfLegislation */
+    /* @var $entity \Drupal\bnald_core\Entity\Legislation */
     $row['id'] = $entity->id();
     $row['legislation_title'] = Link::createFromRoute(
       $entity->label(),
-      'entity.piece_legislation.edit_form',
-      ['piece_legislation' => $entity->id()]
+      'entity.legislation.edit_form',
+      ['legislation' => $entity->id()]
     );
     $row['year'] = $entity->getYearPassed();
 

@@ -110,8 +110,8 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
    * @param int $year
    *   The year the Document was printed.
    *
-   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
-   *   The called Piece of Legislation entity.
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
    */
   public function setYear($year);
 

@@ -6,7 +6,7 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Form controller for Piece of Legislation edit forms.
+ * Form controller for Legislation edit forms.
  *
  * @ingroup bnald_core
  */
@@ -16,7 +16,7 @@ class PieceOfLegislationForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var $entity \Drupal\bnald_core\Entity\PieceOfLegislation */
+    /* @var $entity \Drupal\bnald_core\Entity\Legislation */
     $form = parent::buildForm($form, $form_state);
 
     if (!$this->entity->isNew()) {
@@ -55,17 +55,17 @@ class PieceOfLegislationForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Piece of Legislation.', [
+        drupal_set_message($this->t('Created the %label Legislation.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Piece of Legislation.', [
+        drupal_set_message($this->t('Saved the %label Legislation.', [
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.piece_legislation.canonical', ['piece_legislation' => $entity->id()]);
+    $form_state->setRedirect('entity.legislation.canonical', ['legislation' => $entity->id()]);
   }
 
 }

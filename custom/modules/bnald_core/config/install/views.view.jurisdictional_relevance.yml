@@ -11,7 +11,7 @@ label: 'Jurisdictional Relevance'
 module: views
 description: ''
 tag: ''
-base_table: piece_legislation
+base_table: legislation
 base_field: id
 core: 8.x
 display:
@@ -76,7 +76,7 @@ display:
           description: ''
           columns:
             legislation_title: legislation_title
-            view_piece_legislation: view_piece_legislation
+            view_legislation: view_legislation
             year_passed: year_passed
             chapter: chapter
             province: province
@@ -90,7 +90,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            view_piece_legislation:
+            view_legislation:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -135,7 +135,7 @@ display:
       fields:
         legislation_title:
           id: legislation_title
-          table: piece_legislation
+          table: legislation
           field: legislation_title
           relationship: none
           group_type: group
@@ -197,10 +197,10 @@ display:
           entity_type: null
           entity_field: legislation_title
           plugin_id: field
-        view_piece_legislation:
-          id: view_piece_legislation
-          table: piece_legislation
-          field: view_piece_legislation
+        view_legislation:
+          id: view_legislation
+          table: legislation
+          field: view_legislation
           relationship: none
           group_type: group
           admin_label: ''
@@ -248,11 +248,11 @@ display:
           text: view
           output_url_as_text: false
           absolute: false
-          entity_type: piece_legislation
+          entity_type: legislation
           plugin_id: entity_link
         year_passed:
           id: year_passed
-          table: piece_legislation
+          table: legislation
           field: year_passed
           relationship: none
           group_type: group
@@ -313,12 +313,12 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: piece_legislation
+          entity_type: legislation
           entity_field: year_passed
           plugin_id: field
         chapter:
           id: chapter
-          table: piece_legislation
+          table: legislation
           field: chapter
           relationship: none
           group_type: group
@@ -378,12 +378,12 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: piece_legislation
+          entity_type: legislation
           entity_field: chapter
           plugin_id: field
         province:
           id: province
-          table: piece_legislation
+          table: legislation
           field: province
           relationship: none
           group_type: group
@@ -443,12 +443,12 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: piece_legislation
+          entity_type: legislation
           entity_field: province
           plugin_id: field
         concepts_target_id:
           id: concepts_target_id
-          table: piece_legislation__concepts
+          table: legislation__concepts
           field: concepts_target_id
           relationship: none
           group_type: group
@@ -508,12 +508,12 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: piece_legislation
+          entity_type: legislation
           entity_field: concepts
           plugin_id: field
         jurisdictional_relevance_target_id:
           id: jurisdictional_relevance_target_id
-          table: piece_legislation__jurisdictional_relevance
+          table: legislation__jurisdictional_relevance
           field: jurisdictional_relevance_target_id
           relationship: none
           group_type: group
@@ -573,7 +573,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: piece_legislation
+          entity_type: legislation
           entity_field: jurisdictional_relevance
           plugin_id: field
       filters: {  }
@@ -586,7 +586,7 @@ display:
       arguments:
         jurisdictional_relevance_target_id:
           id: jurisdictional_relevance_target_id
-          table: piece_legislation__jurisdictional_relevance
+          table: legislation__jurisdictional_relevance
           field: jurisdictional_relevance_target_id
           relationship: none
           group_type: group
@@ -623,7 +623,7 @@ display:
             access: false
           break_phrase: false
           not: false
-          entity_type: piece_legislation
+          entity_type: legislation
           entity_field: jurisdictional_relevance
           plugin_id: numeric
       display_extenders: {  }

@@ -6,77 +6,77 @@ use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Url;
-use Drupal\bnald_core\Entity\PieceOfLegislationInterface;
+use Drupal\bnald_core\Entity\LegislationInterface;
 
 /**
  * Class PieceOfLegislationController.
  *
- *  Returns responses for Piece of Legislation routes.
+ *  Returns responses for Legislation routes.
  */
 class PieceOfLegislationController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
-   * Displays a Piece of Legislation  revision.
+   * Displays a Legislation  revision.
    *
-   * @param int $piece_legislation_revision
-   *   The Piece of Legislation  revision ID.
+   * @param int $legislation_revision
+   *   The Legislation  revision ID.
    *
    * @return array
    *   An array suitable for drupal_render().
    */
-  public function revisionShow($piece_legislation_revision) {
-    $piece_legislation = $this->entityManager()->getStorage('piece_legislation')->loadRevision($piece_legislation_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('piece_legislation');
+  public function revisionShow($legislation_revision) {
+    $legislation = $this->entityManager()->getStorage('legislation')->loadRevision($legislation_revision);
+    $view_builder = $this->entityManager()->getViewBuilder('legislation');
 
-    return $view_builder->view($piece_legislation);
+    return $view_builder->view($legislation);
   }
 
   /**
-   * Page title callback for a Piece of Legislation  revision.
+   * Page title callback for a Legislation  revision.
    *
-   * @param int $piece_legislation_revision
-   *   The Piece of Legislation  revision ID.
+   * @param int $legislation_revision
+   *   The Legislation  revision ID.
    *
    * @return string
    *   The page title.
    */
-  public function revisionPageTitle($piece_legislation_revision) {
-    $piece_legislation = $this->entityManager()->getStorage('piece_legislation')->loadRevision($piece_legislation_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $piece_legislation->label(), '%date' => format_date($piece_legislation->getRevisionCreationTime())]);
+  public function revisionPageTitle($legislation_revision) {
+    $legislation = $this->entityManager()->getStorage('legislation')->loadRevision($legislation_revision);
+    return $this->t('Revision of %title from %date', ['%title' => $legislation->label(), '%date' => format_date($legislation->getRevisionCreationTime())]);
   }
 
   /**
-   * Generates an overview table of older revisions of a Piece of Legislation .
+   * Generates an overview table of older revisions of a Legislation .
    *
-   * @param \Drupal\bnald_core\Entity\PieceOfLegislationInterface $piece_legislation
-   *   A Piece of Legislation  object.
+   * @param \Drupal\bnald_core\Entity\LegislationInterface $legislation
+   *   A Legislation  object.
    *
    * @return array
    *   An array as expected by drupal_render().
    */
-  public function revisionOverview(PieceOfLegislationInterface $piece_legislation) {
+  public function revisionOverview(LegislationInterface $legislation) {
     $account = $this->currentUser();
-    $langcode = $piece_legislation->language()->getId();
-    $langname = $piece_legislation->language()->getName();
-    $languages = $piece_legislation->getTranslationLanguages();
+    $langcode = $legislation->language()->getId();
+    $langname = $legislation->language()->getName();
+    $languages = $legislation->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $piece_legislation_storage = $this->entityManager()->getStorage('piece_legislation');
+    $legislation_storage = $this->entityManager()->getStorage('legislation');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $piece_legislation->label()]) : $this->t('Revisions for %title', ['%title' => $piece_legislation->label()]);
+    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $legislation->label()]) : $this->t('Revisions for %title', ['%title' => $legislation->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
-    $revert_permission = (($account->hasPermission("revert all piece of legislation revisions") || $account->hasPermission('administer piece of legislation entities')));
-    $delete_permission = (($account->hasPermission("delete all piece of legislation revisions") || $account->hasPermission('administer piece of legislation entities')));
+    $revert_permission = (($account->hasPermission("revert all legislation revisions") || $account->hasPermission('administer legislation entities')));
+    $delete_permission = (($account->hasPermission("delete all legislation revisions") || $account->hasPermission('administer legislation entities')));
 
     $rows = [];
 
-    $vids = $piece_legislation_storage->revisionIds($piece_legislation);
+    $vids = $legislation_storage->revisionIds($legislation);
 
     $latest_revision = TRUE;
 
     foreach (array_reverse($vids) as $vid) {
       /** @var \Drupal\bnald_core\PieceOfLegislationInterface $revision */
-      $revision = $piece_legislation_storage->loadRevision($vid);
+      $revision = $legislation_storage->loadRevision($vid);
       // Only show revisions that are affected by the language that is being
       // displayed.
       if ($revision->hasTranslation($langcode) && $revision->getTranslation($langcode)->isRevisionTranslationAffected()) {
@@ -87,11 +87,11 @@ class PieceOfLegislationController extends ControllerBase implements ContainerIn
 
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
-        if ($vid != $piece_legislation->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.piece_legislation.revision', ['piece_legislation' => $piece_legislation->id(), 'piece_legislation_revision' => $vid]));
+        if ($vid != $legislation->getRevisionId()) {
+          $link = $this->l($date, new Url('entity.legislation.revision', ['legislation' => $legislation->id(), 'legislation_revision' => $vid]));
         }
         else {
-          $link = $piece_legislation->link($date);
+          $link = $legislation->link($date);
         }
 
         $row = [];
@@ -126,14 +126,14 @@ class PieceOfLegislationController extends ControllerBase implements ContainerIn
           if ($revert_permission) {
             $links['revert'] = [
               'title' => $this->t('Revert'),
-              'url' => Url::fromRoute('entity.piece_legislation.revision_revert', ['piece_legislation' => $piece_legislation->id(), 'piece_legislation_revision' => $vid]),
+              'url' => Url::fromRoute('entity.legislation.revision_revert', ['legislation' => $legislation->id(), 'legislation_revision' => $vid]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.piece_legislation.revision_delete', ['piece_legislation' => $piece_legislation->id(), 'piece_legislation_revision' => $vid]),
+              'url' => Url::fromRoute('entity.legislation.revision_delete', ['legislation' => $legislation->id(), 'legislation_revision' => $vid]),
             ];
           }
 
@@ -149,7 +149,7 @@ class PieceOfLegislationController extends ControllerBase implements ContainerIn
       }
     }
 
-    $build['piece_legislation_revisions_table'] = [
+    $build['legislation_revisions_table'] = [
       '#theme' => 'table',
       '#rows' => $rows,
       '#header' => $header,

@@ -10,7 +10,7 @@ use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for deleting a Piece of Legislation revision.
+ * Provides a form for deleting a Legislation revision.
  *
  * @ingroup bnald_core
  */
@@ -18,14 +18,14 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
 
 
   /**
-   * The Piece of Legislation revision.
+   * The Legislation revision.
    *
-   * @var \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   * @var \Drupal\bnald_core\Entity\LegislationInterface
    */
   protected $revision;
 
   /**
-   * The Piece of Legislation storage.
+   * The Legislation storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
@@ -57,7 +57,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
   public static function create(ContainerInterface $container) {
     $entity_manager = $container->get('entity.manager');
     return new static(
-      $entity_manager->getStorage('piece_legislation'),
+      $entity_manager->getStorage('legislation'),
       $container->get('database')
     );
   }
@@ -66,7 +66,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'piece_legislation_revision_delete_confirm';
+    return 'legislation_revision_delete_confirm';
   }
 
   /**
@@ -80,7 +80,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.piece_legislation.version_history', ['piece_legislation' => $this->revision->id()]);
+    return new Url('entity.legislation.version_history', ['legislation' => $this->revision->id()]);
   }
 
   /**
@@ -93,8 +93,8 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $piece_legislation_revision = NULL) {
-    $this->revision = $this->PieceOfLegislationStorage->loadRevision($piece_legislation_revision);
+  public function buildForm(array $form, FormStateInterface $form_state, $legislation_revision = NULL) {
+    $this->revision = $this->PieceOfLegislationStorage->loadRevision($legislation_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -106,16 +106,16 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->PieceOfLegislationStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Piece of Legislation: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Revision from %revision-date of Piece of Legislation %title has been deleted.', ['%revision-date' => format_date($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')->notice('Legislation: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
+    drupal_set_message(t('Revision from %revision-date of Legislation %title has been deleted.', ['%revision-date' => format_date($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
     $form_state->setRedirect(
-      'entity.piece_legislation.canonical',
-       ['piece_legislation' => $this->revision->id()]
+      'entity.legislation.canonical',
+       ['legislation' => $this->revision->id()]
     );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {piece_legislation_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
+    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {legislation_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
       $form_state->setRedirect(
-        'entity.piece_legislation.version_history',
-         ['piece_legislation' => $this->revision->id()]
+        'entity.legislation.version_history',
+         ['legislation' => $this->revision->id()]
       );
     }
   }

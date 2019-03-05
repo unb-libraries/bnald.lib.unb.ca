@@ -1,27 +1,27 @@
-# Piece of Legislation routing definition
-piece_legislation.settings_tab:
-  route_name: piece_legislation.settings
+# Legislation routing definition
+legislation.settings_tab:
+  route_name: legislation.settings
   title: 'Settings'
-  base_route: piece_legislation.settings
+  base_route: legislation.settings
 
-entity.piece_legislation.canonical:
-  route_name: entity.piece_legislation.canonical
-  base_route: entity.piece_legislation.canonical
+entity.legislation.canonical:
+  route_name: entity.legislation.canonical
+  base_route: entity.legislation.canonical
   title: 'View'
 
-entity.piece_legislation.edit_form:
-  route_name: entity.piece_legislation.edit_form
-  base_route: entity.piece_legislation.canonical
+entity.legislation.edit_form:
+  route_name: entity.legislation.edit_form
+  base_route: entity.legislation.canonical
   title: 'Edit'
 
-entity.piece_legislation.version_history:
-  route_name: entity.piece_legislation.version_history
-  base_route: entity.piece_legislation.canonical
+entity.legislation.version_history:
+  route_name: entity.legislation.version_history
+  base_route: entity.legislation.canonical
   title: 'Revisions'
 
-entity.piece_legislation.delete_form:
-  route_name:  entity.piece_legislation.delete_form
-  base_route:  entity.piece_legislation.canonical
+entity.legislation.delete_form:
+  route_name:  entity.legislation.delete_form
+  base_route:  entity.legislation.canonical
   title: Delete
   weight: 10
 

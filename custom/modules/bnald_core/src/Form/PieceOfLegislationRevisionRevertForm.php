@@ -7,11 +7,11 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\bnald_core\Entity\PieceOfLegislationInterface;
+use Drupal\bnald_core\Entity\LegislationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for reverting a Piece of Legislation revision.
+ * Provides a form for reverting a Legislation revision.
  *
  * @ingroup bnald_core
  */
@@ -19,14 +19,14 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
 
 
   /**
-   * The Piece of Legislation revision.
+   * The Legislation revision.
    *
-   * @var \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   * @var \Drupal\bnald_core\Entity\LegislationInterface
    */
   protected $revision;
 
   /**
-   * The Piece of Legislation storage.
+   * The Legislation storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
@@ -43,7 +43,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
    * Constructs a new PieceOfLegislationRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The Piece of Legislation storage.
+   *   The Legislation storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    */
@@ -57,7 +57,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('piece_legislation'),
+      $container->get('entity.manager')->getStorage('legislation'),
       $container->get('date.formatter')
     );
   }
@@ -66,7 +66,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'piece_legislation_revision_revert_confirm';
+    return 'legislation_revision_revert_confirm';
   }
 
   /**
@@ -80,7 +80,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.piece_legislation.version_history', ['piece_legislation' => $this->revision->id()]);
+    return new Url('entity.legislation.version_history', ['legislation' => $this->revision->id()]);
   }
 
   /**
@@ -100,8 +100,8 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $piece_legislation_revision = NULL) {
-    $this->revision = $this->PieceOfLegislationStorage->loadRevision($piece_legislation_revision);
+  public function buildForm(array $form, FormStateInterface $form_state, $legislation_revision = NULL) {
+    $this->revision = $this->PieceOfLegislationStorage->loadRevision($legislation_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -119,26 +119,26 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Piece of Legislation: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Piece of Legislation %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
+    $this->logger('content')->notice('Legislation: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
+    drupal_set_message(t('Legislation %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
     $form_state->setRedirect(
-      'entity.piece_legislation.version_history',
-      ['piece_legislation' => $this->revision->id()]
+      'entity.legislation.version_history',
+      ['legislation' => $this->revision->id()]
     );
   }
 
   /**
    * Prepares a revision to be reverted.
    *
-   * @param \Drupal\bnald_core\Entity\PieceOfLegislationInterface $revision
+   * @param \Drupal\bnald_core\Entity\LegislationInterface $revision
    *   The revision to be reverted.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    *
-   * @return \Drupal\bnald_core\Entity\PieceOfLegislationInterface
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
    *   The prepared revision ready to be stored.
    */
-  protected function prepareRevertedRevision(PieceOfLegislationInterface $revision, FormStateInterface $form_state) {
+  protected function prepareRevertedRevision(LegislationInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
     $revision->setRevisionCreationTime(REQUEST_TIME);

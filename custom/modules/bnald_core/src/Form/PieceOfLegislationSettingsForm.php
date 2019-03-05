@@ -35,7 +35,7 @@ class PieceOfLegislationSettingsForm extends FormBase {
   }
 
   /**
-   * Defines the settings form for Piece of Legislation entities.
+   * Defines the settings form for Legislation entities.
    *
    * @param array $form
    *   An associative array containing the structure of the form.
@@ -46,7 +46,7 @@ class PieceOfLegislationSettingsForm extends FormBase {
    *   Form definition array.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['pieceoflegislation_settings']['#markup'] = 'Settings form for Piece of Legislation entities. Manage field settings here.';
+    $form['pieceoflegislation_settings']['#markup'] = 'Settings form for Legislation entities. Manage field settings here.';
     return $form;
   }
 

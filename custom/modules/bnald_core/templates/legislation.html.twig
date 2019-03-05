@@ -1,36 +1,36 @@
 {#
 /**
- * @file piece-legislation.html.twig
- * Default theme implementation to present Piece of Legislation data.
+ * @file legislation.html.twig
+ * Default theme implementation to present Legislation data.
  *
- * This template is used when viewing Piece of Legislation pages.
+ * This template is used when viewing Legislation pages.
  *
  *
  * Available variables:
  * - content: A list of content items. Use 'content' to print all content, or
  * - attributes: HTML attributes for the container element.
  *
- * @see template_preprocess_piece_legislation()
+ * @see template_preprocess_legislation()
  *
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('piece_legislation') }}>
+<div{{ attributes.addClass('legislation') }}>
   <ul>
     <li>
-      {% set province = piece_legislation.getProvince() %}
+      {% set province = legislation.getProvince() %}
       <span class="field--label">{{ 'Province'|trans }}</span>
       <a class="field--value" href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': province.id() }) }}">{{ province.label() }}</a>
     </li><li>
       <span class="field--label">{{ 'Chapter'|trans }}</span>
-      <span class="field--value">{{ piece_legislation.getChapter() }}</span>
+      <span class="field--value">{{ legislation.getChapter() }}</span>
     </li><li>
       <span class="field--label">{{ 'Year'|trans }}</span>
-      <span class="field--value">{{ piece_legislation.getYearPassed() }}</span>
+      <span class="field--value">{{ legislation.getYearPassed() }}</span>
     </li><li>
       <span class="field--label">{{ 'Concepts'|trans }}</span>
       <ul class="field--value tag-list">
-        {% for concept in piece_legislation.getConcepts() %}
+        {% for concept in legislation.getConcepts() %}
           <li class="label label-default">
             <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': concept.id() }) }}">{{ concept.label() }}</a>
           </li>
@@ -39,7 +39,7 @@
     </li><li>
       <span class="field--label">{{ 'Jurisdictional Relevance'|trans }}</span>
       <ul class="field--value tag-list">
-        {% for jr in piece_legislation.getJurisdictionalRelevance() %}
+        {% for jr in legislation.getJurisdictionalRelevance() %}
           <li class="label label-default">
             <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': jr.id() }) }}">{{ jr.label() }}</a>
           </li>
@@ -47,15 +47,15 @@
       </ul>
     </li><li>
       <span class="field--label">{{ 'Articles'|trans }}</span>
-      <span class="field--value">{{ piece_legislation.getNumberOfArticles() }}</span>
+      <span class="field--value">{{ legislation.getNumberOfArticles() }}</span>
     </li><li>
       <span class="field--label">{{ 'Source'|trans }}</span>
-      <a class="field--value" href="{{ url( 'entity.source_document.canonical', { 'source_document': piece_legislation.getSourceDocumentId() } ) }}">
-        {{ piece_legislation.getSourceDocument().label() }}
+      <a class="field--value" href="{{ url( 'entity.source_document.canonical', { 'source_document': legislation.getSourceDocumentId() } ) }}">
+        {{ legislation.getSourceDocument().label() }}
       </a>
     </li><li>
       <span class="field--label">{{ 'Summary'|trans }}</span>
-      <span class="field--value">{{ piece_legislation.getLegislativeSummary() }}</span>
+      <span class="field--value">{{ legislation.getLegislativeSummary() }}</span>
     </li>
   </ul>
 </div>

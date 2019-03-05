@@ -6,11 +6,11 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\bnald_core\Entity\PieceOfLegislationInterface;
+use Drupal\bnald_core\Entity\LegislationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for reverting a Piece of Legislation revision for a single translation.
+ * Provides a form for reverting a Legislation revision for a single translation.
  *
  * @ingroup bnald_core
  */
@@ -35,7 +35,7 @@ class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislation
    * Constructs a new PieceOfLegislationRevisionRevertTranslationForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The Piece of Legislation storage.
+   *   The Legislation storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
@@ -51,7 +51,7 @@ class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislation
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('piece_legislation'),
+      $container->get('entity.manager')->getStorage('legislation'),
       $container->get('date.formatter'),
       $container->get('language_manager')
     );
@@ -61,7 +61,7 @@ class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislation
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'piece_legislation_revision_revert_translation_confirm';
+    return 'legislation_revision_revert_translation_confirm';
   }
 
   /**
@@ -74,9 +74,9 @@ class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislation
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $piece_legislation_revision = NULL, $langcode = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, $legislation_revision = NULL, $langcode = NULL) {
     $this->langcode = $langcode;
-    $form = parent::buildForm($form, $form_state, $piece_legislation_revision);
+    $form = parent::buildForm($form, $form_state, $legislation_revision);
 
     $form['revert_untranslated_fields'] = [
       '#type' => 'checkbox',
@@ -90,10 +90,10 @@ class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislation
   /**
    * {@inheritdoc}
    */
-  protected function prepareRevertedRevision(PieceOfLegislationInterface $revision, FormStateInterface $form_state) {
+  protected function prepareRevertedRevision(LegislationInterface $revision, FormStateInterface $form_state) {
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
-    /** @var \Drupal\bnald_core\Entity\PieceOfLegislationInterface $default_revision */
+    /** @var \Drupal\bnald_core\Entity\LegislationInterface $default_revision */
     $latest_revision = $this->PieceOfLegislationStorage->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 

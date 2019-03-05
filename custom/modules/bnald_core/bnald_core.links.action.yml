@@ -1,8 +1,8 @@
-entity.piece_legislation.add_form:
-  route_name: entity.piece_legislation.add_form
-  title: 'Add Piece of Legislation'
+entity.legislation.add_form:
+  route_name: entity.legislation.add_form
+  title: 'Add Legislation'
   appears_on:
-    - entity.piece_legislation.collection
+    - entity.legislation.collection
 entity.source_document.add_form:
   route_name: entity.source_document.add_form
   title: 'Add Source Document'

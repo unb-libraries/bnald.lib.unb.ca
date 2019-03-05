@@ -5,9 +5,9 @@ namespace Drupal\bnald_core\Entity;
 use Drupal\views\EntityViewsData;
 
 /**
- * Provides Views data for Piece of Legislation entities.
+ * Provides Views data for Legislation entities.
  */
-class PieceOfLegislationViewsData extends EntityViewsData {
+class LegislationViewsData extends EntityViewsData {
 
   /**
    * {@inheritdoc}

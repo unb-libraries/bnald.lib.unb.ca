@@ -1,5 +1,5 @@
-id: piece_legislation
-label: 'Piece of Legislation Nodes to Piece of Legislation Entities'
+id: legislation
+label: 'Legislation Nodes to Legislation Entities'
 migration_group: bnald
 migration_tags:
   - Drupal 7
@@ -79,7 +79,7 @@ process:
   created: created
   changed: timestamp
 destination:
-  plugin: entity:piece_legislation
+  plugin: entity:legislation
 migration_dependencies:
   required:
     - d7_user

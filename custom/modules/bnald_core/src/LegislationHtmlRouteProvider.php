@@ -7,12 +7,12 @@ use Drupal\Core\Entity\Routing\AdminHtmlRouteProvider;
 use Symfony\Component\Routing\Route;
 
 /**
- * Provides routes for Piece of Legislation entities.
+ * Provides routes for Legislation entities.
  *
  * @see \Drupal\Core\Entity\Routing\AdminHtmlRouteProvider
  * @see \Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider
  */
-class PieceOfLegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
+class LegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
 
   /**
    * {@inheritdoc}
@@ -62,7 +62,7 @@ class PieceOfLegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_title' => "{$entity_type->getLabel()} revisions",
           '_controller' => '\Drupal\bnald_core\Controller\PieceOfLegislationController::revisionOverview',
         ])
-        ->setRequirement('_permission', 'access piece of legislation revisions')
+        ->setRequirement('_permission', 'access legislation revisions')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -86,7 +86,7 @@ class PieceOfLegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_controller' => '\Drupal\bnald_core\Controller\PieceOfLegislationController::revisionShow',
           '_title_callback' => '\Drupal\bnald_core\Controller\PieceOfLegislationController::revisionPageTitle',
         ])
-        ->setRequirement('_permission', 'access piece of legislation revisions')
+        ->setRequirement('_permission', 'access legislation revisions')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -110,7 +110,7 @@ class PieceOfLegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_form' => '\Drupal\bnald_core\Form\PieceOfLegislationRevisionRevertForm',
           '_title' => 'Revert to earlier revision',
         ])
-        ->setRequirement('_permission', 'revert all piece of legislation revisions')
+        ->setRequirement('_permission', 'revert all legislation revisions')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -134,7 +134,7 @@ class PieceOfLegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_form' => '\Drupal\bnald_core\Form\PieceOfLegislationRevisionDeleteForm',
           '_title' => 'Delete earlier revision',
         ])
-        ->setRequirement('_permission', 'delete all piece of legislation revisions')
+        ->setRequirement('_permission', 'delete all legislation revisions')
         ->setOption('_admin_route', TRUE);
 
       return $route;

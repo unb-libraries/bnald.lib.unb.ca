@@ -13,18 +13,18 @@ use Drupal\taxonomy\TermInterface;
 use Drupal\user\UserInterface;
 
 /**
- * Defines the Piece of Legislation entity.
+ * Defines the Legislation entity.
  *
  * @ingroup bnald_core
  *
  * @ContentEntityType(
- *   id = "piece_legislation",
- *   label = @Translation("Piece of Legislation"),
+ *   id = "legislation",
+ *   label = @Translation("Legislation"),
  *   handlers = {
- *     "storage" = "Drupal\bnald_core\PieceOfLegislationStorage",
+ *     "storage" = "Drupal\bnald_core\LegislationStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\bnald_core\PieceOfLegislationListBuilder",
- *     "views_data" = "Drupal\bnald_core\Entity\PieceOfLegislationViewsData",
+ *     "list_builder" = "Drupal\bnald_core\LegislationListBuilder",
+ *     "views_data" = "Drupal\bnald_core\Entity\LegislationViewsData",
  *
  *     "form" = {
  *       "default" = "Drupal\bnald_core\Form\PieceOfLegislationForm",
@@ -32,15 +32,15 @@ use Drupal\user\UserInterface;
  *       "edit" = "Drupal\bnald_core\Form\PieceOfLegislationForm",
  *       "delete" = "Drupal\bnald_core\Form\PieceOfLegislationDeleteForm",
  *     },
- *     "access" = "Drupal\bnald_core\PieceOfLegislationAccessControlHandler",
+ *     "access" = "Drupal\bnald_core\LegislationAccessControlHandler",
  *     "route_provider" = {
- *       "html" = "Drupal\bnald_core\PieceOfLegislationHtmlRouteProvider",
+ *       "html" = "Drupal\bnald_core\LegislationHtmlRouteProvider",
  *     },
  *   },
- *   base_table = "piece_legislation",
- *   revision_table = "piece_legislation_revision",
- *   revision_data_table = "piece_legislation_field_revision",
- *   admin_permission = "administer piece of legislation entities",
+ *   base_table = "legislation",
+ *   revision_table = "legislation_revision",
+ *   revision_data_table = "legislation_field_revision",
+ *   admin_permission = "administer legislation entities",
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
@@ -51,20 +51,20 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/legislative-items/{piece_legislation}",
- *     "add-form" = "/legislative-items/add",
- *     "edit-form" = "/legislative-items/{piece_legislation}/edit",
- *     "delete-form" = "/legislative-items/{piece_legislation}/delete",
- *     "version-history" = "/legislative-items/{piece_legislation}/revisions",
- *     "revision" = "/legislative-items/{piece_legislation}/revisions/{piece_legislation_revision}/view",
- *     "revision_revert" = "/legislative-items/{piece_legislation}/revisions/{piece_legislation_revision}/revert",
- *     "revision_delete" = "/legislative-items/{piece_legislation}/revisions/{piece_legislation_revision}/delete",
- *     "collection" = "/legislative-items",
+ *     "canonical" = "/legislation/{legislation}",
+ *     "add-form" = "/legislation/add",
+ *     "edit-form" = "/legislation/{legislation}/edit",
+ *     "delete-form" = "/legislation/{legislation}/delete",
+ *     "version-history" = "/legislation/{legislation}/revisions",
+ *     "revision" = "/legislation/{legislation}/revisions/{legislation_revision}/view",
+ *     "revision_revert" = "/legislation/{legislation}/revisions/{legislation_revision}/revert",
+ *     "revision_delete" = "/legislation/{legislation}/revisions/{legislation_revision}/delete",
+ *     "collection" = "/legislation",
  *   },
- *   field_ui_base_route = "piece_legislation.settings"
+ *   field_ui_base_route = "legislation.settings"
  * )
  */
-class PieceOfLegislation extends RevisionableContentEntityBase implements PieceOfLegislationInterface {
+class Legislation extends RevisionableContentEntityBase implements LegislationInterface {
 
   const MIN_YEAR = 1758;
   const MAX_YEAR = 1867;
@@ -113,7 +113,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
       }
     }
 
-    // If no revision author has been set explicitly, make the piece_legislation owner the
+    // If no revision author has been set explicitly, make the legislation owner the
     // revision author.
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
@@ -312,7 +312,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
   /**
    * {@inheritdoc}
    *
-   * Value must be within PieceOfLegislation::MIN_YEAR and PieceOfLegislation::MAX_YEAR.
+   * Value must be within Legislation::MIN_YEAR and Legislation::MAX_YEAR.
    */
   public function setYearPassed($year) {
     if ($year >= self::MIN_YEAR && $year <= self::MAX_YEAR) {
@@ -624,7 +624,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
 
     $fields['source_document'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Source Document'))
-      ->setDescription(t('The Source Document of the Piece of Legislation'))
+      ->setDescription(t('The Source Document of the Legislation'))
       ->setSettings(
         [
           'target_type' => 'source_document',
@@ -660,7 +660,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
 
     $fields['year_passed'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Year Passed'))
-      ->setDescription(t('The Year this Piece of Legislation passed.'))
+      ->setDescription(t('The Year this Legislation passed.'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([
@@ -706,7 +706,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
-      ->setDescription(t('The user ID of author of the Piece of Legislation entity.'))
+      ->setDescription(t('The user ID of author of the Legislation entity.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
@@ -731,7 +731,7 @@ class PieceOfLegislation extends RevisionableContentEntityBase implements PieceO
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
-      ->setDescription(t('A boolean indicating whether the Piece of Legislation is published.'))
+      ->setDescription(t('A boolean indicating whether the Legislation is published.'))
       ->setRevisionable(TRUE)
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
