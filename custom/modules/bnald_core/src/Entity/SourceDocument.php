@@ -43,7 +43,7 @@ use Drupal\user\UserInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
- *     "label" = "short_title",
+ *     "label" = "title",
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "langcode" = "langcode",
@@ -133,41 +133,8 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
   /**
    * {@inheritdoc}
    */
-  public function clearTitle() {
-    $this->set('title', NULL);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getShortTitle() {
-    return $this->get('short_title')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setShortTitle($short_title) {
-    $this->set('short_title', $short_title);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function clearShortTitle() {
-    $this->set('short_title', NULL);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getYear() {
     return $this->get('year')->value;
-  public function getProvince() {
-    return $this->get('province')->entity;
   }
 
   /**
@@ -175,6 +142,19 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
    */
   public function setYear($year) {
     $this->set('year', $year);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProvince() {
+    return $this->get('province')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function setProvince(TermInterface $province) {
     $this->set('province', $province->id());
     return $this;
@@ -209,23 +189,15 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
   /**
    * {@inheritdoc}
    */
-  public function clearPrinter() {
-    $this->set('printer', NULL);
-    return $this;
+  public function getPrintLocation() {
+    return $this->get('print_location')->entity;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getLocation() {
-    return $this->get('location')->entity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLocationId() {
-    $entity = $this->get('location')->entity;
+  public function getPrintLocationId() {
+    $entity = $this->get('print_location')->entity;
     if (!empty($entity)) {
       return $entity->id();
     }
@@ -235,31 +207,8 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
   /**
    * {@inheritdoc}
    */
-  public function setLocation(TermInterface $location) {
-    $this->set('location', $location->id());
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function clearLocation() {
-    $this->set('location', NULL);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCreatedTime() {
-    return $this->get('created')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCreatedTime($timestamp) {
-    $this->set('created', $timestamp);
+  public function setPrintLocation(TermInterface $location) {
+    $this->set('print_location', $location->id());
     return $this;
   }
 
@@ -280,16 +229,16 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
   /**
    * {@inheritdoc}
    */
-  public function setOwnerId($uid) {
-    $this->set('user_id', $uid);
+  public function setOwner(UserInterface $account) {
+    $this->set('user_id', $account->id());
     return $this;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setOwner(UserInterface $account) {
-    $this->set('user_id', $account->id());
+  public function setOwnerId($uid) {
+    $this->set('user_id', $uid);
     return $this;
   }
 
@@ -311,12 +260,26 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
   /**
    * {@inheritdoc}
    */
+  public function getCreatedTime() {
+    return $this->get('created')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCreatedTime($timestamp) {
+    $this->set('created', $timestamp);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Title'))
-      ->setDescription(t('Full Title of this Document'))
       ->setSettings([
         'max_length' => 255,
       ])
@@ -326,43 +289,30 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setTranslatable(FALSE)
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
         'type' => 'string',
         'weight' => 0,
       ])
       ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['short_title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Short Title'))
-      ->setDescription(t('A shortened version of the full title'))
-      ->setSettings([
-        'max_length' => 255,
-      ])
-      ->setCardinality(1)
-      ->setRequired(FALSE)
-      ->setRevisionable(TRUE)
-      ->setTranslatable(FALSE)
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => 1,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => 1,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['year'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Year Printed'))
-      ->setDescription(t('The Year the Document was printed.'))
+      ->setLabel(t('Year'))
+      ->setDescription(t('Which year has the Document been printed?'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setDisplayOptions('view', [
+        'weight' => 1,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 1,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
     $fields['province'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Province'))
       ->setDescription(t('Which (historical) province does/did this Document apply to?'))
@@ -388,11 +338,10 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
 
     $fields['printer'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Printed By'))
-      ->setDescription(t('The Name of who printed the Document'))
+      ->setDescription(t('Who has printed the Document?'))
       ->setSettings(
         [
           'target_type' => 'taxonomy_term',
-          'handler' => 'default:taxonomy_term',
           'handler_settings' => [
             'target_bundles' => [
               'printer_name' => 'printer_name',
@@ -408,29 +357,22 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayOptions(
         'view',
         [
-          'label' => 'above',
-          'weight' => 2,
+          'weight' => 3,
         ]
       )
       ->setDisplayOptions(
         'form',
         [
-          'type' => 'entity_reference_autocomplete',
-          'weight' => 2,
-          'settings' => [
-            'match_operator' => 'CONTAINS',
-            'size' => '60',
-            'autocomplete_type' => 'tags',
-            'placeholder' => '',
-          ],
+          'type' => 'options_select',
+          'weight' => 3,
         ]
       )
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['location'] = BaseFieldDefinition::create('entity_reference')
+    $fields['print_location'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Printed In'))
-      ->setDescription(t('The location where the Document was printed'))
+      ->setDescription(t('Where has the Document been printed?'))
       ->setSettings(
         [
           'target_type' => 'taxonomy_term',
@@ -450,21 +392,14 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayOptions(
         'view',
         [
-          'label' => 'above',
           'weight' => 4,
         ]
       )
       ->setDisplayOptions(
         'form',
         [
-          'type' => 'entity_reference_autocomplete',
+          'type' => 'options_select',
           'weight' => 4,
-          'settings' => [
-            'match_operator' => 'CONTAINS',
-            'size' => '60',
-            'autocomplete_type' => 'tags',
-            'placeholder' => '',
-          ],
         ]
       )
       ->setDisplayConfigurable('form', TRUE)
@@ -472,37 +407,25 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
-      ->setDescription(t('The user ID of author of the Source Document entity.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'author',
-        'weight' => 0,
-      ])
       ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
+        'type' => 'options_select',
         'weight' => 5,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Publishing status'))
-      ->setDescription(t('A boolean indicating whether the Source Document is published.'))
+      ->setLabel(t('Publish?'))
+      ->setDescription(t('Whether the Document shall be publicly visible..'))
       ->setRevisionable(TRUE)
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => -3,
+        'weight' => 6,
       ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')

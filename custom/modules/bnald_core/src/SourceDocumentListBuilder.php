@@ -18,7 +18,7 @@ class SourceDocumentListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('Source Document ID');
-    $header['short_title'] = $this->t('Title');
+    $header['title'] = $this->t('Title');
     $header['year'] = $this->t('Year');
     $header['province'] = $this->t('Province');
     $header['printer'] = $this->t('Printed By');
@@ -32,7 +32,7 @@ class SourceDocumentListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\bnald_core\Entity\SourceDocument */
     $row['id'] = $entity->id();
-    $row['short_title'] = Link::createFromRoute(
+    $row['title'] = Link::createFromRoute(
       $entity->label(),
       'entity.source_document.edit_form',
       ['source_document' => $entity->id()]
@@ -45,7 +45,7 @@ class SourceDocumentListBuilder extends EntityListBuilder {
     $printer = $entity->getPrinter();
     $row['printer'] = isset($printer) ? $printer->label() : '';
 
-    $location = $entity->getLocation();
+    $location = $entity->getPrintLocation();
     $row['location'] = isset($location) ? $location->label() : '';
 
     return $row + parent::buildRow($entity);

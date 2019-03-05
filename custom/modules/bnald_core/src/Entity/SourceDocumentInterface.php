@@ -35,49 +35,41 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
   public function setTitle($title);
 
   /**
-   * Clears the Source Document Title value.
+   * Gets the year the Document was printed.
    *
-   * @return \Drupal\bnald_core\Entity\SourceDocument
-   *   The called Source Document entity.
+   * @return int
+   *   The year the Document was printed.
    */
-  public function clearTitle();
+  public function getYear();
 
   /**
-   * Gets the Source Document Short Title.
+   * Sets the year the Document was printed.
    *
-   * @return string
-   *   The Short Title of the Source Document.
+   * @param int $year
+   *   The year the Document was printed.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
    */
-  public function getShortTitle();
+  public function setYear($year);
 
   /**
-   * Sets the Source Document Short Title.
-   *
-   * @param string $short_title
-   *   The Short Title of the Source Document.
    * Gets the Source Document Province entity.
    *
-   * @return \Drupal\bnald_core\Entity\SourceDocument
-   *   The called Source Document entity.
    * @return \Drupal\taxonomy\TermInterface
    *   Province of the SourceDocument.
    */
-  public function setShortTitle($short_title);
   public function getProvince();
 
   /**
-   * Clears the Source Document Short Title value.
    * Sets the Source Document Province entity.
    *
-   * @return \Drupal\bnald_core\Entity\SourceDocument
-   *   The called Source Document entity.
    * @param \Drupal\taxonomy\TermInterface $province
    *   The province of the SourceDocument.
    *
    * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
    *   The called SourceDocument entity.
    */
-  public function clearShortTitle();
   public function setProvince(TermInterface $province);
 
   /**
@@ -108,39 +100,12 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
   public function setPrinter(TermInterface $printer);
 
   /**
-   * Gets the year the Document was printed.
-   *
-   * @return int
-   *   The year the Document was printed.
-   */
-  public function getYear();
-
-  /**
-   * Sets the year the Document was printed.
-   *
-   * @param int $year
-   *   The year the Document was printed.
-   *
-   * @return \Drupal\bnald_core\Entity\LegislationInterface
-   *   The called Legislation entity.
-   */
-  public function setYear($year);
-
-  /**
-   * Clears the Source Document Printer value.
-   *
-   * @return \Drupal\bnald_core\Entity\SourceDocument
-   *   The called Source Document entity.
-   */
-  public function clearPrinter();
-
-  /**
    * Gets the Source Document Location entity.
    *
    * @return \Drupal\taxonomy\TermInterface
    *   The Location Term entity.
    */
-  public function getLocation();
+  public function getPrintLocation();
 
   /**
    * Gets the Source Document Location entity ID.
@@ -148,7 +113,7 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
    * @return int
    *   The Location term entity ID.
    */
-  public function getLocationId();
+  public function getPrintLocationId();
 
   /**
    * Sets the Source Document Location.
@@ -159,34 +124,26 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
    * @return \Drupal\bnald_core\Entity\SourceDocument
    *   The called Source Document entity.
    */
-  public function setLocation(TermInterface $location);
+  public function setPrintLocation(TermInterface $location);
 
   /**
-   * Clears the Source Document Location value.
+   * Gets the Source Document revision author.
    *
-   * @return \Drupal\bnald_core\Entity\SourceDocument
-   *   The called Source Document entity.
+   * @return \Drupal\user\UserInterface
+   *   The user entity for the revision author.
    */
-  public function clearLocation();
+  public function getRevisionUser();
 
   /**
-   * Gets the Source Document creation timestamp.
+   * Sets the Source Document revision author.
    *
-   * @return int
-   *   Creation timestamp of the Source Document.
-   */
-  public function getCreatedTime();
-
-  /**
-   * Sets the Source Document creation timestamp.
-   *
-   * @param int $timestamp
-   *   The Source Document creation timestamp.
+   * @param int $uid
+   *   The user ID of the revision author.
    *
    * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
    *   The called Source Document entity.
    */
-  public function setCreatedTime($timestamp);
+  public function setRevisionUserId($uid);
 
   /**
    * Returns the Source Document published status indicator.
@@ -210,6 +167,25 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
   public function setPublished($published);
 
   /**
+   * Gets the Source Document creation timestamp.
+   *
+   * @return int
+   *   Creation timestamp of the Source Document.
+   */
+  public function getCreatedTime();
+
+  /**
+   * Sets the Source Document creation timestamp.
+   *
+   * @param int $timestamp
+   *   The Source Document creation timestamp.
+   *
+   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
+   *   The called Source Document entity.
+   */
+  public function setCreatedTime($timestamp);
+
+  /**
    * Gets the Source Document revision creation timestamp.
    *
    * @return int
@@ -227,24 +203,5 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
    *   The called Source Document entity.
    */
   public function setRevisionCreationTime($timestamp);
-
-  /**
-   * Gets the Source Document revision author.
-   *
-   * @return \Drupal\user\UserInterface
-   *   The user entity for the revision author.
-   */
-  public function getRevisionUser();
-
-  /**
-   * Sets the Source Document revision author.
-   *
-   * @param int $uid
-   *   The user ID of the revision author.
-   *
-   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
-   *   The called Source Document entity.
-   */
-  public function setRevisionUserId($uid);
 
 }
