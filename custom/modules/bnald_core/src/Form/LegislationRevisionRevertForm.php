@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
+class LegislationRevisionRevertForm extends ConfirmFormBase {
 
 
   /**
@@ -30,7 +30,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $PieceOfLegislationStorage;
+  protected $LegislationStorage;
 
   /**
    * The date formatter service.
@@ -40,7 +40,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
-   * Constructs a new PieceOfLegislationRevisionRevertForm.
+   * Constructs a new LegislationRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Legislation storage.
@@ -48,7 +48,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
    *   The date formatter service.
    */
   public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->PieceOfLegislationStorage = $entity_storage;
+    $this->LegislationStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -101,7 +101,7 @@ class PieceOfLegislationRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $legislation_revision = NULL) {
-    $this->revision = $this->PieceOfLegislationStorage->loadRevision($legislation_revision);
+    $this->revision = $this->LegislationStorage->loadRevision($legislation_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;

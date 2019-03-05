@@ -18,7 +18,7 @@ class LegislationListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('ID');
-    $header['legislation_title'] = $this->t('Legislation Title');
+    $header['title'] = $this->t('Title');
     $header['year'] = $this->t('Year');
     $header['province'] = $this->t('Province');
     $header['source'] = $this->t('Source Document');
@@ -31,17 +31,17 @@ class LegislationListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\bnald_core\Entity\Legislation */
     $row['id'] = $entity->id();
-    $row['legislation_title'] = Link::createFromRoute(
+    $row['title'] = Link::createFromRoute(
       $entity->label(),
       'entity.legislation.edit_form',
       ['legislation' => $entity->id()]
     );
-    $row['year'] = $entity->getYearPassed();
+    $row['year'] = $entity->getYear();
 
     $province = $entity->getProvince();
     $row['province'] = isset($province) ? $province->label() : '';
 
-    $source = $entity->getSourceDocument();
+    $source = $entity->getSource();
     $row['source'] = isset($source) ? $source->label() : '';
 
     return $row + parent::buildRow($entity);

@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationForm extends ContentEntityForm {
+class LegislationForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}

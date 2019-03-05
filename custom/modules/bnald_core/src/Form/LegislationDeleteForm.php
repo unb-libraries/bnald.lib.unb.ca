@@ -9,7 +9,7 @@ use Drupal\Core\Entity\ContentEntityDeleteForm;
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationDeleteForm extends ContentEntityDeleteForm {
+class LegislationDeleteForm extends ContentEntityDeleteForm {
 
 
 }

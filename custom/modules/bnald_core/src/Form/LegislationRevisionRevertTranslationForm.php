@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislationRevisionRevertForm {
+class LegislationRevisionRevertTranslationForm extends LegislationRevisionRevertForm {
 
 
   /**
@@ -32,7 +32,7 @@ class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislation
   protected $languageManager;
 
   /**
-   * Constructs a new PieceOfLegislationRevisionRevertTranslationForm.
+   * Constructs a new LegislationRevisionRevertTranslationForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Legislation storage.
@@ -94,7 +94,7 @@ class PieceOfLegislationRevisionRevertTranslationForm extends PieceOfLegislation
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
     /** @var \Drupal\bnald_core\Entity\LegislationInterface $default_revision */
-    $latest_revision = $this->PieceOfLegislationStorage->load($revision->id());
+    $latest_revision = $this->LegislationStorage->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 
     $revision_translation = $revision->getTranslation($this->langcode);

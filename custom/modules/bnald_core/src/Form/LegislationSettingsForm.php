@@ -6,11 +6,11 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class PieceOfLegislationSettingsForm.
+ * Class LegislationSettingsForm.
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationSettingsForm extends FormBase {
+class LegislationSettingsForm extends FormBase {
 
   /**
    * Returns a unique string identifying the form.

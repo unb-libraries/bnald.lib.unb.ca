@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup bnald_core
  */
-class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
+class LegislationRevisionDeleteForm extends ConfirmFormBase {
 
 
   /**
@@ -29,7 +29,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $PieceOfLegislationStorage;
+  protected $LegislationStorage;
 
   /**
    * The database connection.
@@ -39,7 +39,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
   protected $connection;
 
   /**
-   * Constructs a new PieceOfLegislationRevisionDeleteForm.
+   * Constructs a new LegislationRevisionDeleteForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The entity storage.
@@ -47,7 +47,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->PieceOfLegislationStorage = $entity_storage;
+    $this->LegislationStorage = $entity_storage;
     $this->connection = $connection;
   }
 
@@ -94,7 +94,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $legislation_revision = NULL) {
-    $this->revision = $this->PieceOfLegislationStorage->loadRevision($legislation_revision);
+    $this->revision = $this->LegislationStorage->loadRevision($legislation_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,7 +104,7 @@ class PieceOfLegislationRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->PieceOfLegislationStorage->deleteRevision($this->revision->getRevisionId());
+    $this->LegislationStorage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Legislation: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
     drupal_set_message(t('Revision from %revision-date of Legislation %title has been deleted.', ['%revision-date' => format_date($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));

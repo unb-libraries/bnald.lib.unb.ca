@@ -9,11 +9,11 @@ use Drupal\Core\Url;
 use Drupal\bnald_core\Entity\LegislationInterface;
 
 /**
- * Class PieceOfLegislationController.
+ * Class LegislationController.
  *
  *  Returns responses for Legislation routes.
  */
-class PieceOfLegislationController extends ControllerBase implements ContainerInjectionInterface {
+class LegislationController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
    * Displays a Legislation  revision.
@@ -75,7 +75,7 @@ class PieceOfLegislationController extends ControllerBase implements ContainerIn
     $latest_revision = TRUE;
 
     foreach (array_reverse($vids) as $vid) {
-      /** @var \Drupal\bnald_core\PieceOfLegislationInterface $revision */
+      /** @var \Drupal\bnald_core\LegislationInterface $revision */
       $revision = $legislation_storage->loadRevision($vid);
       // Only show revisions that are affected by the language that is being
       // displayed.
