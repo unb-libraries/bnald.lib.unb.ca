@@ -59,20 +59,24 @@ process:
     plugin: migration_lookup
     migration: jurisdictional_relevances
     source: field_jurisdictional_relevance
+    no_stub: true
   concepts:
     plugin: migration_lookup
     migration: concepts
     source: field_concepts
+    no_stub: true
   source:
     plugin: migration_lookup
     migration: source_documents
     source: field_source_document
+    no_stub: true
   notes: field_item_notes
   chapter_sort: field_chapter_sort
   user_id:
     plugin: migration_lookup
     migration: d7_user
     source: node_uid
+    no_stub: true
   status: status
   created: created
   changed: timestamp
