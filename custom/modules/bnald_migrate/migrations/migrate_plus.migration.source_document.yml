@@ -27,14 +27,17 @@ process:
     plugin: migration_lookup
     migration: provinces
     source: field_province
+    no_stub: true
   printer:
     plugin: migration_lookup
     migration: printers
     source: field_printer
+    no_stub: true
   print_location:
     plugin: migration_lookup
     migration: regions
     source: field_location_printed
+    no_stub: true
   user_id:
     plugin: default_value
     default_value: 1
