@@ -1,19 +1,17 @@
-uuid: 54d0f68d-2532-48a3-b7b6-497b6c134dc2
 langcode: en
-status: true
+status: false
 dependencies:
   config:
-    - taxonomy.vocabulary.concepts
+    - taxonomy.vocabulary.printers
   module:
     - bnald_core
-_core:
-  default_config_hash: D4e0_ciMb5d0CcpE672-5TB1aX1cz2wKRi45LLBYSkA
-id: concepts
-label: Concepts
+    - taxonomy
+id: printers
+label: 'Source Documents by: Printer'
 module: views
-description: ''
+description: 'Find Source Documents tagged with a given ''Printers'' term'
 tag: ''
-base_table: piece_legislation
+base_table: source_document
 base_field: id
 core: 8.x
 display:
@@ -48,12 +46,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: full
         options:
-          items_per_page: 20
+          items_per_page: 25
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: Prev
+            next: Next
+            first: First
+            last: Last
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -62,83 +65,16 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          quantity: 9
       style:
         type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            legislation_title: legislation_title
-            view_piece_legislation: view_piece_legislation
-            year_passed: year_passed
-            chapter: chapter
-            province: province
-            concepts_target_id: concepts_target_id
-            jurisdictional_relevance_target_id: jurisdictional_relevance_target_id
-          info:
-            legislation_title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            view_piece_legislation:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            year_passed:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            chapter:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            province:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            concepts_target_id:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            jurisdictional_relevance_target_id:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: chapter
-          empty_table: false
       row:
         type: fields
       fields:
-        legislation_title:
-          id: legislation_title
-          table: piece_legislation
-          field: legislation_title
+        title:
+          id: title
+          table: source_document
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
@@ -175,7 +111,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -184,8 +120,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: basic_string
-          settings: {  }
+          type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -196,13 +133,13 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: null
-          entity_field: legislation_title
+          entity_type: source_document
+          entity_field: title
           plugin_id: field
-        view_piece_legislation:
-          id: view_piece_legislation
-          table: piece_legislation
-          field: view_piece_legislation
+        view_source_document:
+          id: view_source_document
+          table: source_document
+          field: view_source_document
           relationship: none
           group_type: group
           admin_label: ''
@@ -210,7 +147,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ legislation_title }}'
+            text: '{{ title }}'
             make_link: false
             path: ''
             absolute: false
@@ -231,7 +168,7 @@ display:
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: true
+            strip_tags: false
             trim: false
             preserve_tags: ''
             html: false
@@ -247,15 +184,15 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: view
+          text: ''
           output_url_as_text: false
           absolute: false
-          entity_type: piece_legislation
+          entity_type: source_document
           plugin_id: entity_link
-        year_passed:
-          id: year_passed
-          table: piece_legislation
-          field: year_passed
+        year:
+          id: year
+          table: source_document
+          field: year
           relationship: none
           group_type: group
           admin_label: ''
@@ -315,18 +252,148 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: piece_legislation
-          entity_field: year_passed
+          entity_type: source_document
+          entity_field: year
           plugin_id: field
-        chapter:
-          id: chapter
-          table: piece_legislation
-          field: chapter
+        printer:
+          id: printer
+          table: source_document
+          field: printer
           relationship: none
           group_type: group
           admin_label: ''
-          label: Chapter
+          label: 'Printed By'
           exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: source_document
+          entity_field: printer
+          plugin_id: field
+        print_location:
+          id: print_location
+          table: source_document
+          field: print_location
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Printed In'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: source_document
+          entity_field: print_location
+          plugin_id: field
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: printer
+          group_type: group
+          admin_label: ''
+          label: 'Printer Name'
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -380,216 +447,33 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: piece_legislation
-          entity_field: chapter
-          plugin_id: field
-        province:
-          id: province
-          table: piece_legislation
-          field: province
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Province
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: piece_legislation
-          entity_field: province
-          plugin_id: field
-        concepts_target_id:
-          id: concepts_target_id
-          table: piece_legislation__concepts
-          field: concepts_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Concepts
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: piece_legislation
-          entity_field: concepts
-          plugin_id: field
-        jurisdictional_relevance_target_id:
-          id: jurisdictional_relevance_target_id
-          table: piece_legislation__jurisdictional_relevance
-          field: jurisdictional_relevance_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Jur. Relevance'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: piece_legislation
-          entity_field: jurisdictional_relevance
-          plugin_id: field
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
       filters: {  }
       sorts: {  }
-      title: Concepts
+      title: 'Source Documents by Printer'
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        printer:
+          id: printer
+          table: source_document_revision
+          field: printer
+          relationship: none
+          group_type: group
+          admin_label: Printer
+          required: false
+          entity_type: source_document
+          entity_field: printer
+          plugin_id: standard
       arguments:
-        concepts_target_id:
-          id: concepts_target_id
-          table: piece_legislation__concepts
-          field: concepts_target_id
+        printer:
+          id: printer
+          table: source_document
+          field: printer
           relationship: none
           group_type: group
           admin_label: ''
@@ -598,8 +482,8 @@ display:
             value: all
             title_enable: false
             title: All
-          title_enable: false
-          title: ''
+          title_enable: true
+          title: 'Documents printed by {{ name }}'
           default_argument_type: fixed
           default_argument_options:
             argument: ''
@@ -619,14 +503,14 @@ display:
             fail: 'not found'
           validate_options:
             bundles:
-              concepts: concepts
+              printers: printers
             operation: view
             multiple: 0
             access: false
           break_phrase: false
           not: false
-          entity_type: piece_legislation
-          entity_field: concepts
+          entity_type: source_document
+          entity_field: printer
           plugin_id: numeric
       display_extenders: {  }
       use_ajax: true
@@ -645,7 +529,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: concepts/%
+      path: sources/printed-by/%
     cache_metadata:
       max-age: -1
       contexts:

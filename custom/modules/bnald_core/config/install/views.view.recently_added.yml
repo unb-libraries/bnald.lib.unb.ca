@@ -1,13 +1,15 @@
-uuid: d5b93c70-f9b4-4063-a45f-0ddee3defa1c
+uuid: 917f71ab-1740-4945-84da-0874a1361baf
 langcode: en
 status: true
 dependencies:
   module:
     - bnald_core
+_core:
+  default_config_hash: 7JFmg9wkPGzFgmpDrZpxSe8sqDi52q2tEbcdPePifug
 id: recently_added
-label: 'Recently Added'
+label: 'Legislation by: Most Recent'
 module: views
-description: ''
+description: 'Find recently added Legislation'
 tag: ''
 base_table: legislation
 base_field: id
@@ -44,12 +46,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: full
         options:
-          items_per_page: 20
+          items_per_page: 25
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: Prev
+            next: Next
+            first: First
+            last: Last
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -58,9 +65,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          quantity: 10
       style:
         type: table
         options:
@@ -139,10 +144,10 @@ display:
       row:
         type: fields
       fields:
-        legislation_title:
-          id: legislation_title
+        title:
+          id: title
           table: legislation
-          field: legislation_title
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
@@ -179,7 +184,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -200,8 +205,8 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: null
-          entity_field: legislation_title
+          entity_type: legislation
+          entity_field: title
           plugin_id: field
         view_legislation:
           id: view_legislation
@@ -214,7 +219,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ legislation_title }}'
+            text: '{{ title }}'
             make_link: false
             path: ''
             absolute: false
@@ -256,10 +261,10 @@ display:
           absolute: false
           entity_type: legislation
           plugin_id: entity_link
-        year_passed:
-          id: year_passed
+        year:
+          id: year
           table: legislation
-          field: year_passed
+          field: year
           relationship: none
           group_type: group
           admin_label: ''
@@ -308,7 +313,7 @@ display:
           type: number_integer
           settings:
             thousand_separator: ''
-            prefix_suffix: true
+            prefix_suffix: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -320,7 +325,72 @@ display:
           separator: ', '
           field_api_classes: false
           entity_type: legislation
-          entity_field: year_passed
+          entity_field: year
+          plugin_id: field
+        province:
+          id: province
+          table: source_document
+          field: province
+          relationship: source
+          group_type: group
+          admin_label: ''
+          label: Province
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: source_document
+          entity_field: province
           plugin_id: field
         chapter:
           id: chapter
@@ -386,71 +456,6 @@ display:
           field_api_classes: false
           entity_type: legislation
           entity_field: chapter
-          plugin_id: field
-        province:
-          id: province
-          table: legislation
-          field: province
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Province
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: legislation
-          entity_field: province
           plugin_id: field
         concepts_target_id:
           id: concepts_target_id
@@ -651,11 +656,22 @@ display:
           plugin_id: field
       filters: {  }
       sorts: {  }
-      title: 'Recently Added'
+      title: 'Recently Added Legislation'
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        source:
+          id: source
+          table: legislation_revision
+          field: source
+          relationship: none
+          group_type: group
+          admin_label: 'Source Document'
+          required: false
+          entity_type: legislation
+          entity_field: source
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
     cache_metadata:
@@ -672,7 +688,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: recently-added
+      path: legislation/recently-added
     cache_metadata:
       max-age: -1
       contexts:

@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - bnald_core
-name: Concepts
-vid: concepts
+name: 'Print Locations'
+vid: print_locations
 description: ''
 hierarchy: 0
 weight: 0

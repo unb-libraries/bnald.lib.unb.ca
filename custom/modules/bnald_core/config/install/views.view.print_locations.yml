@@ -1,17 +1,15 @@
-uuid: 732ce160-c605-472f-998c-7f0437a9a306
 langcode: en
-status: true
+status: false
 dependencies:
   config:
-    - taxonomy.vocabulary.regions
+    - taxonomy.vocabulary.print_locations
   module:
     - bnald_core
-_core:
-  default_config_hash: L-Mo_ENbAZ7uIvfibuhidcSoVBU2mDpGK-yQW4lyrMw
-id: printed_in
-label: 'Printed In'
+    - taxonomy
+id: print_locations
+label: 'Source Documents by: Print Location'
 module: views
-description: ''
+description: 'Find Source Documents tagged with a given ''Print Locations'' term'
 tag: ''
 base_table: source_document
 base_field: id
@@ -48,12 +46,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: full
         options:
-          items_per_page: 10
+          items_per_page: 25
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: Prev
+            next: Next
+            first: First
+            last: Last
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -62,9 +65,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          quantity: 9
       style:
         type: table
       row:
@@ -319,10 +320,10 @@ display:
           entity_type: source_document
           entity_field: printer
           plugin_id: field
-        location:
-          id: location
+        print_location:
+          id: print_location
           table: source_document
-          field: location
+          field: print_location
           relationship: none
           group_type: group
           admin_label: ''
@@ -382,20 +383,97 @@ display:
           separator: ', '
           field_api_classes: false
           entity_type: source_document
-          entity_field: location
+          entity_field: print_location
           plugin_id: field
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: print_location
+          group_type: group
+          admin_label: ''
+          label: 'Print Location Name'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
       filters: {  }
       sorts: {  }
-      title: 'Printed In'
+      title: 'Source Documents by Print Location'
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        print_location:
+          id: print_location
+          table: source_document_revision
+          field: print_location
+          relationship: none
+          group_type: group
+          admin_label: 'Print Location'
+          required: false
+          entity_type: source_document
+          entity_field: print_location
+          plugin_id: standard
       arguments:
-        location:
-          id: location
+        print_location:
+          id: print_location
           table: source_document
-          field: location
+          field: print_location
           relationship: none
           group_type: group
           admin_label: ''
@@ -404,8 +482,8 @@ display:
             value: all
             title_enable: false
             title: All
-          title_enable: false
-          title: ''
+          title_enable: true
+          title: 'Documents printed in {{ name }}'
           default_argument_type: fixed
           default_argument_options:
             argument: ''
@@ -425,14 +503,14 @@ display:
             fail: 'not found'
           validate_options:
             bundles:
-              regions: regions
+              print_locations: print_locations
             operation: view
             multiple: 0
             access: false
           break_phrase: false
           not: false
           entity_type: source_document
-          entity_field: location
+          entity_field: print_location
           plugin_id: numeric
       display_extenders: {  }
       use_ajax: true
@@ -451,7 +529,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: printed-in/%
+      path: sources/printed-in/%
     cache_metadata:
       max-age: -1
       contexts:

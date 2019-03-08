@@ -10,7 +10,7 @@ source:
 process:
   vid:
     plugin: default_value
-    default_value: printer_name
+    default_value: printers
   name: name
   'description/value': description
   'description/format': format

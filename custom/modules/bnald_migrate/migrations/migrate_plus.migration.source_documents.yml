@@ -35,7 +35,7 @@ process:
     no_stub: true
   print_location:
     plugin: migration_lookup
-    migration: regions
+    migration: print_locations
     source: field_location_printed
     no_stub: true
   user_id:
@@ -52,4 +52,4 @@ migration_dependencies:
   required:
     - provinces
     - printers
-    - regions
+    - print_locations

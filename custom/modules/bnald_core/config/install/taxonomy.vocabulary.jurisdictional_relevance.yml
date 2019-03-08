@@ -1,9 +1,8 @@
-uuid: b1ab23cb-574c-4f75-bfeb-ac506f94acce
 langcode: en
 status: true
-dependencies: {  }
-_core:
-  default_config_hash: tk0sbytinc4mprtS1CK89Sktc-UKm6fYNVyJYwhEVXA
+dependencies:
+  module:
+    - bnald_core
 name: 'Jurisdictional Relevance'
 vid: jurisdictional_relevance
 description: ''

@@ -1,25 +1,25 @@
-uuid: b67bed1e-10d0-4858-8819-380c364f4507
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.print_locations
+    - views.view.print_locations
   module:
     - ctools
     - taxonomy
-_core:
-  default_config_hash: Nw-YA7TgIe0jYOw2tVE25b6JvhNPcLwsBROzd2X67WU
-id: printers
-label: 'Printed By'
+id: print_locations
+label: 'Printed In'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'printed-by/[term:name]'
+pattern: 'sources/printed-in/[term:name]'
 selection_criteria:
-  5138ba0d-67d3-4e6b-956a-743806488c2d:
+  d544f4fc-2e9a-4bf1-8333-1e28ad8e7ab9:
     id: 'entity_bundle:taxonomy_term'
     bundles:
-      printer_name: printer_name
+      print_locations: print_locations
     negate: false
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 5138ba0d-67d3-4e6b-956a-743806488c2d
+    uuid: d544f4fc-2e9a-4bf1-8333-1e28ad8e7ab9
 selection_logic: and
 weight: -5
 relationships: {  }

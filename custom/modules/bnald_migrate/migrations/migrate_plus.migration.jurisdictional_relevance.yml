@@ -1,4 +1,4 @@
-id: jurisdictional_relevances
+id: jurisdictional_relevance
 label: 'Provinces Taxonomy Term'
 migration_group: bnald
 migration_tags:
@@ -23,7 +23,7 @@ process:
       source: parent
     -
       plugin: migration_lookup
-      migration: jurisdictional_relevances
+      migration: jurisdictional_relevance
   parent:
     plugin: default_value
     default_value: 0

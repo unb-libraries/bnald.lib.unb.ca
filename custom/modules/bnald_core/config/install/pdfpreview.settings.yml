@@ -1,0 +1,8 @@
+quality: 65
+size: 480x640
+path: pdfpreview
+filenames: human
+show_description: false
+tag: span
+fallback_formatter: file_default
+type: png

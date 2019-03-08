@@ -57,7 +57,7 @@ process:
         skip_on_missing_source: true
   jurisdictional_relevance:
     plugin: migration_lookup
-    migration: jurisdictional_relevances
+    migration: jurisdictional_relevance
     source: field_jurisdictional_relevance
     no_stub: true
   concepts:
@@ -86,5 +86,5 @@ migration_dependencies:
   required:
     - d7_user
     - concepts
-    - jurisdictional_relevances
+    - jurisdictional_relevance
     - source_documents
