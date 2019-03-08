@@ -20,7 +20,6 @@ class SourceDocumentListBuilder extends EntityListBuilder {
     $header['id'] = $this->t('Source Document ID');
     $header['title'] = $this->t('Title');
     $header['year'] = $this->t('Year');
-    $header['province'] = $this->t('Province');
     $header['printer'] = $this->t('Printed By');
     $header['location'] = $this->t('Printed In');
     return $header + parent::buildHeader();
@@ -38,9 +37,6 @@ class SourceDocumentListBuilder extends EntityListBuilder {
       ['source_document' => $entity->id()]
     );
     $row['year'] = $entity->getYear();
-
-    $province = $entity->getProvince();
-    $row['province'] = isset($province) ? $province->label() : '';
 
     $printer = $entity->getPrinter();
     $row['printer'] = isset($printer) ? $printer->label() : '';

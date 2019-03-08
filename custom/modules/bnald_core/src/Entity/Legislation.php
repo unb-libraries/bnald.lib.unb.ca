@@ -189,6 +189,21 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
+  public function getProvince() {
+    return $this->get('province')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setProvince(TermInterface $province) {
+    $this->set('province', $province->id());
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getSummary() {
     return $this->get('summary')->value;
   }
@@ -493,6 +508,29 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ])
       ->setDisplayOptions('form', [
         'weight' => 3,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['province'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Province'))
+      ->setDescription(t('Which (historical) province does/did this Legislation apply to?'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setSettings([
+        'target_type' => 'taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'provinces' => 'provinces',
+          ],
+        ],
+      ])
+      ->setDisplayOptions('view', [
+        'weight' => 4,
+      ])
+      ->setDisplayOptions(('form'), [
+        'type' => 'options_select',
+        'weight' => 4,
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);

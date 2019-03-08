@@ -1,11 +1,8 @@
-uuid: 917f71ab-1740-4945-84da-0874a1361baf
 langcode: en
 status: true
 dependencies:
   module:
     - bnald_core
-_core:
-  default_config_hash: 7JFmg9wkPGzFgmpDrZpxSe8sqDi52q2tEbcdPePifug
 id: recently_added
 label: 'Legislation by: Most Recent'
 module: views
@@ -329,9 +326,9 @@ display:
           plugin_id: field
         province:
           id: province
-          table: source_document
+          table: legislation
           field: province
-          relationship: source
+          relationship: none
           group_type: group
           admin_label: ''
           label: Province
@@ -389,7 +386,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: source_document
+          entity_type: legislation
           entity_field: province
           plugin_id: field
         chapter:
@@ -660,18 +657,7 @@ display:
       header: {  }
       footer: {  }
       empty: {  }
-      relationships:
-        source:
-          id: source
-          table: legislation_revision
-          field: source
-          relationship: none
-          group_type: group
-          admin_label: 'Source Document'
-          required: false
-          entity_type: legislation
-          entity_field: source
-          plugin_id: standard
+      relationships: {  }
       arguments: {  }
       display_extenders: {  }
     cache_metadata:

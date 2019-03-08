@@ -327,11 +327,11 @@ display:
           entity_type: legislation
           entity_field: year
           plugin_id: field
-        province_1:
-          id: province_1
-          table: source_document
+        province:
+          id: province
+          table: legislation
           field: province
-          relationship: source
+          relationship: none
           group_type: group
           admin_label: ''
           label: Province
@@ -389,7 +389,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: source_document
+          entity_type: legislation
           entity_field: province
           plugin_id: field
         chapter:
@@ -670,17 +670,6 @@ display:
           required: false
           entity_type: legislation
           entity_field: concepts
-          plugin_id: standard
-        source:
-          id: source
-          table: legislation_revision
-          field: source
-          relationship: none
-          group_type: group
-          admin_label: 'Source Document'
-          required: false
-          entity_type: legislation
-          entity_field: source
           plugin_id: standard
       arguments:
         concepts_target_id:

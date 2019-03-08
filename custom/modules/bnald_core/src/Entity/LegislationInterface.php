@@ -93,6 +93,25 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
   public function setNumberOfArticles($number);
 
   /**
+   * Gets the province this Legislation applies to.
+   *
+   * @return \Drupal\taxonomy\TermInterface
+   *   Province of the Legislation.
+   */
+  public function getProvince();
+
+  /**
+   * Sets the province this Legislation applies to.
+   *
+   * @param \Drupal\taxonomy\TermInterface $province
+   *   The province of the Legislation.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setProvince(TermInterface $province);
+
+  /**
    * Gets the legislative summary of the Legislation.
    *
    * @return string

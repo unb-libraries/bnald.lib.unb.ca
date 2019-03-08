@@ -327,11 +327,11 @@ display:
           entity_type: legislation
           entity_field: year
           plugin_id: field
-        province_1:
-          id: province_1
-          table: source_document
+        province:
+          id: province
+          table: legislation
           field: province
-          relationship: source
+          relationship: none
           group_type: group
           admin_label: ''
           label: Province
@@ -389,7 +389,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: source_document
+          entity_type: legislation
           entity_field: province
           plugin_id: field
         chapter:
@@ -660,34 +660,23 @@ display:
       footer: {  }
       empty: {  }
       relationships:
-        source:
-          id: source
-          table: legislation_revision
-          field: source
-          relationship: none
-          group_type: group
-          admin_label: 'Source Document'
-          required: false
-          entity_type: legislation
-          entity_field: source
-          plugin_id: standard
         province:
           id: province
-          table: source_document
+          table: legislation
           field: province
-          relationship: source
+          relationship: none
           group_type: group
           admin_label: Province
           required: false
-          entity_type: source_document
+          entity_type: legislation
           entity_field: province
           plugin_id: standard
       arguments:
         province:
           id: province
-          table: source_document
+          table: legislation
           field: province
-          relationship: source
+          relationship: none
           group_type: group
           admin_label: ''
           default_action: 'not found'
@@ -722,7 +711,7 @@ display:
             access: false
           break_phrase: false
           not: false
-          entity_type: source_document
+          entity_type: legislation
           entity_field: province
           plugin_id: numeric
       display_extenders: {  }

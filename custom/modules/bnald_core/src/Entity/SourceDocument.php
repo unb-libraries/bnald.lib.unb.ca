@@ -298,29 +298,6 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
 
-    $fields['province'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Province'))
-      ->setDescription(t('Which (historical) province does/did this Document apply to?'))
-      ->setRevisionable(TRUE)
-      ->setTranslatable(FALSE)
-      ->setSettings([
-        'target_type' => 'taxonomy_term',
-        'handler_settings' => [
-          'target_bundles' => [
-            'provinces' => 'provinces',
-          ],
-        ],
-      ])
-      ->setDisplayOptions('view', [
-        'weight' => 2,
-      ])
-      ->setDisplayOptions(('form'), [
-        'type' => 'options_select',
-        'weight' => 2,
-      ])
-      ->setDisplayConfigurable('view', TRUE)
-      ->setDisplayConfigurable('form', TRUE);
-
     $fields['printer'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Printed By'))
       ->setDescription(t('Who has printed the Document?'))
@@ -342,14 +319,14 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayOptions(
         'view',
         [
-          'weight' => 3,
+          'weight' => 2,
         ]
       )
       ->setDisplayOptions(
         'form',
         [
           'type' => 'options_select',
-          'weight' => 3,
+          'weight' => 2,
         ]
       )
       ->setDisplayConfigurable('form', TRUE)
@@ -377,14 +354,14 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayOptions(
         'view',
         [
-          'weight' => 4,
+          'weight' => 3,
         ]
       )
       ->setDisplayOptions(
         'form',
         [
           'type' => 'options_select',
-          'weight' => 4,
+          'weight' => 3,
         ]
       )
       ->setDisplayConfigurable('form', TRUE)
@@ -398,10 +375,9 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'options_select',
-        'weight' => 5,
+        'weight' => 4,
       ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publish?'))
@@ -410,7 +386,7 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => 6,
+        'weight' => 5,
       ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')

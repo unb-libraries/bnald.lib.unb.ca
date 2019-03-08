@@ -54,25 +54,6 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
   public function setYear($year);
 
   /**
-   * Gets the Source Document Province entity.
-   *
-   * @return \Drupal\taxonomy\TermInterface
-   *   Province of the SourceDocument.
-   */
-  public function getProvince();
-
-  /**
-   * Sets the Source Document Province entity.
-   *
-   * @param \Drupal\taxonomy\TermInterface $province
-   *   The province of the SourceDocument.
-   *
-   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
-   *   The called SourceDocument entity.
-   */
-  public function setProvince(TermInterface $province);
-
-  /**
    * Gets the Source Document Printer entity.
    *
    * @return \Drupal\taxonomy\TermInterface
