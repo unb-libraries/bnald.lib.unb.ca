@@ -148,21 +148,6 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
   /**
    * {@inheritdoc}
    */
-  public function getProvince() {
-    return $this->get('province')->entity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setProvince(TermInterface $province) {
-    $this->set('province', $province->id());
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getPrinter() {
     return $this->get('printer')->entity;
   }
@@ -344,7 +329,7 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
           'target_type' => 'taxonomy_term',
           'handler_settings' => [
             'target_bundles' => [
-              'printer_name' => 'printer_name',
+              'printers' => 'printers',
             ],
             'auto_create' => FALSE,
           ],
@@ -379,7 +364,7 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
           'handler' => 'default:taxonomy_term',
           'handler_settings' => [
             'target_bundles' => [
-              'regions' => 'regions',
+              'print_locations' => 'print_locations',
             ],
             'auto_create' => FALSE,
           ],
