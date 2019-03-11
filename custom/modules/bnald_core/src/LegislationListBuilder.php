@@ -32,7 +32,7 @@ class LegislationListBuilder extends EntityListBuilder {
     $row['id'] = $entity->id();
     $row['title'] = Link::createFromRoute(
       $entity->label(),
-      'entity.legislation.edit_form',
+      'entity.legislation.canonical',
       ['legislation' => $entity->id()]
     );
     $row['year'] = $entity->getYear();

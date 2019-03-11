@@ -326,15 +326,15 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function getSource() {
-    return $this->get('source')->entity;
+  public function getOrigin() {
+    return $this->get('origin')->entity;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getSourceId() {
-    $entity = $this->get('source')->entity;
+  public function getOriginId() {
+    $entity = $this->get('origin')->entity;
     if (!empty($entity)) {
       return $entity->id();
     }
@@ -344,8 +344,8 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function setSource(SourceDocumentInterface $source_document) {
-    $this->set('source', $source_document->id());
+  public function setOrigin(SourceDocumentInterface $source_document) {
+    $this->set('origin', $source_document->id());
     return $this;
   }
 
@@ -654,8 +654,8 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
 
-    $fields['source'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Source'))
+    $fields['origin'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Origin'))
       ->setDescription(t('Which source document can this Legislation be found in?'))
       ->setSettings(
         [

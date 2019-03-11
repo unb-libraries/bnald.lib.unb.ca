@@ -69,7 +69,7 @@ process:
     migration: concepts
     source: field_concepts
     no_stub: true
-  source:
+  origin:
     plugin: migration_lookup
     migration: source_documents
     source: field_source_document

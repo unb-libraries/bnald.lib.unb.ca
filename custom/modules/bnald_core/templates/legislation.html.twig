@@ -51,7 +51,7 @@
     </li><li>
       <span class="field--label">{{ 'Source'|trans }}</span>
       <span class="field--value">
-        {% set source = legislation.getSource().getSource() %}
+        {% set source = legislation.getOrigin().getSource() %}
         {% if source is not empty %}
           {{ source }}
         {% else %}
