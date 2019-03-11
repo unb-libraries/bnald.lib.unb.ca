@@ -192,6 +192,21 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
   /**
    * {@inheritdoc}
    */
+  public function getSource() {
+    return $this->get('source')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSource($source) {
+    $this->set('source', $source);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function setPrintLocation(TermInterface $location) {
     $this->set('print_location', $location->id());
     return $this;
@@ -367,6 +382,20 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['source'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Source'))
+      ->setDescription(t('The source of the document.'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setDisplayOptions('view', [
+        'weight' => 4,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 4,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
+
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
       ->setRevisionable(TRUE)
@@ -375,7 +404,7 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'options_select',
-        'weight' => 4,
+        'weight' => 5,
       ])
       ->setDisplayConfigurable('form', TRUE);
 
@@ -386,7 +415,7 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => 5,
+        'weight' => 6,
       ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')

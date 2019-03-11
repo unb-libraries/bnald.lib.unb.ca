@@ -33,6 +33,13 @@ process:
     migration: print_locations
     source: field_location_printed
     no_stub: true
+  source:
+    plugin: extract
+    source: field_external_uri
+    index:
+      - 0
+      - title
+    default: 'Not available'
   user_id:
     plugin: default_value
     default_value: 1

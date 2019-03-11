@@ -108,6 +108,25 @@ interface SourceDocumentInterface extends ContentEntityInterface, RevisionLogInt
   public function setPrintLocation(TermInterface $location);
 
   /**
+   * Gets the Document's source name.
+   *
+   * @return string
+   *   The name of the Document's source.
+   */
+  public function getSource();
+
+  /**
+   * Sets the Document's source name.
+   *
+   * @param string $source
+   *   The name of the Document's source.
+   *
+   * @return \Drupal\bnald_core\Entity\LegislationInterface
+   *   The called Legislation entity.
+   */
+  public function setSource($source);
+
+  /**
    * Gets the Source Document revision author.
    *
    * @return \Drupal\user\UserInterface
