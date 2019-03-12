@@ -16,51 +16,38 @@
  */
 #}
 <div{{ attributes.addClass('legislation') }}>
-  <ul>
-    <li>
-      {% set province = legislation.getProvince() %}
-      <span class="field--label">{{ 'Province'|trans }}</span>
-      <a class="field--value" href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': province.id() }) }}">{{ province.label() }}</a>
-    </li><li>
-      <span class="field--label">{{ 'Chapter'|trans }}</span>
-      <span class="field--value">{{ legislation.getChapter() }}</span>
-    </li><li>
-      <span class="field--label">{{ 'Year'|trans }}</span>
-      <span class="field--value">{{ legislation.getYearPassed() }}</span>
-    </li><li>
-      <span class="field--label">{{ 'Concepts'|trans }}</span>
-      <ul class="field--value tag-list">
-        {% for concept in legislation.getConcepts() %}
-          <li class="label label-default">
-            <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': concept.id() }) }}">{{ concept.label() }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </li><li>
-      <span class="field--label">{{ 'Jurisdictional Relevance'|trans }}</span>
-      <ul class="field--value tag-list">
-        {% for jr in legislation.getJurisdictionalRelevance() %}
-          <li class="label label-default">
-            <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': jr.id() }) }}">{{ jr.label() }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </li><li>
-      <span class="field--label">{{ 'Articles'|trans }}</span>
-      <span class="field--value">{{ legislation.getNumberOfArticles() }}</span>
-    </li><li>
-      <span class="field--label">{{ 'Source'|trans }}</span>
-      <span class="field--value">
-        {% set source = legislation.getOrigin().getSource() %}
-        {% if source is not empty %}
-          {{ source }}
-        {% else %}
-          Not available
-        {% endif %}
-      </span>
-    </li><li>
-      <span class="field--label">{{ 'Summary'|trans }}</span>
-      <span class="field--value">{{ legislation.getLegislativeSummary() }}</span>
-    </li>
-  </ul>
+  <div id="legislation-sidebar" class="col-xs-pull col-md-4">
+    <div class="row">
+      <div class="thumbnail">
+        {{ legislation.pdf_original }}
+        <div class="caption">
+          <a id="btn-pdf-original" href="{{ file_url(legislation.entity.getPdfOriginal()) }}" class="btn btn-invert btn-block"
+             role="button">Original PDF</a>
+          <a id="btn-pdf-transcribed" href="{{ file_url(legislation.entity.getPdfTranscribed()) }}" class="btn btn-invert btn-block"
+             role="button">Transcribed PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="legislation-main" class="col-xs-push col-md-8">
+    <ul>
+      <li>
+        {{ legislation.province }}
+      </li><li>
+        {{ legislation.chapter }}
+      </li><li>
+        {{ legislation.year }}
+      </li><li>
+        {{ legislation.concepts }}
+      </li><li>
+        {{ legislation.jurisdictional_relevance }}
+      </li><li>
+        {{ legislation.article_count }}
+      </li><li>
+        {{ legislation.summary }}
+      </li><li>
+        {{ legislation.origin }}
+      </li>
+    </ul>
+  </div>
 </div>

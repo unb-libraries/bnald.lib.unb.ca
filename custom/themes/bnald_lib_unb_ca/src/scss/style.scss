@@ -5,6 +5,7 @@
 body {
   background-color: $color_background_primary;
   color: $color_text_primary;
+  font-size: 18px;
 }
 
 header {
@@ -97,7 +98,7 @@ h1.title {
       font-weight: normal;
     }
 
-    .field--value {
+    .field--item {
       font-size: large;
     }
   }
@@ -143,6 +144,30 @@ a {
     color: $color_highlight;
     text-decoration: none;
   }
+}
+
+.btn-default, .btn-invert:hover {
+  color: $color_background_primary;
+  background-color: $color_highlight;
+  border-color: $color_highlight;
+}
+
+.btn-invert, .bnt-default:hover {
+  color: $color_highlight;
+  background-color: $color_background_primary;
+  border-color: $color_highlight;
+}
+
+.pagination li a {
+  color: $color_highlight;
+  background-color: $color_background_primary;
+  border-color: $color_highlight;
+}
+
+.pagination .active a, .pagination .active a:hover, .pagination li a:hover {
+  color: $color_background_primary;
+  background-color: $color_highlight;
+  border-color: $color_highlight;
 }
 
 .footer {
