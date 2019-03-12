@@ -44,9 +44,9 @@
         "patches": {}
     },
     "license": "MIT",
-    "minimum-stability": "stable",
-    "name": "unb-libraries/bnald.lib.unb.ca",
+    "minimum-stability": "dev",
     "prefer-stable": true,
+    "name": "unb-libraries/bnald.lib.unb.ca",
     "repositories": [
         {
             "type": "composer",
