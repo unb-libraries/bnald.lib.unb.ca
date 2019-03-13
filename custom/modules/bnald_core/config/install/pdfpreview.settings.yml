@@ -1,3 +1,6 @@
+dependencies:
+  module:
+    - bnald_core
 quality: 65
 size: 480x640
 path: pdfpreview

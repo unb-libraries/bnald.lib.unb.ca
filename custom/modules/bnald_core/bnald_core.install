@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Contains bnald_core.install.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Grant anonymous users the permission to view Legislation records.
+ */
+function bnald_core_install() {
+  $anonymous_user_role = \Drupal\user\Entity\Role::load(
+    Drupal\user\RoleInterface::ANONYMOUS_ID);
+  $anonymous_user_role
+    ->grantPermission('view published legislation entities');
+
+  // Uncomment the following line when Source Documents may be viewed
+  // $anonymous_user_role
+  //   ->grantPermission('View published Source Document entities');
+
+  $anonymous_user_role->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ *  Revoke the permission to view Legislation records from anonymous users.
+ */
+function bnald_core_uninstall() {
+  $anonymous_user_role = \Drupal\user\Entity\Role::load(
+    Drupal\user\RoleInterface::ANONYMOUS_ID);
+  $anonymous_user_role
+    ->revokePermission('view published legislation entities');
+
+  // Uncomment the following line when Source Documents may be viewed
+  // $anonymous_user_role
+  //   ->revokePermission('View published Source Document entities');
+  $anonymous_user_role->save();
+}
