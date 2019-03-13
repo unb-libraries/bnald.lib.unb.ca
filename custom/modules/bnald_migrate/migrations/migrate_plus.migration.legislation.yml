@@ -90,6 +90,6 @@ migration_dependencies:
   required:
     - d7_user
     - concepts
-    - jurisdictional_relevances
+    - jurisdictional_relevance
     - provinces
     - source_documents

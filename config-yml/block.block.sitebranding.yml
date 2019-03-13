@@ -1,0 +1,23 @@
+uuid: e52910c5-e073-4517-b5b9-8213d60bde0a
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bnald_lib_unb_ca
+id: sitebranding
+theme: bnald_lib_unb_ca
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site Title'
+  provider: system
+  label_display: '0'
+  use_site_logo: false
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

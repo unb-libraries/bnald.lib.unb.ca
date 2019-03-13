@@ -13,7 +13,7 @@ use Drupal\node\Plugin\migrate\source\d7\NodeType;
  * )
  *
  * * @code
- * field_file:
+ * source:
  *   plugin: node_type_filter
  *   node_types:
  *     - page
@@ -37,4 +37,5 @@ class NodeTypeFilter extends NodeType {
     }
     return $query;
   }
+
 }

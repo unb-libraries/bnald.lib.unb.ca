@@ -1,6 +1,6 @@
 uuid: adb97470-e3bd-4e20-8a09-bdb5ffd329ea
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser

@@ -1,0 +1,24 @@
+uuid: 6d6e7f4f-7523-4e1f-9c10-77a678a0b484
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - bnald_lib_unb_ca
+id: mainmenu
+theme: bnald_lib_unb_ca
+region: navigation_collapsible
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }
