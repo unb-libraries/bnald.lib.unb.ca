@@ -60,7 +60,7 @@ class LegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route
         ->setDefaults([
           '_title' => "{$entity_type->getLabel()} revisions",
-          '_controller' => '\Drupal\bnald_core\Controller\legislationController::revisionOverview',
+          '_controller' => '\Drupal\bnald_core\Controller\LegislationController::revisionOverview',
         ])
         ->setRequirement('_permission', 'access legislation revisions')
         ->setOption('_admin_route', TRUE);
@@ -83,8 +83,8 @@ class LegislationHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route = new Route($entity_type->getLinkTemplate('revision'));
       $route
         ->setDefaults([
-          '_controller' => '\Drupal\bnald_core\Controller\legislationController::revisionShow',
-          '_title_callback' => '\Drupal\bnald_core\Controller\legislationController::revisionPageTitle',
+          '_controller' => '\Drupal\bnald_core\Controller\LegislationController::revisionShow',
+          '_title_callback' => '\Drupal\bnald_core\Controller\LegislationController::revisionPageTitle',
         ])
         ->setRequirement('_permission', 'access legislation revisions')
         ->setOption('_admin_route', TRUE);
