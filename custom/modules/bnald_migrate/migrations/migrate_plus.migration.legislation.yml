@@ -78,7 +78,7 @@ process:
   chapter_sort: field_chapter_sort
   user_id:
     plugin: migration_lookup
-    migration: d7_user
+    migration: user
     source: node_uid
     no_stub: true
   status: status
@@ -88,7 +88,7 @@ destination:
   plugin: entity:legislation
 migration_dependencies:
   required:
-    - d7_user
+    - user
     - concepts
     - jurisdictional_relevance
     - provinces

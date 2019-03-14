@@ -29,5 +29,5 @@ destination:
   default_bundle: page
 migration_dependencies:
   required:
-    - d7_user
+    - user
     - node_type_page
