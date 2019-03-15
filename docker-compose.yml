@@ -31,7 +31,7 @@ services:
       - bnald.lib.unb.ca
     entrypoint:
       - docker-entrypoint-multiple.sh
-      - references.bnald.lib.unb.ca:/solr-conf
+      - legislation.bnald.lib.unb.ca:/solr-conf
 
   bnald.lib.unb.ca:
     build:
