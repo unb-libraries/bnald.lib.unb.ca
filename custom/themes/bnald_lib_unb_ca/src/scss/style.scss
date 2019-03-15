@@ -146,6 +146,44 @@ a {
   }
 }
 
+label {
+  display: block;
+}
+
+.bnald-legislation-search .views-exposed-form {
+
+  div {
+    margin-bottom: 20px;
+  }
+
+  .form-item-query {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .form-type-select .form-select {
+    height: 150px;
+  }
+
+  .form-item-from, .form-item-to {
+    display: block;
+  }
+
+  .form-actions {
+    display: block;
+
+    button {
+      border-color: $color_highlight;
+      background-color: $color_highlight;
+    }
+  }
+
+  margin-bottom: 20px;
+}
+
 .btn-default, .btn-invert:hover {
   color: $color_background_primary;
   background-color: $color_highlight;

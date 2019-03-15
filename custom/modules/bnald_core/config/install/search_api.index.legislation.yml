@@ -1,0 +1,118 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+    - bnald_core
+    - search_api
+  config:
+    - search_api.server.bnald
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    advanced:
+      index_prefix: ''
+id: legislation
+name: Legislation
+description: ''
+read_only: false
+field_settings:
+  chapter:
+    label: Chapter
+    datasource_id: 'entity:legislation'
+    property_path: chapter
+    type: string
+    dependencies:
+      module:
+        - bnald_core
+  concepts:
+    label: Concepts
+    datasource_id: 'entity:legislation'
+    property_path: concepts
+    type: integer
+    dependencies:
+      module:
+        - bnald_core
+  full_text:
+    label: 'Full Text'
+    datasource_id: 'entity:legislation'
+    property_path: full_text
+    type: text
+    boost: !!float 13
+    dependencies:
+      module:
+        - bnald_core
+  jurisdictional_relevance:
+    label: 'Jurisdictional Relevance'
+    datasource_id: 'entity:legislation'
+    property_path: jurisdictional_relevance
+    type: integer
+    dependencies:
+      module:
+        - bnald_core
+  origin:
+    label: Origin
+    datasource_id: 'entity:legislation'
+    property_path: origin
+    type: text
+    dependencies:
+      module:
+        - bnald_core
+  province:
+    label: Province
+    datasource_id: 'entity:legislation'
+    property_path: province
+    type: integer
+    dependencies:
+      module:
+        - bnald_core
+  title:
+    label: Title
+    datasource_id: 'entity:legislation'
+    property_path: title
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - bnald_core
+  year:
+    label: Year
+    datasource_id: 'entity:legislation'
+    property_path: year
+    type: integer
+    dependencies:
+      module:
+        - bnald_core
+datasource_settings:
+  'entity:legislation': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: bnald
