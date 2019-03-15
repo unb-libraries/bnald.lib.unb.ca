@@ -18,7 +18,7 @@ backend_config:
     host: drupal-solr-lib-unb-ca
     port: '8983'
     path: /solr
-    core: bnald.lib.unb.ca
+    core: legislation.bnald.lib.unb.ca
     timeout: 5
     index_timeout: 5
     optimize_timeout: 10
