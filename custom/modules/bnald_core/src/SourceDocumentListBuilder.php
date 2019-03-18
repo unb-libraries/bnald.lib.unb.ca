@@ -17,8 +17,8 @@ class SourceDocumentListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Source Document ID');
-    $header['title'] = $this->t('Title');
+    $header['id'] = $this->t('ID');
+    $header['title'] = $this->t('Document');
     $header['year'] = $this->t('Year');
     $header['printer'] = $this->t('Printed By');
     $header['location'] = $this->t('Printed In');
@@ -32,8 +32,8 @@ class SourceDocumentListBuilder extends EntityListBuilder {
     /* @var $entity \Drupal\bnald_core\Entity\SourceDocument */
     $row['id'] = $entity->id();
     $row['title'] = Link::createFromRoute(
-      $entity->label(),
-      'entity.source_document.edit_form',
+      $entity->getTitle(),
+      'entity.source_document.canonical',
       ['source_document' => $entity->id()]
     );
     $row['year'] = $entity->getYear();
