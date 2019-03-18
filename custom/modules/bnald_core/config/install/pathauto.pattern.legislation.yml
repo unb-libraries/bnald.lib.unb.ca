@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - bnald_core
+id: legislation
+label: Legislation
+type: 'canonical_entities:legislation'
+pattern: '/legislation/[legislation:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: 4
+relationships: {  }
