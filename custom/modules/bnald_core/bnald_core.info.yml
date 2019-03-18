@@ -7,3 +7,4 @@ dependencies:
   - pdfpreview
   - tvi
   - pathauto
+  - search_api_solr
