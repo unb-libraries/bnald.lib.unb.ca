@@ -235,7 +235,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
    * {@inheritdoc}
    */
   public function getPdfTranscribed() {
-    return $this->get('pdf_transcribed')->entity;
+    return $this->get('pdf_transcribed')->entity->getFileUri();
   }
 
   /**
@@ -249,7 +249,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
    * {@inheritdoc}
    */
   public function getPdfOriginal() {
-    return $this->get('pdf_original')->entity;
+    return $this->get('pdf_original')->entity->getFileUri();
   }
 
   /**
@@ -328,17 +328,6 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
    */
   public function getOrigin() {
     return $this->get('origin')->entity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOriginId() {
-    $entity = $this->get('origin')->entity;
-    if (!empty($entity)) {
-      return $entity->id();
-    }
-    return NULL;
   }
 
   /**
@@ -454,6 +443,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
         'max_length' => 0,
       ])
       ->setDisplayOptions('view', [
+        'label' => 'hidden',
         'weight' => 0,
       ])
       ->setDisplayOptions('form', [
@@ -580,8 +570,15 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
         'file_extensions' => 'pdf',
       ])
       ->setDisplayOptions('view', [
+        'label' => 'hidden',
         'weight' => 7,
         'type' => 'pdfpreview',
+        'settings' => [
+          'image_style' => 'large',
+          'show_description' => 0,
+          'tag' => 'div',
+          'image_link' => 'file',
+        ],
       ])->setDisplayOptions('form', [
         'weight' => 7,
       ])
@@ -655,7 +652,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['origin'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Origin'))
+      ->setLabel(t('Source'))
       ->setDescription(t('Which source document can this Legislation be found in?'))
       ->setSettings(
         [
@@ -670,8 +667,10 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ->setDisplayOptions(
         'view',
         [
-          'label' => 'above',
           'weight' => 11,
+          'settings' => [
+            'link' => FALSE,
+          ],
         ]
       )
       ->setDisplayOptions(
@@ -679,6 +678,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
         [
           'type' => 'entity_reference_autocomplete',
           'settings' => [
+            'size' => 180,
             'placeholder' => 'Search by Title',
           ],
           'weight' => 11,

@@ -256,14 +256,6 @@ interface LegislationInterface extends ContentEntityInterface, RevisionLogInterf
   public function getOrigin();
 
   /**
-   * Gets the Legislation's Source ID.
-   *
-   * @return \Drupal\bnald_core\Entity\SourceDocumentInterface
-   *   The SourceDocument entity.
-   */
-  public function getOriginId();
-
-  /**
    * Sets the Legislation's Source Document.
    *
    * @param \Drupal\bnald_core\Entity\SourceDocumentInterface $source_document
