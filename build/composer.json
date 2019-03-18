@@ -65,7 +65,7 @@
         "drupal/paragraphs": "1.5",
         "drupal/redis": "1.0-rc2",
         "drupal/search_api": "1.12",
-        "drupal/search_api_autocomplete": "1.1",
+        "drupal/search_api_autocomplete": "1.2",
         "drupal/search_api_solr": "2.3",
         "drupal/token": "1.5",
         "drupal/tvi": "1.0-beta2",
