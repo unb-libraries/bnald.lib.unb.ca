@@ -8,11 +8,10 @@ dependencies:
     - taxonomy.vocabulary.provinces
   module:
     - search_api
-    - bnald_core
 id: legislation_search
 label: 'Legislation: Search'
 module: views
-description: ''
+description: 'Search Legislation Records'
 tag: ''
 base_table: search_api_index_legislation_bnald_lib_unb_ca
 base_field: search_api_id
@@ -128,7 +127,7 @@ display:
           field: id
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ID
           label: ID
           exclude: true
           alter:
@@ -205,13 +204,13 @@ display:
               - '@count'
           entity_type: legislation
           plugin_id: search_api_field
-        title_1:
-          id: title_1
-          table: search_api_datasource_legislation_entity_legislation
+        title:
+          id: title
+          table: search_api_index_legislation_bnald_lib_unb_ca
           field: title
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: Title
           label: Title
           exclude: false
           alter:
@@ -273,15 +272,14 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: legislation
           plugin_id: search_api_field
-        chapter_1:
-          id: chapter_1
-          table: search_api_datasource_legislation_entity_legislation
+        chapter:
+          id: chapter
+          table: search_api_index_legislation_bnald_lib_unb_ca
           field: chapter
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: Chapter
           label: Chapter
           exclude: false
           alter:
@@ -344,15 +342,14 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          entity_type: legislation
           plugin_id: search_api_field
-        year:
-          id: year
-          table: search_api_datasource_legislation_entity_legislation
+        year_1:
+          id: year_1
+          table: search_api_index_legislation_bnald_lib_unb_ca
           field: year
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: Year
           label: Year
           exclude: false
           alter:
@@ -398,7 +395,7 @@ display:
           type: number_integer
           settings:
             thousand_separator: ''
-            prefix_suffix: false
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -427,15 +424,14 @@ display:
             format_plural_values:
               - '1'
               - '@count'
-          entity_type: legislation
           plugin_id: search_api_field
-        province:
-          id: province
-          table: search_api_datasource_legislation_entity_legislation
+        province_1:
+          id: province_1
+          table: search_api_index_legislation_bnald_lib_unb_ca
           field: province
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: Province
           label: Province
           exclude: false
           alter:
@@ -501,15 +497,14 @@ display:
             display_methods:
               provinces:
                 display_method: label
-          entity_type: legislation
           plugin_id: search_api_field
-        concepts:
-          id: concepts
-          table: search_api_datasource_legislation_entity_legislation
+        concepts_1:
+          id: concepts_1
+          table: search_api_index_legislation_bnald_lib_unb_ca
           field: concepts
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: Concepts
           label: Concepts
           exclude: false
           alter:
@@ -575,15 +570,14 @@ display:
             display_methods:
               concepts:
                 display_method: label
-          entity_type: legislation
           plugin_id: search_api_field
-        jurisdictional_relevance:
-          id: jurisdictional_relevance
-          table: search_api_datasource_legislation_entity_legislation
+        jurisdictional_relevance_1:
+          id: jurisdictional_relevance_1
+          table: search_api_index_legislation_bnald_lib_unb_ca
           field: jurisdictional_relevance
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: 'Jurisdictional Relevance'
           label: 'Jurisdictional Relevance'
           exclude: false
           alter:
@@ -649,7 +643,6 @@ display:
             display_methods:
               jurisdictional_relevance:
                 display_method: label
-          entity_type: legislation
           plugin_id: search_api_field
       filters:
         search_api_fulltext:
@@ -1004,3 +997,4 @@ display:
         - url.query_args
         - user
       tags: {  }
+
