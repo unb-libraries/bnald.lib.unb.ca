@@ -211,13 +211,32 @@ label {
 .footer {
   background-color: $color_background_secondary;
   border-top: 0;
+  color: $color_text_secondary;
 
-  .nav a {
+  #block-statictext {
+    display: inline-block;
+  }
+
+  a {
     color: $color_text_secondary;
 
     &:hover {
-      background-color: $color_background_secondary;
       text-decoration: underline;
+    }
+  }
+
+  nav {
+    display: inline-block;
+
+    a {
+      color: $color_text_secondary;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      &:hover {
+        background-color: $color_background_secondary;
+        text-decoration: underline;
+      }
     }
   }
 }
