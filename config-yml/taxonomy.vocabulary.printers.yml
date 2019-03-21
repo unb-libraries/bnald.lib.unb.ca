@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - bnald_core
+name: Printers
+vid: printers
+description: ''
+hierarchy: 0
+weight: 0

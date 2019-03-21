@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.jurisdictional_relevance
+    - views.view.jurisdictional_relevance
+  module:
+    - ctools
+    - taxonomy
+id: jurisdictional_relevance
+label: 'Jurisdictional Relevance'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'legislation/jurisdictional-relevance/[term:name]'
+selection_criteria:
+  53b09095-2f29-43fa-9e87-d1a874e20889:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      jurisdictional_relevance: jurisdictional_relevance
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 53b09095-2f29-43fa-9e87-d1a874e20889
+selection_logic: and
+weight: 3
+relationships: {  }

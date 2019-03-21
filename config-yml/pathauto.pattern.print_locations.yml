@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.print_locations
+    - views.view.print_locations
+  module:
+    - ctools
+    - taxonomy
+id: print_locations
+label: 'Printed In'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'sources/printed-in/[term:name]'
+selection_criteria:
+  d544f4fc-2e9a-4bf1-8333-1e28ad8e7ab9:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      print_locations: print_locations
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: d544f4fc-2e9a-4bf1-8333-1e28ad8e7ab9
+selection_logic: and
+weight: 1
+relationships: {  }

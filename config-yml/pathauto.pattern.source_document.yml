@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - bnald_core
+id: source_document
+label: 'Source Document'
+type: 'canonical_entities:source_document'
+pattern: 'documents/[source_document:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: 2
+relationships: {  }

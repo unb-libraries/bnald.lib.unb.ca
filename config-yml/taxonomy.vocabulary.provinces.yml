@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - bnald_core
+name: Provinces
+vid: provinces
+description: ''
+hierarchy: 0
+weight: 0

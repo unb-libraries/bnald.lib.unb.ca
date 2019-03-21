@@ -1,0 +1,9 @@
+enable_override: 1
+view: print_locations
+view_display: page
+inherit_settings: 1
+pass_arguments: 0
+dependencies:
+  config:
+    - taxonomy.vocabulary.print_locations
+    - views.view.print_locations

@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - bnald_core
+name: 'Print Locations'
+vid: print_locations
+description: ''
+hierarchy: 0
+weight: 0

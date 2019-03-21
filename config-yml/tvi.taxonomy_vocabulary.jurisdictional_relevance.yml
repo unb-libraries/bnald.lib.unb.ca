@@ -1,0 +1,9 @@
+enable_override: 1
+view: jurisdictional_relevance
+view_display: page
+inherit_settings: 1
+pass_arguments: 0
+dependencies:
+  config:
+    - taxonomy.vocabulary.jurisdictional_relevance
+    - views.view.jurisdictional_relevance

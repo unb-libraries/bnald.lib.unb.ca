@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - bnald_core
+name: Concepts
+vid: concepts
+description: ''
+hierarchy: 0
+weight: 0
