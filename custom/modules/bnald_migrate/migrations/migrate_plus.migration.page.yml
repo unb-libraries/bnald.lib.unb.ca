@@ -30,4 +30,3 @@ destination:
 migration_dependencies:
   required:
     - user
-    - node_type_page

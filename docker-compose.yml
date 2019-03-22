@@ -21,7 +21,7 @@ services:
     networks:
       - bnald.lib.unb.ca
     volumes:
-      - ./content/mysqldump/:/docker-entrypoint-initdb.d
+      - ./content/mysqldump-migrate/:/docker-entrypoint-initdb.d
 
   drupal-solr-lib-unb-ca:
     image: unblibraries/solr-drupal:7.x
