@@ -46,7 +46,10 @@
       </li><li>
         {{ legislation.summary }}
       </li><li>
-        {{ legislation.origin }}
+        <div class="field field--name-origin field--type--entity--reference field--label-above">
+          <div class="field--label">Source</div>
+          <div class="field--item">{{ legislation.origin }}</div>
+        </div>
       </li>
     </ul>
   </div>

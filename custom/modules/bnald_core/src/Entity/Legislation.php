@@ -513,13 +513,19 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
           'target_bundles' => [
             'provinces' => 'provinces',
           ],
+          'auto_create' => TRUE,
+          'auto_create_bundle' => 'provinces',
         ],
       ])
       ->setDisplayOptions('view', [
         'weight' => 4,
       ])
       ->setDisplayOptions(('form'), [
-        'type' => 'options_select',
+        'type' => 'entity_reference_autocomplete',
+        'settings' => [
+          'size' => 180,
+          'placeholder' => 'Search and select. Non-existing terms will be created.',
+        ],
         'weight' => 4,
       ])
       ->setDisplayConfigurable('view', TRUE)
@@ -605,7 +611,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['jurisdictional_relevance'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Jurisdictional Relevance'))
-      ->setDescription(t('Multiple selections possible.'))
+      ->setDescription(t('Tag with Jurisdictional Relevance terms'))
       ->setRevisionable(TRUE)
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
       ->setTranslatable(FALSE)
@@ -615,13 +621,19 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
           'target_bundles' => [
             'jurisdictional_relevance' => 'jurisdictional_relevance',
           ],
+          'auto_create' => TRUE,
+          'auto_create_bundle' => 'jurisdictional_relevance',
         ],
       ])
       ->setDisplayOptions('view', [
         'weight' => 9,
       ])
       ->setDisplayOptions(('form'), [
-        'type' => 'options_select',
+        'type' => 'entity_reference_autocomplete_tags',
+        'settings' => [
+          'size' => 180,
+          'placeholder' => 'Search and select, separate multiple by comma. Non-existing terms will be created.',
+        ],
         'weight' => 9,
       ])
       ->setDisplayConfigurable('view', TRUE)
@@ -629,7 +641,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
 
     $fields['concepts'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Concepts'))
-      ->setDescription(t('Multiple selections possible.'))
+      ->setDescription(t('Tag with Concepts terms.'))
       ->setRevisionable(TRUE)
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
       ->setTranslatable(FALSE)
@@ -639,13 +651,19 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
           'target_bundles' => [
             'concepts' => 'concepts',
           ],
+          'auto_create' => TRUE,
+          'auto_create_bundle' => 'concepts',
         ],
       ])
       ->setDisplayOptions('view', [
         'weight' => 10,
       ])
       ->setDisplayOptions(('form'), [
-        'type' => 'options_select',
+        'type' => 'entity_reference_autocomplete_tags',
+        'settings' => [
+          'size' => 180,
+          'placeholder' => 'Search and select, separate multiple by comma. Non-existing terms will be created.',
+        ],
         'weight' => 10,
       ])
       ->setDisplayConfigurable('view', TRUE)

@@ -25,4 +25,9 @@ function template_preprocess_legislation(array &$variables) {
     $variables['legislation'][$key] = $variables['elements'][$key];
   }
 
+  // This is only here because we don't display SourceDocuments
+  // but only SourceDocument's sources.
+  $legislation = $variables['elements']['#legislation'];
+  $variables['legislation']['origin'] = $legislation->getOrigin()->getSource();
+
 }

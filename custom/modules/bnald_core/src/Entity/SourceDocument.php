@@ -43,7 +43,7 @@ use Drupal\user\UserInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
- *     "label" = "source",
+ *     "label" = "title",
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "langcode" = "langcode",
@@ -323,7 +323,8 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
             'target_bundles' => [
               'printers' => 'printers',
             ],
-            'auto_create' => FALSE,
+            'auto_create' => TRUE,
+            'auto_create_bundle' => 'printers',
           ],
         ]
       )
@@ -340,7 +341,11 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayOptions(
         'form',
         [
-          'type' => 'options_select',
+          'type' => 'entity_reference_autocomplete',
+          'settings' => [
+            'size' => 180,
+            'placeholder' => 'Search and select. Non-existing terms will be created.',
+          ],
           'weight' => 2,
         ]
       )
@@ -358,7 +363,8 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
             'target_bundles' => [
               'print_locations' => 'print_locations',
             ],
-            'auto_create' => FALSE,
+            'auto_create' => TRUE,
+            'auto_create_bundle' => 'print_locations',
           ],
         ]
       )
@@ -375,7 +381,11 @@ class SourceDocument extends RevisionableContentEntityBase implements SourceDocu
       ->setDisplayOptions(
         'form',
         [
-          'type' => 'options_select',
+          'type' => 'entity_reference_autocomplete',
+          'settings' => [
+            'size' => 180,
+            'placeholder' => 'Search and select. Non-existing terms will be created.',
+          ],
           'weight' => 3,
         ]
       )
