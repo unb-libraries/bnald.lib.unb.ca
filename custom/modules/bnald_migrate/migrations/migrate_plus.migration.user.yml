@@ -5,6 +5,7 @@ migration_group: bnald
 migration_tags:
   - Drupal 7
   - Content
+  - LDAP User
 class: Drupal\user\Plugin\migrate\User
 source:
   plugin: d7_user
