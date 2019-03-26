@@ -5,7 +5,10 @@
  * Contains bnald_core.module.
  */
 
+include_once 'bnald_core.legislation.chapter_sort.inc';
+
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\bnald_core\Entity\LegislationInterface;
 
 /**
  * Implements hook_help().
@@ -21,6 +24,16 @@ function bnald_core_help($route_name, RouteMatchInterface $route_match) {
 
     default:
   }
+}
+
+/**
+ * Compute chapter_sort value to sort chapters in a natural order.
+ *
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function bnald_core_legislation_presave(LegislationInterface $legislation) {
+  $chapter_sort = to_natural_sort_key($legislation->getChapter(), 5);
+  $legislation->setChapterSort(str_replace(' ', '', $chapter_sort));
 }
 
 /**

@@ -75,7 +75,6 @@ process:
     source: field_source_document
     no_stub: true
   notes: field_item_notes
-  chapter_sort: field_chapter_sort
   user_id:
     plugin: migration_lookup
     migration: user
