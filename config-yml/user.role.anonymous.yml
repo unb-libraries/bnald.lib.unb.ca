@@ -8,3 +8,4 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'view published legislation entities'

@@ -30,6 +30,8 @@ third_party_settings:
         fragsize: 0
     advanced:
       index_prefix: ''
+_core:
+  default_config_hash: ai_vnVBGEaYBKdrMxNeo6LJu9WhRfhMHEZp4NiJ0oik
 id: legislation_bnald_lib_unb_ca
 name: legislation.bnald.lib.unb.ca
 description: ''
@@ -39,6 +41,14 @@ field_settings:
     label: Chapter
     datasource_id: 'entity:legislation'
     property_path: chapter
+    type: string
+    dependencies:
+      module:
+        - bnald_core
+  chapter_sort:
+    label: 'Chapter Sort'
+    datasource_id: 'entity:legislation'
+    property_path: chapter_sort
     type: string
     dependencies:
       module:

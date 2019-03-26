@@ -1,0 +1,19 @@
+uuid: 29cba188-f3bd-4bed-96ab-3a776532fe86
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bnald_lib_unb_ca
+id: statictext
+theme: bnald_lib_unb_ca
+region: footer
+weight: 0
+provider: null
+plugin: static_text
+settings:
+  id: static_text
+  label: Copyright
+  provider: bnald_core
+  label_display: '0'
+  text: '&copy; <a href="https://www.lib.unb.ca/" target="_blank">UNB Libraries</a>'
+visibility: {  }

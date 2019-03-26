@@ -9,6 +9,8 @@ dependencies:
     - taxonomy.vocabulary.provinces
   module:
     - search_api
+_core:
+  default_config_hash: jBmJFgNIrS26I4XHtz2ZhqtxbbIvRIyPna-CUgx0zeg
 id: legislation_search
 label: 'Legislation: Search'
 module: views
@@ -390,7 +392,7 @@ display:
           element_default_classes: true
           empty: ''
           hide_empty: false
-          empty_zero: false
+          empty_zero: true
           hide_alter_empty: true
           click_sort_column: value
           type: number_integer
@@ -928,22 +930,10 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-        year:
-          id: year
+        chapter_sort:
+          id: chapter_sort
           table: search_api_index_legislation_bnald_lib_unb_ca
-          field: year
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-        province:
-          id: province
-          table: search_api_index_legislation_bnald_lib_unb_ca
-          field: province
+          field: chapter_sort
           relationship: none
           group_type: group
           admin_label: ''
@@ -970,7 +960,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       css_class: bnald-legislation-search
-      use_ajax: true
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:

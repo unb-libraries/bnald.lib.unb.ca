@@ -42,6 +42,14 @@ field_settings:
     dependencies:
       module:
         - bnald_core
+  chapter_sort:
+    label: 'Chapter Sort'
+    datasource_id: 'entity:legislation'
+    property_path: chapter_sort
+    type: string
+    dependencies:
+      module:
+        - bnald_core
   concepts:
     label: Concepts
     datasource_id: 'entity:legislation'
