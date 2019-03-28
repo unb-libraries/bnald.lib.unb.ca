@@ -23,6 +23,7 @@ env:
     - OLD_IMAGES_TO_KEEP=2
     - SERVICE_DEPLOY_PORT=80
     - SERVICE_TEST_UP_PATH=/user
+    - DOCKER_BUILD_DOCS=TRUE
 
 before_install:
   - git clone git://github.com/unb-libraries/CargoDock.git CargoDock
@@ -44,6 +45,7 @@ after_success:
   - CargoDock/travis/buildImagePushToRepo.sh
   - CargoDock/travis/cleanupOldImages.sh
   - CargoDock/travis/triggerKubeDeploy.sh
+  - CargoDock/travis/docs/buildDocs.sh
 
 notifications:
   slack:
