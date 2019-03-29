@@ -45,7 +45,7 @@ after_success:
   - CargoDock/travis/buildImagePushToRepo.sh
   - CargoDock/travis/cleanupOldImages.sh
   - CargoDock/travis/triggerKubeDeploy.sh
-  - CargoDock/travis/docs/buildDocs.sh
+  - travis_wait 30 CargoDock/travis/docs/buildDocs.sh
 
 notifications:
   slack:
