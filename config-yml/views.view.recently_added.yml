@@ -71,21 +71,21 @@ display:
           row_class: ''
           default_row_class: true
           override: true
-          sticky: false
+          sticky: true
           caption: ''
           summary: ''
           description: ''
           columns:
-            legislation_title: legislation_title
+            title: title
             view_legislation: view_legislation
-            year_passed: year_passed
-            chapter: chapter
+            year: year
             province: province
+            chapter: chapter
             concepts_target_id: concepts_target_id
             jurisdictional_relevance_target_id: jurisdictional_relevance_target_id
             created: created
           info:
-            legislation_title:
+            title:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -99,14 +99,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            year_passed:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            chapter:
+            year:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -114,6 +107,13 @@ display:
               empty_column: false
               responsive: ''
             province:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            chapter:
               sortable: true
               default_sort_order: asc
               align: ''

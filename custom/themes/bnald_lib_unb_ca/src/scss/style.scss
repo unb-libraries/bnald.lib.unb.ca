@@ -10,7 +10,7 @@ body {
 
 header {
   background-color: $color_background_secondary;
-  border-bottom: 10px solid $color_highlight;
+  border-bottom: 10px solid $color_background_primary_darker;
 }
 
 h1.title {
@@ -19,10 +19,6 @@ h1.title {
 
   a {
     color: $color_text_secondary;
-
-    &:hover {
-      color: $color_text_primary_darker;
-    }
   }
 }
 
@@ -54,29 +50,35 @@ h1.title {
 
   .nav, .navbar-nav {
     li.active a, li.open a {
-      background-color: $color_highlight;
-      color: $color_text_secondary;
+      background-color: $color_background_primary_darker;
+      color: $color_highlight;
       border: 0;
     }
 
     a {
       &:hover, &:focus {
-        background-color: $color_background_secondary_lighter;
-        color: $color_text_secondary;
+        background-color: $color_background_primary_darker;
+        //color: $color_highlight;
       }
     }
 
     .dropdown-menu {
-      background-color: $color_background_primary;
+      background-color: $color_background_primary_darker;
       border: 1px solid $color_background_primary_darker;
+      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.175);
+      -webkit-box-shadow: 0 6px 6px rgba(0, 0, 0, 0.175);
+
+      li.active a {
+        color: $color_highlight;
+      }
 
       li a {
-        background-color: $color_background_primary;
+        background-color: $color_background_primary_darker;
         color: $color_text_primary;
 
         &:hover {
-          background-color: $color_highlight;
-          color: $color_text_secondary;
+          background-color: $color_background_primary;
+          color: $color_highlight;
         }
       }
     }
@@ -123,11 +125,11 @@ table {
 }
 
 th {
-  background-color: $color_background_secondary;
-  color: $color_text_secondary;
+  background-color: $color_background_primary_darker;
+  color: $color_highlight;
 
   a {
-    color: $color_text_secondary;
+    color: $color_highlight;
 
     &:hover {
       color: $color_text_secondary;
@@ -197,15 +199,15 @@ label {
 }
 
 .pagination li a {
-  color: $color_highlight;
+  color: $color_text_primary;
   background-color: $color_background_primary;
-  border-color: $color_highlight;
+  border-color: $color_background_primary_darker;
 }
 
 .pagination .active a, .pagination .active a:hover, .pagination li a:hover {
-  color: $color_background_primary;
-  background-color: $color_highlight;
-  border-color: $color_highlight;
+  color: $color_highlight;
+  background-color: $color_background_primary_darker;
+  border-color: $color_background_primary_darker;
 }
 
 .footer {
