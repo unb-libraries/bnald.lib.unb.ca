@@ -216,9 +216,9 @@ label {
   border-color: $color_highlight;
 }
 
-.btn-invert, .bnt-default:hover {
-  color: $color_highlight;
-  background-color: $color_background_primary;
+.btn-invert, .btn-default:hover {
+  color: $color_background_primary;
+  background-color: $color_highlight;
   border-color: $color_highlight;
 }
 
