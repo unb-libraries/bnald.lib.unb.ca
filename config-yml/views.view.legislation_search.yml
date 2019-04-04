@@ -691,6 +691,94 @@ display:
           fields:
             - full_text
           plugin_id: search_api_fulltext
+        year:
+          id: year
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: year_op
+            label: 'Year (From)'
+            description: ''
+            use_operator: false
+            operator: year_op
+            identifier: from
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              bnald_editor: '0'
+            placeholder: From
+            min_placeholder: From
+            max_placeholder: To
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
+        year_1:
+          id: year_1
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '<='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: year_1_op
+            label: 'Year (To)'
+            description: ''
+            use_operator: false
+            operator: year_1_op
+            identifier: to
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              bnald_editor: '0'
+            placeholder: To
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
         province:
           id: province
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -829,94 +917,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
-        year:
-          id: year
-          table: search_api_index_legislation_bnald_lib_unb_ca
-          field: year
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '>='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: year_op
-            label: From
-            description: ''
-            use_operator: false
-            operator: year_op
-            identifier: from
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              bnald_editor: '0'
-            placeholder: Year
-            min_placeholder: ''
-            max_placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_numeric
-        year_1:
-          id: year_1
-          table: search_api_index_legislation_bnald_lib_unb_ca
-          field: year
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '<='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: year_1_op
-            label: To
-            description: ''
-            use_operator: false
-            operator: year_1_op
-            identifier: to
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              bnald_editor: '0'
-            placeholder: Year
-            min_placeholder: ''
-            max_placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_numeric
       sorts:
         search_api_relevance:
           id: search_api_relevance
@@ -961,6 +961,10 @@ display:
       display_extenders: {  }
       css_class: bnald-legislation-search
       use_ajax: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
