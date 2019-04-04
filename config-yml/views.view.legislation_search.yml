@@ -661,7 +661,7 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: ''
+            label: Search
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -673,7 +673,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               bnald_editor: '0'
-            placeholder: Search
+            placeholder: 'Search by Title, Year and Full Text'
           is_grouped: false
           group_info:
             label: ''
@@ -942,7 +942,7 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-      title: Search
+      title: ''
       header:
         result:
           id: result
@@ -979,6 +979,15 @@ display:
       display_extenders: {  }
       path: legislation/search
       exposed_block: false
+      menu:
+        type: none
+        title: Search
+        description: 'Search Legislation'
+        expanded: false
+        parent: ''
+        weight: 2
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
