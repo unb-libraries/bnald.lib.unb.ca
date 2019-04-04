@@ -8,6 +8,11 @@ body {
   font-size: 18px;
 }
 
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 header {
   background-color: $color_background_secondary;
   border-bottom: 10px solid $color_background_primary_darker;
@@ -62,11 +67,11 @@ h1.title {
       }
     }
 
-    .dropdown-menu {
+    .open .dropdown-menu {
       background-color: $color_background_primary_darker;
       border: 1px solid $color_background_primary_darker;
-      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.175);
-      -webkit-box-shadow: 0 6px 6px rgba(0, 0, 0, 0.175);
+      box-shadow: none;
+      -webkit-box-shadow: none;
 
       li.active a {
         color: $color_highlight;
@@ -84,6 +89,25 @@ h1.title {
     }
   }
 
+}
+
+button.navbar-toggle {
+  float: left;
+  line-height: 0.5;
+  margin-bottom: 0;
+
+  .icon-bar {
+    background-color: $color_text_primary;
+  }
+}
+
+button.navbar-toggle:after {
+  font-size: 1.2em;
+  font-weight: 600;
+  position: relative;
+  top: -12px;
+  right: -30px;
+  content: "Menu";
 }
 
 .region-content ul {
