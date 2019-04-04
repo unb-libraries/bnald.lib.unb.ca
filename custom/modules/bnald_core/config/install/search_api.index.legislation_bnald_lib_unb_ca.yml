@@ -38,7 +38,7 @@ field_settings:
     label: Chapter
     datasource_id: 'entity:legislation'
     property_path: chapter
-    type: string
+    type: text
     dependencies:
       module:
         - bnald_core
@@ -67,11 +67,27 @@ field_settings:
     dependencies:
       module:
         - bnald_core
+  id:
+    label: ID
+    datasource_id: 'entity:legislation'
+    property_path: id
+    type: integer
+    dependencies:
+      module:
+        - bnald_core
   jurisdictional_relevance:
     label: 'Jurisdictional Relevance'
     datasource_id: 'entity:legislation'
     property_path: jurisdictional_relevance
     type: integer
+    dependencies:
+      module:
+        - bnald_core
+  notes:
+    label: Notes
+    datasource_id: 'entity:legislation'
+    property_path: notes
+    type: text
     dependencies:
       module:
         - bnald_core
@@ -88,6 +104,14 @@ field_settings:
     datasource_id: 'entity:legislation'
     property_path: province
     type: integer
+    dependencies:
+      module:
+        - bnald_core
+  summary:
+    label: Summary
+    datasource_id: 'entity:legislation'
+    property_path: summary
+    type: text
     dependencies:
       module:
         - bnald_core
