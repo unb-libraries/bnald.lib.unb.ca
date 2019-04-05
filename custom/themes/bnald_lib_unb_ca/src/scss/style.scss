@@ -15,7 +15,8 @@ body {
 
 header {
   background-color: $color_background_secondary;
-  border-bottom: 10px solid $color_background_primary_darker;
+  border-top: 10px solid $color_highlight;
+  border-bottom: 2px solid $color-border;
 }
 
 h1.title {
@@ -130,6 +131,10 @@ button.navbar-toggle:after {
   }
 }
 
+.main-container {
+  padding: 50px 20px;
+}
+
 ul .label-default {
   display: inline;
   margin-right: 5px;
@@ -236,7 +241,7 @@ label {
 
 .footer {
   background-color: $color_background_secondary;
-  border-top: 0;
+  border-top: 2px solid $color-border;
   color: $color_text_secondary;
 
   #block-statictext {
