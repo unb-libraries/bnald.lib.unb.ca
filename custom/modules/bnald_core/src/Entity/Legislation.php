@@ -532,7 +532,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['summary'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Summary'))
+      ->setLabel(t('Description'))
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setSettings([

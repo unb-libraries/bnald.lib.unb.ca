@@ -32,6 +32,10 @@ h1.title {
   }
 }
 
+h2.page-header {
+  font-size: 28px;
+}
+
 .page-header {
   border-bottom: 0;
 }
@@ -127,9 +131,7 @@ button.navbar-toggle:after {
 
     .field--label {
       display: block;
-      color: $color_highlight;
-      font-style: italic;
-      font-weight: normal;
+      font-weight: bold;
     }
 
     .field--item {
@@ -142,27 +144,12 @@ button.navbar-toggle:after {
   padding: 50px 20px;
 }
 
-ul .label-default {
-  display: inline;
-  margin-right: 5px;
-  background-color: $color_background_secondary;
-
-  a {
-    color: $color_text_secondary;
-  }
-
-  &:hover {
-    background-color: $color_highlight;
-  }
-}
-
 table {
   border: 1px solid $color_background_primary_darker;
 }
 
 th {
   background-color: $color_background_primary_darker;
-  color: $color_highlight;
 
   a {
     color: $color_highlight;
@@ -228,8 +215,8 @@ label {
 }
 
 .btn-invert, .btn-default:hover {
-  color: $color_background_primary;
-  background-color: $color_highlight;
+  color: $color_highlight;
+  background-color: $color_background_primary;
   border-color: $color_highlight;
 }
 
