@@ -54,14 +54,14 @@ h1.title {
     }
 
     a {
-      color: $color_text_secondary;
+      color: $color_highlight;
     }
   }
 
   .nav, .navbar-nav {
     li.active a, li.open a {
       background-color: $color_background_primary_darker;
-      color: $color_highlight;
+      color: $color_text_secondary;
       border: 0;
     }
 
