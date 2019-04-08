@@ -239,6 +239,7 @@ label {
 
   #block-statictext {
     display: inline-block;
+    float: left;
   }
 
   a {
@@ -253,6 +254,7 @@ label {
 
   nav {
     display: inline-block;
+    float: right;
 
     a {
       padding-top: 0;
