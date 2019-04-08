@@ -201,26 +201,33 @@ label {
 
   .form-actions {
     display: block;
-
-    button {
-      border-color: $color_highlight;
-      background-color: $color_highlight;
-    }
   }
 
   margin-bottom: 20px;
 }
 
-.btn-default, .btn-invert:hover {
+.btn-default, .btn-primary, .btn-invert:hover {
   color: $color_background_primary;
   background-color: $color_highlight;
   border-color: $color_highlight;
+
+  a {
+    color: $color_background_primary;
+  }
 }
 
-.btn-invert, .btn-default:hover {
+.btn-invert, .btn-primary:hover, .btn-default:hover {
   color: $color_highlight;
   background-color: $color_background_primary;
   border-color: $color_highlight;
+
+  a {
+    color: $color_highlight;
+  }
+}
+
+.glyphicon {
+  margin-left: 3px;
 }
 
 .pagination li a {
