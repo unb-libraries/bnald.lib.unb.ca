@@ -18,4 +18,4 @@ Feature: Core
 
     Scenario: Not logged in
       Given I am not logged in
-      Then I should see the link "Log in"
+      Then I should see the link "Admin Login"
