@@ -15,5 +15,5 @@ settings:
   label: Copyright
   provider: bnald_core
   label_display: '0'
-  text: '&copy; <a href="https://www.lib.unb.ca/" target="_blank">UNB Libraries</a>'
+  text: '&copy; <a href="https://lib.unb.ca/" target="_blank">UNB Libraries</a>'
 visibility: {  }
