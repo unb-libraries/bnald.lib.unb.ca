@@ -5,7 +5,7 @@
 body {
   background-color: $color_background_primary;
   color: $color_text_primary;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Source Sans Pro", Sans-Serif;
 }
 
@@ -71,8 +71,6 @@ h2.page-header {
     }
 
     a {
-      font-weight: bold;
-
       &:hover, &:focus {
         background-color: $color_background_primary_darker;
       }
@@ -254,7 +252,6 @@ label {
 
   a {
     color: $color_highlight;
-    font-weight: bold;
 
     &:hover {
       color: $color_text_secondary;
