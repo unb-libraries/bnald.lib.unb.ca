@@ -1,0 +1,29 @@
+uuid: f3be01e2-367c-4fc0-b4dd-01a88a7c08f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.legislation_search
+  module:
+    - system
+    - views
+  theme:
+    - bnald_lib_unb_ca
+id: simple_search_form
+theme: bnald_lib_unb_ca
+region: content
+weight: 1
+provider: null
+plugin: 'views_exposed_filter_block:legislation_search-simple_search_form'
+settings:
+  id: 'views_exposed_filter_block:legislation_search-simple_search_form'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

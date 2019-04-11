@@ -173,6 +173,24 @@ label {
   display: block;
 }
 
+.path-frontpage #views-exposed-form-legislation-search-simple-search-form {
+  margin-top: 30px;
+
+  .form-item.form-group {
+    display: none;
+  }
+
+  .form-item.form-group.form-item-query {
+    display: block;
+    width: 100%;
+
+    input{
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  }
+}
+
 .bnald-legislation-search .views-exposed-form {
 
   div {

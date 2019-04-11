@@ -1094,3 +1094,81 @@ display:
         - url.query_args
         - user
       tags: {  }
+  simple_search_form:
+    display_plugin: page
+    id: simple_search_form
+    display_title: 'Simple Search Form'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: legislation/search
+      exposed_block: true
+      menu:
+        type: none
+        title: Search
+        description: 'Search Legislation'
+        expanded: false
+        parent: ''
+        weight: 2
+        context: '0'
+        menu_name: main
+      display_description: 'Used to export a block that can be displayed on main page'
+      filters:
+        search_api_fulltext:
+          id: search_api_fulltext
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: search_api_fulltext
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: and
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: search_api_fulltext_op
+            label: Search
+            description: ''
+            use_operator: false
+            operator: search_api_fulltext_op
+            identifier: query
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              bnald_editor: '0'
+            placeholder: 'Search by Title, Year and Full Text'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          parse_mode: terms
+          min_length: 3
+          fields:
+            - full_text
+          plugin_id: search_api_fulltext
+      defaults:
+        filters: false
+        filter_groups: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+      tags: {  }
