@@ -1,9 +1,7 @@
 uuid: 018cc832-0408-4f65-9586-bed82c9501c2
 langcode: en
 status: true
-dependencies:
-  module:
-    - bnald_core
+dependencies: {  }
 id: bnald_editor
 label: 'BNALD Editor'
 weight: 3
@@ -47,6 +45,7 @@ permissions:
   - 'revert all revisions'
   - 'revert all source document revisions'
   - 'revert page revisions'
+  - 'use text format restricted_html'
   - 'view all legislation revisions'
   - 'view all revisions'
   - 'view all source document revisions'
