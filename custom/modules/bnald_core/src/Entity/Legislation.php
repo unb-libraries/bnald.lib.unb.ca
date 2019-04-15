@@ -434,6 +434,42 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['origin'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Source'))
+      ->setDescription(t('Which source document can this Legislation be found in?'))
+      ->setSettings(
+        [
+          'target_type' => 'source_document',
+          'handler' => 'default',
+        ]
+      )
+      ->setCardinality(1)
+      ->setRequired(TRUE)
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setDisplayOptions(
+        'view',
+        [
+          'weight' => 11,
+          'settings' => [
+            'link' => FALSE,
+          ],
+        ]
+      )
+      ->setDisplayOptions(
+        'form',
+        [
+          'type' => 'entity_reference_autocomplete',
+          'settings' => [
+            'size' => 180,
+            'placeholder' => 'Search by Title',
+          ],
+          'weight' => -1,
+        ]
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['title'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Title'))
       ->setRequired(TRUE)
@@ -668,42 +704,6 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
-
-    $fields['origin'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Source'))
-      ->setDescription(t('Which source document can this Legislation be found in?'))
-      ->setSettings(
-        [
-          'target_type' => 'source_document',
-          'handler' => 'default',
-        ]
-      )
-      ->setCardinality(1)
-      ->setRequired(TRUE)
-      ->setRevisionable(TRUE)
-      ->setTranslatable(FALSE)
-      ->setDisplayOptions(
-        'view',
-        [
-          'weight' => 11,
-          'settings' => [
-            'link' => FALSE,
-          ],
-        ]
-      )
-      ->setDisplayOptions(
-        'form',
-        [
-          'type' => 'entity_reference_autocomplete',
-          'settings' => [
-            'size' => 180,
-            'placeholder' => 'Search by Title',
-          ],
-          'weight' => 11,
-        ]
-      )
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
 
     $fields['notes'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Notes'))
