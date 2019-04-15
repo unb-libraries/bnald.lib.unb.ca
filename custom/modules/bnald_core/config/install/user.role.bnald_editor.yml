@@ -46,6 +46,7 @@ permissions:
   - 'revert all revisions'
   - 'revert all source document revisions'
   - 'revert page revisions'
+  - 'use text format restricted_html'
   - 'view all legislation revisions'
   - 'view all revisions'
   - 'view all source document revisions'

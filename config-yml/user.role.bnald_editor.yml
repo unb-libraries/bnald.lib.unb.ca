@@ -1,7 +1,9 @@
 uuid: 018cc832-0408-4f65-9586-bed82c9501c2
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - bnald_core
 id: bnald_editor
 label: 'BNALD Editor'
 weight: 3
