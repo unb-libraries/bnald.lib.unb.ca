@@ -1051,7 +1051,12 @@ display:
           content: 'Displaying @start - @end of @total results'
           plugin_id: result
       footer: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
@@ -1088,6 +1093,20 @@ display:
         weight: 2
         context: '0'
         menu_name: main
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: 'No Results were found.'
+          plugin_id: text_custom
+      defaults:
+        empty: false
     cache_metadata:
       max-age: -1
       contexts:

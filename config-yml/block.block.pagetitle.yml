@@ -9,7 +9,7 @@ _core:
 id: pagetitle
 theme: bnald_lib_unb_ca
 region: content
-weight: -2
+weight: -3
 provider: null
 plugin: page_title_block
 settings:
