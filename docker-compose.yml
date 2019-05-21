@@ -67,6 +67,16 @@ services:
     env_file:
       - ./env/redis.env
 
+  mailhog:
+    image: mailhog/mailhog
+    expose:
+      - "1025"
+      - "8025"
+    ports:
+      - "4099:8025"
+    networks:
+      - bnald.lib.unb.ca
+
   bnald.lib.unb.ca_docs:
     image: unblibraries/bnald.lib.unb.ca_docs:latest
     restart: always
@@ -76,7 +86,7 @@ services:
     networks:
       - bnald.lib.unb.ca
     ports:
-      - "4099:80"
+      - "5099:80"
 
 networks:
   bnald.lib.unb.ca:

@@ -4,6 +4,7 @@ dockworker:
     project_prefix: BNALD
     name: bnald.lib.unb.ca
     upstream_image:
+      - mailhog/mailhog
       - mysql:5.7
       - redis:5-alpine
       - unblibraries/bnald.lib.unb.ca_docs:latest
