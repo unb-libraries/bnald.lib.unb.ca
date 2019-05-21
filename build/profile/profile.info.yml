@@ -55,6 +55,7 @@ dependencies:
   - noreqnewpass
   - pathauto
   - pdfpreview
+  - redis
   - search_api
   - search_api_autocomplete
   - search_api_solr

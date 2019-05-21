@@ -22,6 +22,16 @@ services:
       - docker-entrypoint-multiple.sh
       - references.bnald.lib.unb.ca:/solr-conf
 
+  drupal-redis-lib-unb-ca:
+    image: redis:5-alpine
+    restart: always
+    expose:
+      - "6379"
+    networks:
+      - bnald.lib.unb.ca
+    env_file:
+      - ./env/redis.env
+
   bnald.lib.unb.ca:
     build:
       context: .

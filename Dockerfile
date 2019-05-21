@@ -14,7 +14,7 @@ RUN curl -sSL https://raw.githubusercontent.com/unb-libraries/CargoDock/drupal-8
 COPY ./scripts/container /scripts
 
 # Add additional OS packages.
-ENV ADDITIONAL_OS_PACKAGES rsyslog postfix php7-ldap php7-xmlreader php7-zip imagemagick
+ENV ADDITIONAL_OS_PACKAGES rsyslog postfix php7-ldap php7-xmlreader php7-zip imagemagick php7-redis
 RUN /scripts/addOsPackages.sh && \
   /scripts/initRsyslog.sh && \
   echo "TLS_REQCERT never" > /etc/openldap/ldap.conf

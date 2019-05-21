@@ -13,19 +13,18 @@ if (isset($_SERVER['APPLICATION_ENV'])) {
   }
 }
 
-// Redis Config.
+$conf['chq_redis_cache_enabled'] = TRUE;
 if (isset($conf['chq_redis_cache_enabled']) && $conf['chq_redis_cache_enabled']) {
-  $settings['cache']['default'] = 'cache.backend.redis';
-  $settings['redis.connection']['interface'] = 'PhpRedis';
-  $settings['redis.connection']['host'] = 'drupal-redis';
-  $settings['redis.connection']['port'] = '6379';
-  // Note that unlike memcached, redis persists cache items to disk so we can
-  // actually store cache_class_cache_form in the default cache.
   $conf['cache_class_cache'] = 'Redis_Cache';
+  $settings['cache']['default'] = 'cache.backend.redis';
+  $settings['cache_prefix']['default'] = 'bnald_';
+  $settings['container_yamls'][] = 'modules/redis/example.services.yml';
+  $settings['redis.connection']['interface'] = 'PhpRedis';
+  $settings['redis.connection']['host'] = 'drupal-redis-lib-unb-ca';
+  $settings['redis.connection']['port'] = '6379';
 }
 
 // Add common includes below.
-
 $databases['migrate']['default'] = array (
   'database'  => 'bnald',
   'username'  => 'root',

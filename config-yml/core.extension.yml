@@ -38,6 +38,7 @@ module:
   path: 0
   pdfpreview: 0
   quickedit: 0
+  redis: 0
   rdf: 0
   search: 0
   search_api: 0
