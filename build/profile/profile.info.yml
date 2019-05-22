@@ -42,7 +42,6 @@ dependencies:
   - views_ui
 
   # bnald.lib.unb.ca
-  - bnald_core
   - ctools
   - externalauth
   - file_mdm
