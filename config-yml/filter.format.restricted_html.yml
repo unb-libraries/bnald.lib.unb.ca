@@ -10,7 +10,7 @@ weight: 0
 filters:
   filter_html:
     id: filter_html
-    provider: filterw
+    provider: filter
     status: true
     weight: -10
     settings:

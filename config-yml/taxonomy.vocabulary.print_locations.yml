@@ -7,5 +7,4 @@ dependencies:
 name: 'Print Locations'
 vid: print_locations
 description: ''
-hierarchy: 0
 weight: 0
