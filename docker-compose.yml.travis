@@ -1,7 +1,7 @@
 version: '3.6'
 
 services:
-  mysql:
+  drupal-mysql-lib-unb-ca:
     image: mysql:5.7
     restart: always
     command: mysqld --skip-name-resolve --max_allowed_packet=64M
@@ -11,16 +11,6 @@ services:
      - "3306"
     networks:
       - bnald.lib.unb.ca
-
-  drupal-solr-lib-unb-ca:
-    image: unblibraries/solr-drupal:7.x
-    expose:
-      - "8983"
-    networks:
-      - bnald.lib.unb.ca
-    entrypoint:
-      - docker-entrypoint-multiple.sh
-      - references.bnald.lib.unb.ca:/solr-conf
 
   drupal-redis-lib-unb-ca:
     image: redis:5-alpine
@@ -32,11 +22,23 @@ services:
     env_file:
       - ./env/redis.env
 
+  drupal-solr-lib-unb-ca:
+    image: unblibraries/solr-drupal:7.x
+    expose:
+      - "8983"
+    networks:
+      - bnald.lib.unb.ca
+    entrypoint:
+      - docker-entrypoint-multiple.sh
+      - references.bnald.lib.unb.ca:/solr-conf
+
   bnald.lib.unb.ca:
     build:
       context: .
     restart: always
     container_name: bnald.lib.unb.ca
+    depends_on:
+      - drupal-mysql-lib-unb-ca
     expose:
       - "80"
     networks:

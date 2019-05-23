@@ -1,27 +1,6 @@
 version: '3.6'
 
 services:
-  mysql:
-    image: mysql:5.7
-    restart: always
-    command: mysqld --skip-name-resolve --max_allowed_packet=64M
-    env_file:
-      - ./env/mysql.env
-    expose:
-     - "3306"
-    networks:
-      - bnald.lib.unb.ca
-
-  drupal-solr-lib-unb-ca:
-    image: unblibraries/solr-drupal:7.x
-    expose:
-      - "8983"
-    networks:
-      - bnald.lib.unb.ca
-    entrypoint:
-      - docker-entrypoint-multiple.sh
-      - legislation.bnald.lib.unb.ca:/solr-conf
-
   bnald.lib.unb.ca:
     build:
       context: .
@@ -30,7 +9,7 @@ services:
     restart: always
     container_name: bnald.lib.unb.ca
     depends_on:
-      - mysql
+      - drupal-mysql-lib-unb-ca
     expose:
       - "80"
     networks:
@@ -46,26 +25,6 @@ services:
       - ./custom/themes:/app/themes/custom
       - ./tests:/app/tests
 
-  drupal-redis-lib-unb-ca:
-    image: redis:5-alpine
-    restart: always
-    expose:
-      - "6379"
-    networks:
-      - bnald.lib.unb.ca
-    env_file:
-      - ./env/redis.env
-
-  mailhog:
-    image: mailhog/mailhog
-    expose:
-      - "1025"
-      - "8025"
-    ports:
-      - "4099:8025"
-    networks:
-      - bnald.lib.unb.ca
-
   bnald.lib.unb.ca_docs:
     image: unblibraries/bnald.lib.unb.ca_docs:latest
     restart: always
@@ -76,6 +35,47 @@ services:
       - bnald.lib.unb.ca
     ports:
       - "5099:80"
+
+  drupal-mysql-lib-unb-ca:
+    image: mysql:5.7
+    restart: always
+    command: mysqld --skip-name-resolve --max_allowed_packet=64M
+    env_file:
+      - ./env/mysql.env
+    expose:
+     - "3306"
+    networks:
+      - bnald.lib.unb.ca
+
+  drupal-redis-lib-unb-ca:
+    image: redis:5-alpine
+    restart: always
+    expose:
+      - "6379"
+    networks:
+      - bnald.lib.unb.ca
+    env_file:
+      - ./env/redis.env
+
+  drupal-solr-lib-unb-ca:
+    image: unblibraries/solr-drupal:7.x
+    expose:
+      - "8983"
+    networks:
+      - bnald.lib.unb.ca
+    entrypoint:
+      - docker-entrypoint-multiple.sh
+      - legislation.bnald.lib.unb.ca:/solr-conf
+
+  mailhog:
+    image: mailhog/mailhog
+    expose:
+      - "1025"
+      - "8025"
+    ports:
+      - "4099:8025"
+    networks:
+      - bnald.lib.unb.ca
 
 networks:
   bnald.lib.unb.ca:
