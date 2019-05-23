@@ -23,14 +23,3 @@ if (isset($conf['chq_redis_cache_enabled']) && $conf['chq_redis_cache_enabled'])
   $settings['redis.connection']['host'] = 'drupal-redis-lib-unb-ca';
   $settings['redis.connection']['port'] = '6379';
 }
-
-// Add common includes below.
-$databases['migrate']['default'] = array (
-  'database'  => 'bnald',
-  'username'  => 'root',
-  'password'  => 'import',
-  'host'      => 'mysqlimport',
-  'port'      => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver'    => 'mysql',
-);

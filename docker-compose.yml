@@ -12,17 +12,6 @@ services:
     networks:
       - bnald.lib.unb.ca
 
-  mysqlimport:
-    image: mysql:5.7
-    expose:
-      - "3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: "import"
-    networks:
-      - bnald.lib.unb.ca
-    volumes:
-      - ./content/mysqldump-migrate/:/docker-entrypoint-initdb.d
-
   drupal-solr-lib-unb-ca:
     image: unblibraries/solr-drupal:7.x
     expose:
