@@ -1,5 +1,4 @@
 dockworker:
-  version: 1.0
   instance:
     project_prefix: BNALD
     name: bnald.lib.unb.ca
@@ -11,3 +10,4 @@ dockworker:
       - unblibraries/drupal:8.x-1.x
       - unblibraries/solr-drupal:7.x
   options:
+  version: 1.0
