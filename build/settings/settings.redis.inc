@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Redis configuration settings.
+ */
+
 if (isset($conf['chq_redis_cache_enabled']) && $conf['chq_redis_cache_enabled']) {
   $conf['cache_class_cache'] = 'Redis_Cache';
   $settings['cache']['default'] = 'cache.backend.redis';
