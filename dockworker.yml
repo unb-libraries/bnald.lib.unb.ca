@@ -8,6 +8,6 @@ dockworker:
       - redis:5-alpine
       - unblibraries/bnald.lib.unb.ca_docs:latest
       - unblibraries/drupal:8.x-1.x
-      - unblibraries/solr-drupal:7.x
+      - unblibraries/solr-drupal:8.x-3.x
   options:
   version: 1.0
