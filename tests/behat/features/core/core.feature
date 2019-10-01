@@ -11,7 +11,3 @@ Feature: Core
       | Test user |      1 |
       When I am logged in as "Test user"
       Then I should see the link "Log out"
-
-    Scenario: Not logged in
-      Given I am not logged in
-      Then I should see the link "Admin Login"
