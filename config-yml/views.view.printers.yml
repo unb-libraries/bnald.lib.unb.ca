@@ -14,7 +14,6 @@ description: 'Find Source Documents tagged with a given ''Printers'' term'
 tag: ''
 base_table: source_document
 base_field: id
-core: 8.x
 display:
   default:
     display_plugin: default
