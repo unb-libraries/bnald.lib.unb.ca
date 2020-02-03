@@ -1,0 +1,44 @@
+From 092033592afd61ffe0e738ab54bbb8140664d613 Mon Sep 17 00:00:00 2001
+From: Patrick Schilf <pschilf@unb.ca>
+Date: Mon, 3 Feb 2020 15:53:20 -0400
+Subject: [PATCH] Replace use of deprecated ImageMagick methods in
+ PDFPreviewGenerator
+
+---
+ src/PDFPreviewGenerator.php | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/PDFPreviewGenerator.php b/src/PDFPreviewGenerator.php
+index 71a92c9..9de02c9 100644
+--- a/src/PDFPreviewGenerator.php
++++ b/src/PDFPreviewGenerator.php
+@@ -143,18 +143,18 @@ class PDFPreviewGenerator {
+ 
+     $directory = $this->fileSystem->dirname($destination);
+     file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+-    $toolkit->addArgument('-background white');
+-    $toolkit->addArgument('-flatten');
+-    $toolkit->addArgument('-resize ' . escapeshellarg($config->get('size')));
+-    $toolkit->addArgument('-quality ' . escapeshellarg($config->get('quality')));
++    $toolkit->arguments()->add('-background white');
++    $toolkit->arguments()->add('-flatten');
++    $toolkit->arguments()->add('-resize ' . escapeshellarg($config->get('size')));
++    $toolkit->arguments()->add('-quality ' . escapeshellarg($config->get('quality')));
+     if ($config->get('type') == 'png') {
+-      $toolkit->setDestinationFormat('PNG');
++      $toolkit->arguments()->setDestinationFormat('PNG');
+     }
+     else {
+-      $toolkit->setDestinationFormat('JPG');
++      $toolkit->arguments()->setDestinationFormat('JPG');
+     }
+-    $toolkit->setSourceFormat('PDF');
+-    $toolkit->setSourceLocalPath($local_path);
++    $toolkit->arguments()->setSourceFormat('PDF');
++    $toolkit->arguments()->setSourceLocalPath($local_path);
+     $toolkit->arguments()->setSourceFrames('[0]');
+ 
+     return $toolkit->save($destination);
+-- 
+2.23.0
+

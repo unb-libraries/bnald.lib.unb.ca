@@ -41,7 +41,11 @@
                 "type:drupal-theme"
             ]
         },
-        "patches": {}
+        "patches": {
+            "drupal/pdfpreview": {
+                "remove-deprecated-image_magick-methods-001": "/tmp/drupal_build/patches/remove-deprecated-image_magick-methods-001.patch"
+            }
+        }
     },
     "license": "MIT",
     "minimum-stability": "dev",
