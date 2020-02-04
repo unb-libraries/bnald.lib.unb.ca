@@ -1,0 +1,35 @@
+id: path_alias
+label: 'Legacy IDs Path Alias to Legislation Entities'
+migration_group: bnald
+source:
+  plugin: csv
+  path: '/app/html/modules/custom/bnald_migrate/migrations/migrate_map_legislation.csv'
+  header_row_count: 1
+  ids:
+    - source_ids_hash
+  fields:
+    source_ids_hash:
+      name: source_ids_hash
+      label: 'Source IDs Hash'
+    sourceid1:
+      name: node_id
+      label: 'Node ID'
+    destid1:
+      name: legislation_id
+      label: 'Legislation ID'
+  constants:
+    node_base_path: '/node/'
+    legislation_base_path: '/legislation/'
+process:
+  path:
+    plugin: concat
+    source:
+      - constants/legislation_base_path
+      - legislation_id
+  alias:
+    plugin: concat
+    source:
+      - constants/node_base_path
+      - node_id
+destination:
+  plugin: entity:path_alias
