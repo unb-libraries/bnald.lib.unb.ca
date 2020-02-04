@@ -79,7 +79,8 @@
         "drupal/migrate_tools": "4.1",
         "drupal/migrate_file": "1.1",
         "symfony/event-dispatcher": "4.3.4 as 3.4.99",
-        "unb-libraries/drupal-builder": "^8.0.0"
+        "unb-libraries/drupal-builder": "^8.0.0",
+        "drupal/migrate_source_csv": "^3.2"
     },
     "require-dev": {
         "unb-libraries/drupal-development-libraries": "^8.0.0"
