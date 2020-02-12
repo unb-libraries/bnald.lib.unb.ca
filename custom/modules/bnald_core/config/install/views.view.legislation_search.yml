@@ -15,7 +15,6 @@ description: 'Search Legislation Records'
 tag: ''
 base_table: search_api_index_legislation_bnald_lib_unb_ca
 base_field: search_api_id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -767,6 +766,8 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             placeholder: 'Search by Title, Year and Full Text'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -815,6 +816,8 @@ display:
             placeholder: From
             min_placeholder: From
             max_placeholder: To
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -859,6 +862,8 @@ display:
             placeholder: To
             min_placeholder: ''
             max_placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -898,6 +903,8 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: Province
@@ -946,6 +953,8 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -991,6 +1000,8 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1011,6 +1022,18 @@ display:
           error_message: true
           plugin_id: search_api_term
       sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
         year:
           id: year
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -1048,7 +1071,12 @@ display:
           content: 'Displaying @start - @end of @total results'
           plugin_id: result
       footer: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
@@ -1085,6 +1113,20 @@ display:
         weight: 2
         context: '0'
         menu_name: main
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: 'No Results were found.'
+          plugin_id: text_custom
+      defaults:
+        empty: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1140,6 +1182,8 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             placeholder: 'Search by Title, Year and Full Text'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

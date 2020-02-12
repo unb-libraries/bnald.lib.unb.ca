@@ -1024,7 +1024,43 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
-      sorts: {  }
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+        year:
+          id: year
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+        chapter_sort:
+          id: chapter_sort
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: chapter_sort
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       title: ''
       header:
         result:
