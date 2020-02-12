@@ -12,7 +12,6 @@ description: 'Find Legislation tagged with a given ''Concepts'' term'
 tag: ''
 base_table: legislation
 base_field: id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -643,10 +642,10 @@ display:
           plugin_id: field
       filters: {  }
       sorts:
-        created:
-          id: created
+        year:
+          id: year
           table: legislation
-          field: created
+          field: year
           relationship: none
           group_type: group
           admin_label: ''
@@ -654,10 +653,23 @@ display:
           exposed: false
           expose:
             label: ''
-          granularity: second
           entity_type: legislation
-          entity_field: created
-          plugin_id: date
+          entity_field: year
+          plugin_id: standard
+        chapter_sort:
+          id: chapter_sort
+          table: legislation
+          field: chapter_sort
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: legislation
+          entity_field: chapter_sort
+          plugin_id: standard
       title: 'Legislation by Concept'
       header:
         result:

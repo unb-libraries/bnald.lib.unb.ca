@@ -636,7 +636,35 @@ display:
           entity_field: title
           plugin_id: field
       filters: {  }
-      sorts: {  }
+      sorts:
+        year:
+          id: year
+          table: legislation
+          field: year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: legislation
+          entity_field: year
+          plugin_id: standard
+        chapter_sort:
+          id: chapter_sort
+          table: legislation
+          field: chapter_sort
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: legislation
+          entity_field: chapter_sort
+          plugin_id: standard
       title: 'Legislation by Source Document'
       header:
         result:
