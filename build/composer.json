@@ -75,7 +75,7 @@
         "drupal/search_api_solr": "3.9",
         "drupal/token": "1.7",
         "drupal/tvi": "1.0-beta2",
-        "drupal/pdfpreview": "1.0-rc1",
+        "drupal/pdfpreview": "1.0",
         "drupal/migrate_tools": "4.1",
         "drupal/migrate_file": "1.1",
         "symfony/event-dispatcher": "4.3.4 as 3.4.99",
