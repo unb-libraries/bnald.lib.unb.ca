@@ -40,11 +40,6 @@
             "themes/contrib/{$name}": [
                 "type:drupal-theme"
             ]
-        },
-        "patches": {
-            "drupal/pdfpreview": {
-                "remove-deprecated-image_magick-methods-001": "/tmp/drupal_build/patches/remove-deprecated-image_magick-methods-001.patch"
-            }
         }
     },
     "license": "MIT",
