@@ -35,6 +35,8 @@ spec:
         vcsRepository: bnald.lib.unb.ca
         vcsRef: prod
     spec:
+      nodeSelector:
+        deployenv: prod
       containers:
         -
           name: bnald-lib-unb-ca
