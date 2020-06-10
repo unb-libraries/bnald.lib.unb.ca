@@ -20,21 +20,9 @@ services:
       - ./env/drupal.env
     volumes:
       - ./config-yml:/app/configuration
-      - ./content:/app/content
-      - ./custom/modules:/app/modules/custom
-      - ./custom/themes:/app/themes/custom
+      - ./custom/modules:/app/html/modules/custom
+      - ./custom/themes:/app/html/themes/custom
       - ./tests:/app/tests
-
-  bnald.lib.unb.ca_docs:
-    image: unblibraries/bnald.lib.unb.ca_docs:latest
-    restart: always
-    container_name: bnald.lib.unb.ca_docs
-    expose:
-      - "80"
-    networks:
-      - bnald.lib.unb.ca
-    ports:
-      - "5099:80"
 
   drupal-mysql-lib-unb-ca:
     image: mysql:5.7
