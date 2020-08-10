@@ -61,7 +61,7 @@
         "drupal/google_analytics": "2.2",
         "drupal/health_check": "1.2",
         "drupal/ldap": "3.0-beta7",
-        "drupal/noreqnewpass": "1.1",
+        "drupal/noreqnewpass": "1.2",
         "drupal/pathauto": "1.8",
         "drupal/paragraphs": "1.5",
         "drupal/redis": "1.4",
