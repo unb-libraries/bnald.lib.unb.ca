@@ -1,4 +1,4 @@
-![bnald.lib.unb.ca screenshot](https://github.com/unb-libraries/bnald.lib.unb.ca/raw/prod/screenshot.png "bnald.lib.unb.ca screenshot")
+![bnald.lib.unb.ca screenshot](https://github.com/unb-libraries/bnald.lib.unb.ca/raw/prod/.dockworker/screenshot.png "bnald.lib.unb.ca screenshot")
 # [bnald.lib.unb.ca](https://bnald.lib.unb.ca/) : Instance Repository
 [![Build Status](https://travis-ci.com/unb-libraries/bnald.lib.unb.ca.svg?branch=prod)](https://travis-ci.com/unb-libraries/bnald.lib.unb.ca) [![GitHub license](https://img.shields.io/github/license/unb-libraries/bnald.lib.unb.ca)](https://github.com/unb-libraries/bnald.lib.unb.ca/blob/dev/LICENSE) ![GitHub repo size](https://img.shields.io/github/repo-size/unb-libraries/bnald.lib.unb.ca)
 
