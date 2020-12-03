@@ -5,6 +5,7 @@ namespace Drupal\bnald_core\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\bnald_core\Entity\LegislationInterface;
 
@@ -25,8 +26,11 @@ class LegislationController extends ControllerBase implements ContainerInjection
    *   An array suitable for drupal_render().
    */
   public function revisionShow($legislation_revision) {
-    $legislation = $this->entityManager()->getStorage('legislation')->loadRevision($legislation_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('legislation');
+    $legislation = $this->entityTypeManager()
+      ->getStorage('legislation')
+      ->loadRevision($legislation_revision);
+    $view_builder = $this->entityTypeManager()
+      ->getViewBuilder('legislation');
 
     return $view_builder->view($legislation);
   }
@@ -41,8 +45,14 @@ class LegislationController extends ControllerBase implements ContainerInjection
    *   The page title.
    */
   public function revisionPageTitle($legislation_revision) {
-    $legislation = $this->entityManager()->getStorage('legislation')->loadRevision($legislation_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $legislation->label(), '%date' => format_date($legislation->getRevisionCreationTime())]);
+    $legislation = $this->entityTypeManager()
+      ->getStorage('legislation')
+      ->loadRevision($legislation_revision);
+    return $this->t('Revision of %title from %date', [
+      '%title' => $legislation->label(),
+      '%date' => \Drupal::service('date.formatter')
+        ->format($legislation->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -60,9 +70,17 @@ class LegislationController extends ControllerBase implements ContainerInjection
     $langname = $legislation->language()->getName();
     $languages = $legislation->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $legislation_storage = $this->entityManager()->getStorage('legislation');
+    $legislation_storage = $this->entityTypeManager()
+      ->getStorage('legislation');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $legislation->label()]) : $this->t('Revisions for %title', ['%title' => $legislation->label()]);
+    $build['#title'] = $has_translations
+    ? $this->t('@langname revisions for %title', [
+        '@langname' => $langname,
+        '%title' => $legislation->label()
+      ])
+    : $this->t('Revisions for %title', [
+      '%title' => $legislation->label()
+    ]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all legislation revisions") || $account->hasPermission('administer legislation entities')));
@@ -88,10 +106,12 @@ class LegislationController extends ControllerBase implements ContainerInjection
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $legislation->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.legislation.revision', ['legislation' => $legislation->id(), 'legislation_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, Url::fromRoute('entity.legislation.revision', [
+            'legislation' => $legislation->id(),
+            'legislation_revision' => $vid]));
         }
         else {
-          $link = $legislation->link($date);
+          $link = Link::fromTextAndUrl($legislation->label(), $legislation->toUrl());
         }
 
         $row = [];
