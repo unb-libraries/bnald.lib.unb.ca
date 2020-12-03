@@ -57,7 +57,8 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('legislation'),
+      $container->get('entity_type.manager')
+        ->getStorage('legislation'),
       $container->get('date.formatter')
     );
   }
@@ -73,14 +74,19 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert to the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to revert to the revision from %revision-date?', [
+      '%revision-date' => $this->dateFormatter
+        ->format($this->revision->getRevisionCreationTime())
+    ]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.legislation.version_history', ['legislation' => $this->revision->id()]);
+    return new Url('entity.legislation.version_history', [
+      'legislation' => $this->revision->id()
+    ]);
   }
 
   /**
@@ -119,12 +125,16 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Legislation: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Legislation %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
-    $form_state->setRedirect(
-      'entity.legislation.version_history',
-      ['legislation' => $this->revision->id()]
-    );
+    $this->logger('content')->notice('Legislation: reverted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()]);
+    $this->messenger()->addStatus(t('Legislation %title has been reverted to the revision from %revision-date.', [
+      '%title' => $this->revision->label(),
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
+    ]));
+    $form_state->setRedirect('entity.legislation.version_history', [
+      'legislation' => $this->revision->id()
+    ]);
   }
 
   /**
@@ -141,7 +151,7 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(LegislationInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(REQUEST_TIME);
+    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
 
     return $revision;
   }

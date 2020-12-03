@@ -3,6 +3,7 @@
 namespace Drupal\bnald_core\Form;
 
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -39,26 +40,37 @@ class LegislationRevisionDeleteForm extends ConfirmFormBase {
   protected $connection;
 
   /**
+   * The date formatter.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Constructs a new LegislationRevisionDeleteForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The entity storage.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   The date formatter.
    */
-  public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
+  public function __construct(EntityStorageInterface $entity_storage, Connection $connection, DateFormatterInterface $date_formatter) {
     $this->LegislationStorage = $entity_storage;
     $this->connection = $connection;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    $entity_manager = $container->get('entity.manager');
     return new static(
-      $entity_manager->getStorage('legislation'),
-      $container->get('database')
+      $container->get('entity_type.manager')
+        ->getStorage('legislation'),
+      $container->get('database'),
+      $container->get('date.formatter')
     );
   }
 
@@ -73,14 +85,19 @@ class LegislationRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => format_date($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to delete the revision from %revision-date?', [
+      '%revision-date' => $this->dateFormatter
+        ->format($this->revision->getRevisionCreationTime())
+    ]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.legislation.version_history', ['legislation' => $this->revision->id()]);
+    return new Url('entity.legislation.version_history', [
+      'legislation' => $this->revision->id()
+    ]);
   }
 
   /**
@@ -106,17 +123,29 @@ class LegislationRevisionDeleteForm extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->LegislationStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Legislation: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Revision from %revision-date of Legislation %title has been deleted.', ['%revision-date' => format_date($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
-    $form_state->setRedirect(
-      'entity.legislation.canonical',
-       ['legislation' => $this->revision->id()]
-    );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {legislation_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
-      $form_state->setRedirect(
-        'entity.legislation.version_history',
-         ['legislation' => $this->revision->id()]
-      );
+    $this->logger('content')->notice('Legislation: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+
+    $this->messenger()->addStatus(t('Revision from %revision-date of Legislation %title has been deleted.', [
+      '%revision-date' => $this->dateFormatter
+        ->format($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label()
+    ]));
+
+    $form_state->setRedirect('entity.legislation.canonical', [
+      'legislation' => $this->revision->id()
+    ]);
+
+    $query = $this->connection
+      ->query('SELECT COUNT(DISTINCT vid) FROM {legislation_field_revision} WHERE id = :id', [
+        ':id' => $this->revision->id()
+      ]);
+    if ($query->fetchField() > 1) {
+      $form_state->setRedirect('entity.legislation.version_history', [
+        'legislation' => $this->revision->id()
+      ]);
     }
   }
 

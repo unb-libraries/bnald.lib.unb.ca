@@ -51,7 +51,8 @@ class LegislationRevisionRevertTranslationForm extends LegislationRevisionRevert
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('legislation'),
+      $container->get('entity_type.manager')
+        ->getStorage('legislation'),
       $container->get('date.formatter'),
       $container->get('language_manager')
     );
@@ -68,7 +69,10 @@ class LegislationRevisionRevertTranslationForm extends LegislationRevisionRevert
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', ['@language' => $this->languageManager->getLanguageName($this->langcode), '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', [
+      '@language' => $this->languageManager->getLanguageName($this->langcode),
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -107,7 +111,7 @@ class LegislationRevisionRevertTranslationForm extends LegislationRevisionRevert
 
     $latest_revision_translation->setNewRevision();
     $latest_revision_translation->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(REQUEST_TIME);
+    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
 
     return $latest_revision_translation;
   }

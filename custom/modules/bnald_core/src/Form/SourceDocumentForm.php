@@ -44,7 +44,7 @@ class SourceDocumentForm extends ContentEntityForm {
       $entity->setNewRevision();
 
       // If a new revision is created, save the current user as revision author.
-      $entity->setRevisionCreationTime(REQUEST_TIME);
+      $entity->setRevisionCreationTime(\Drupal::time()->getRequestTime());
       $entity->setRevisionUserId(\Drupal::currentUser()->id());
     }
     else {
@@ -55,17 +55,19 @@ class SourceDocumentForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Source Document.', [
+        $this->messenger()->addStatus($this->t('Created the %label Source Document.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Source Document.', [
+        $this->messenger()->addStatus($this->t('Saved the %label Source Document.', [
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.source_document.canonical', ['source_document' => $entity->id()]);
+    $form_state->setRedirect('entity.source_document.canonical', [
+      'source_document' => $entity->id()
+    ]);
   }
 
 }

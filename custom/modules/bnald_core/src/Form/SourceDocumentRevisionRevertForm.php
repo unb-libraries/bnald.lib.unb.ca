@@ -57,7 +57,8 @@ class SourceDocumentRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('source_document'),
+      $container->get('entity_type.manager')
+        ->getStorage('source_document'),
       $container->get('date.formatter')
     );
   }
@@ -73,14 +74,18 @@ class SourceDocumentRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert to the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to revert to the revision from %revision-date?', [
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())
+    ]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.source_document.version_history', ['source_document' => $this->revision->id()]);
+    return new Url('entity.source_document.version_history', [
+      'source_document' => $this->revision->id()
+    ]);
   }
 
   /**
@@ -116,15 +121,24 @@ class SourceDocumentRevisionRevertForm extends ConfirmFormBase {
     $original_revision_timestamp = $this->revision->getRevisionCreationTime();
 
     $this->revision = $this->prepareRevertedRevision($this->revision, $form_state);
-    $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
+    $this->revision->revision_log = t('Copy of the revision from %date.', [
+      '%date' => $this->dateFormatter->format($original_revision_timestamp)
+    ]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Source Document: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Source Document %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
-    $form_state->setRedirect(
-      'entity.source_document.version_history',
-      ['source_document' => $this->revision->id()]
-    );
+    $this->logger('content')->notice('Source Document: reverted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+
+    $this->messenger()->addStatus(t('Source Document %title has been reverted to the revision from %revision-date.', [
+      '%title' => $this->revision->label(),
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
+    ]));
+
+    $form_state->setRedirect('entity.source_document.version_history', [
+      'source_document' => $this->revision->id()
+    ]);
   }
 
   /**
@@ -141,7 +155,7 @@ class SourceDocumentRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(SourceDocumentInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(REQUEST_TIME);
+    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
 
     return $revision;
   }
