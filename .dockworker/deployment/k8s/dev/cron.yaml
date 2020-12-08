@@ -35,18 +35,6 @@ spec:
                 -
                   name: MYSQL_PORT
                   value: "3306"
-                -
-                  name: MYSQL_ROOT_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      name: mysql
-                      key: root-password
-                -
-                  name: NR_INSTALL_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: newrelic
-                      key: install-key
               image: "||DEPLOYMENTIMAGE||"
               imagePullPolicy: Always
               volumeMounts:
