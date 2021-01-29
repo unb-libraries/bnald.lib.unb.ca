@@ -64,7 +64,7 @@
         "drupal/noreqnewpass": "1.2",
         "drupal/pathauto": "1.8",
         "drupal/paragraphs": "1.5",
-        "drupal/redis": "1.4",
+        "drupal/redis": "1.5",
         "drupal/search_api": "1.18",
         "drupal/search_api_autocomplete": "1.4",
         "drupal/search_api_solr": "4.1.10",
