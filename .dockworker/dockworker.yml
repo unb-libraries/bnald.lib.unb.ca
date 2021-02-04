@@ -17,6 +17,6 @@ dockworker:
     push_branches:
       - dev
       - prod
-    name: unblibraries/bnald.lib.unb.ca
+    name: ghcr.io/unb-libraries/bnald.lib.unb.ca
     date_tag_image: true
-    repository: dockercloud
+    repository: ghcr
