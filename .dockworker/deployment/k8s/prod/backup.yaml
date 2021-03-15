@@ -1,0 +1,281 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hourly-backup-bnald-lib-unb-ca
+  namespace: prod
+  labels:
+    app: drupal
+    tier: backup
+spec:
+  schedule: "06 07,10,13,16,19 * * "
+  startingDeadlineSeconds: 480
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    metadata:
+      name: hourly-backup-bnald-lib-unb-ca
+      labels:
+        app: drupal
+        tier: backup
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            deployenv: dev
+          containers:
+            -
+              name: hourly-backup-bnald-lib-unb-ca
+              args: ["hourly"]
+              env:
+                -
+                  name: DEPLOY_ENV
+                  value: prod
+                -
+                  name: MYSQL_HOSTNAME
+                  value: drupal-mysql-lib-unb-ca
+                -
+                  name: MYSQL_PORT
+                  value: "3306"
+                -
+                  name: MYSQL_DATABASE
+                  value: pmportal_db
+                -
+                  name: MYSQL_USER_NAME
+                  value: root
+                -
+                  name: MYSQL_USER_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: mysql
+                      key: root-password
+              image: "ghcr.io/unb-libraries/mysql-backup:latest"
+              imagePullPolicy: Always
+              volumeMounts:
+                -
+                  mountPath: /data
+                  name: backup-persistent-storage
+          priorityClassName: backup-priority-services
+          imagePullSecrets:
+            -
+              name: github-container-registry-auth
+          restartPolicy: Never
+          volumes:
+            -
+              name: backup-persistent-storage
+              persistentVolumeClaim:
+                claimName: backup-bnald-lib-unb-ca
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: daily-backup-bnald-lib-unb-ca
+  namespace: prod
+  labels:
+    app: drupal
+    tier: backup
+spec:
+  schedule: "00 05 * * *"
+  startingDeadlineSeconds: 480
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    metadata:
+      name: daily-backup-bnald-lib-unb-ca
+      labels:
+        app: drupal
+        tier: backup
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            deployenv: dev
+          containers:
+            -
+              name: daily-backup-bnald-lib-unb-ca
+              args: ["daily"]
+              env:
+                -
+                  name: DEPLOY_ENV
+                  value: prod
+                -
+                  name: MYSQL_HOSTNAME
+                  value: drupal-mysql-lib-unb-ca
+                -
+                  name: MYSQL_PORT
+                  value: "3306"
+                -
+                  name: MYSQL_DATABASE
+                  value: pmportal_db
+                -
+                  name: MYSQL_USER_NAME
+                  value: root
+                -
+                  name: MYSQL_USER_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: mysql
+                      key: root-password
+                -
+                  name: RSNAPSHOT_RETAIN_HOURLY
+                  value: "0"
+              image: "ghcr.io/unb-libraries/mysql-backup:latest"
+              imagePullPolicy: Always
+              volumeMounts:
+                -
+                  mountPath: /data
+                  name: backup-persistent-storage
+          priorityClassName: backup-priority-services
+          imagePullSecrets:
+            -
+              name: github-container-registry-auth
+          restartPolicy: Never
+          volumes:
+            -
+              name: backup-persistent-storage
+              persistentVolumeClaim:
+                claimName: backup-bnald-lib-unb-ca
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: weekly-backup-bnald-lib-unb-ca
+  namespace: prod
+  labels:
+    app: drupal
+    tier: backup
+spec:
+  schedule: "25 05 * * 1"
+  startingDeadlineSeconds: 480
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    metadata:
+      name: weekly-backup-bnald-lib-unb-ca
+      labels:
+        app: drupal
+        tier: backup
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            deployenv: dev
+          containers:
+            -
+              name: weekly-backup-bnald-lib-unb-ca
+              args: ["weekly"]
+              env:
+                -
+                  name: DEPLOY_ENV
+                  value: prod
+                -
+                  name: MYSQL_HOSTNAME
+                  value: drupal-mysql-lib-unb-ca
+                -
+                  name: MYSQL_PORT
+                  value: "3306"
+                -
+                  name: MYSQL_DATABASE
+                  value: pmportal_db
+                -
+                  name: MYSQL_USER_NAME
+                  value: root
+                -
+                  name: MYSQL_USER_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: mysql
+                      key: root-password
+                -
+                  name: RSNAPSHOT_RETAIN_HOURLY
+                  value: "0"
+                -
+                  name: RSNAPSHOT_RETAIN_DAILY
+                  value: "0"
+              image: "ghcr.io/unb-libraries/mysql-backup:latest"
+              imagePullPolicy: Always
+              volumeMounts:
+                -
+                  mountPath: /data
+                  name: backup-persistent-storage
+          priorityClassName: backup-priority-services
+          imagePullSecrets:
+            -
+              name: github-container-registry-auth
+          restartPolicy: Never
+          volumes:
+            -
+              name: backup-persistent-storage
+              persistentVolumeClaim:
+                claimName: backup-bnald-lib-unb-ca
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: monthly-backup-bnald-lib-unb-ca
+  namespace: prod
+  labels:
+    app: drupal
+    tier: backup
+spec:
+  schedule: "05 05 17 * *"
+  startingDeadlineSeconds: 480
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    metadata:
+      name: monthly-backup-bnald-lib-unb-ca
+      labels:
+        app: drupal
+        tier: backup
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            deployenv: dev
+          containers:
+            -
+              name: monthly-backup-bnald-lib-unb-ca
+              args: ["monthly"]
+              env:
+                -
+                  name: DEPLOY_ENV
+                  value: prod
+                -
+                  name: MYSQL_HOSTNAME
+                  value: drupal-mysql-lib-unb-ca
+                -
+                  name: MYSQL_PORT
+                  value: "3306"
+                -
+                  name: MYSQL_DATABASE
+                  value: pmportal_db
+                -
+                  name: MYSQL_USER_NAME
+                  value: root
+                -
+                  name: MYSQL_USER_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: mysql
+                      key: root-password
+                -
+                  name: RSNAPSHOT_RETAIN_HOURLY
+                  value: "0"
+                -
+                  name: RSNAPSHOT_RETAIN_DAILY
+                  value: "0"
+                -
+                  name: RSNAPSHOT_RETAIN_WEEKLY
+                  value: "0"
+              image: "ghcr.io/unb-libraries/mysql-backup:latest"
+              imagePullPolicy: Always
+              volumeMounts:
+                -
+                  mountPath: /data
+                  name: backup-persistent-storage
+          priorityClassName: backup-priority-services
+          imagePullSecrets:
+            -
+              name: github-container-registry-auth
+          restartPolicy: Never
+          volumes:
+            -
+              name: backup-persistent-storage
+              persistentVolumeClaim:
+                claimName: backup-bnald-lib-unb-ca
