@@ -8,6 +8,7 @@ metadata:
     tier: cron
 spec:
   schedule: "10,25,40,55 * * * *"
+  startingDeadlineSeconds: 480
   concurrencyPolicy: Forbid
   jobTemplate:
     metadata:
