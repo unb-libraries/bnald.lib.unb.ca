@@ -146,6 +146,7 @@ jobs:
 
   update-docker-compose:
     name: Update Docker Compose
+    needs: [set-deployment-image-tag]
     runs-on: ubuntu-latest
     steps:
       - uses: FranzDiebold/github-env-vars-action@v2.1.0
