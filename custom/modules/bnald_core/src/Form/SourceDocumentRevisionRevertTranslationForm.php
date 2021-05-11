@@ -98,7 +98,7 @@ class SourceDocumentRevisionRevertTranslationForm extends SourceDocumentRevision
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
     /** @var \Drupal\bnald_core\Entity\SourceDocumentInterface $default_revision */
-    $latest_revision = $this->SourceDocumentStorage->load($revision->id());
+    $latest_revision = $this->sourceDocumentStorage->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 
     $revision_translation = $revision->getTranslation($this->langcode);

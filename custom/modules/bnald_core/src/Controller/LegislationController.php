@@ -108,7 +108,8 @@ class LegislationController extends ControllerBase implements ContainerInjection
         if ($vid != $legislation->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, Url::fromRoute('entity.legislation.revision', [
             'legislation' => $legislation->id(),
-            'legislation_revision' => $vid]));
+            'legislation_revision' => $vid
+          ]));
         }
         else {
           $link = Link::fromTextAndUrl($legislation->label(), $legislation->toUrl());
@@ -122,7 +123,10 @@ class LegislationController extends ControllerBase implements ContainerInjection
             '#context' => [
               'date' => $link,
               'username' => \Drupal::service('renderer')->renderPlain($username),
-              'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
+              'message' => [
+                '#markup' => $revision->getRevisionLogMessage(),
+                '#allowed_tags' => Xss::getHtmlTagList()
+              ],
             ],
           ],
         ];
@@ -146,14 +150,20 @@ class LegislationController extends ControllerBase implements ContainerInjection
           if ($revert_permission) {
             $links['revert'] = [
               'title' => $this->t('Revert'),
-              'url' => Url::fromRoute('entity.legislation.revision_revert', ['legislation' => $legislation->id(), 'legislation_revision' => $vid]),
+              'url' => Url::fromRoute('entity.legislation.revision_revert', [
+                'legislation' => $legislation->id(),
+                'legislation_revision' => $vid
+              ]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.legislation.revision_delete', ['legislation' => $legislation->id(), 'legislation_revision' => $vid]),
+              'url' => Url::fromRoute('entity.legislation.revision_delete', [
+                'legislation' => $legislation->id(),
+                'legislation_revision' => $vid
+              ]),
             ];
           }
 

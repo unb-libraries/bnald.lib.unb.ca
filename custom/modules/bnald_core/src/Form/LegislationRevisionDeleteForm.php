@@ -30,7 +30,7 @@ class LegislationRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $LegislationStorage;
+  protected $legislationStorage;
 
   /**
    * The database connection.
@@ -57,7 +57,7 @@ class LegislationRevisionDeleteForm extends ConfirmFormBase {
    *   The date formatter.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection, DateFormatterInterface $date_formatter) {
-    $this->LegislationStorage = $entity_storage;
+    $this->legislationStorage = $entity_storage;
     $this->connection = $connection;
     $this->dateFormatter = $date_formatter;
   }
@@ -111,7 +111,7 @@ class LegislationRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $legislation_revision = NULL) {
-    $this->revision = $this->LegislationStorage->loadRevision($legislation_revision);
+    $this->revision = $this->legislationStorage->loadRevision($legislation_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -121,7 +121,7 @@ class LegislationRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->LegislationStorage->deleteRevision($this->revision->getRevisionId());
+    $this->legislationStorage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Legislation: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),

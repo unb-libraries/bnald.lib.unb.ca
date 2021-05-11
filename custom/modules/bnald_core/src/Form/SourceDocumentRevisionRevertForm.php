@@ -30,7 +30,7 @@ class SourceDocumentRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $SourceDocumentStorage;
+  protected $sourceDocumentStorage;
 
   /**
    * The date formatter service.
@@ -48,7 +48,7 @@ class SourceDocumentRevisionRevertForm extends ConfirmFormBase {
    *   The date formatter service.
    */
   public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->SourceDocumentStorage = $entity_storage;
+    $this->sourceDocumentStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -106,7 +106,7 @@ class SourceDocumentRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $source_document_revision = NULL) {
-    $this->revision = $this->SourceDocumentStorage->loadRevision($source_document_revision);
+    $this->revision = $this->sourceDocumentStorage->loadRevision($source_document_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;

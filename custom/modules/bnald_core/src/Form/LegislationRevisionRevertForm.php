@@ -30,7 +30,7 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $LegislationStorage;
+  protected $legislationStorage;
 
   /**
    * The date formatter service.
@@ -48,7 +48,7 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
    *   The date formatter service.
    */
   public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->LegislationStorage = $entity_storage;
+    $this->legislationStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -107,7 +107,7 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $legislation_revision = NULL) {
-    $this->revision = $this->LegislationStorage->loadRevision($legislation_revision);
+    $this->revision = $this->legislationStorage->loadRevision($legislation_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -127,7 +127,8 @@ class LegislationRevisionRevertForm extends ConfirmFormBase {
 
     $this->logger('content')->notice('Legislation: reverted %title revision %revision.', [
       '%title' => $this->revision->label(),
-      '%revision' => $this->revision->getRevisionId()]);
+      '%revision' => $this->revision->getRevisionId()
+    ]);
     $this->messenger()->addStatus(t('Legislation %title has been reverted to the revision from %revision-date.', [
       '%title' => $this->revision->label(),
       '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)

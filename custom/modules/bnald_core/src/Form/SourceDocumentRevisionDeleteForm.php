@@ -30,7 +30,7 @@ class SourceDocumentRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $SourceDocumentStorage;
+  protected $sourceDocumentStorage;
 
   /**
    * The database connection.
@@ -53,11 +53,11 @@ class SourceDocumentRevisionDeleteForm extends ConfirmFormBase {
    *   The entity storage.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param DateFormatterInterface $date_formatter
-   *   The date formatter
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   The date formatter.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection, DateFormatterInterface $date_formatter) {
-    $this->SourceDocumentStorage = $entity_storage;
+    $this->sourceDocumentStorage = $entity_storage;
     $this->connection = $connection;
     $this->dateFormatter = $date_formatter;
   }
@@ -111,7 +111,7 @@ class SourceDocumentRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $source_document_revision = NULL) {
-    $this->revision = $this->SourceDocumentStorage->loadRevision($source_document_revision);
+    $this->revision = $this->sourceDocumentStorage->loadRevision($source_document_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -121,7 +121,7 @@ class SourceDocumentRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->SourceDocumentStorage->deleteRevision($this->revision->getRevisionId());
+    $this->sourceDocumentStorage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Source Document: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),
@@ -130,7 +130,8 @@ class SourceDocumentRevisionDeleteForm extends ConfirmFormBase {
 
     $this->messenger()->addStatus(t('Revision from %revision-date of Source Document %title has been deleted.', [
       '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
-      '%title' => $this->revision->label()]));
+      '%title' => $this->revision->label()
+    ]));
     $form_state->setRedirect('entity.source_document.canonical', [
       'source_document' => $this->revision->id()
     ]);

@@ -74,7 +74,12 @@ class SourceDocumentController extends ControllerBase implements ContainerInject
     $source_document_storage = $this->entityTypeManager()
       ->getStorage('source_document');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $source_document->label()]) : $this->t('Revisions for %title', ['%title' => $source_document->label()]);
+    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
+      '@langname' => $langname,
+      '%title' => $source_document->label()
+    ]) : $this->t('Revisions for %title', [
+      '%title' => $source_document->label()
+    ]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all source document revisions") || $account->hasPermission('administer source document entities')));
