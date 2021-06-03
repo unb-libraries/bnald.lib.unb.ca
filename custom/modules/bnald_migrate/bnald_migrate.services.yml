@@ -1,5 +1,0 @@
-services:
-  migrate_ldap_user_event_subsriber:
-    class: '\Drupal\bnald_migrate\EventSubscriber\PostMigrateUserEventSubscriber'
-    tags:
-      - { name: 'event_subscriber' }

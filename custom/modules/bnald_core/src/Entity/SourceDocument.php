@@ -39,6 +39,11 @@ use Drupal\user\UserInterface;
  *   base_table = "source_document",
  *   revision_table = "source_document_revision",
  *   revision_data_table = "source_document_field_revision",
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log",
+ *   },
  *   admin_permission = "administer source document entities",
  *   entity_keys = {
  *     "id" = "id",

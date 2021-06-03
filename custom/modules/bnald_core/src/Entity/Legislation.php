@@ -40,6 +40,11 @@ use Drupal\user\UserInterface;
  *   base_table = "legislation",
  *   revision_table = "legislation_revision",
  *   revision_data_table = "legislation_field_revision",
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log",
+ *   },
  *   admin_permission = "administer legislation entities",
  *   entity_keys = {
  *     "id" = "id",
