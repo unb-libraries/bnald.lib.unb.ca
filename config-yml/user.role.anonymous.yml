@@ -9,3 +9,4 @@ is_admin: false
 permissions:
   - 'access content'
   - 'view published legislation entities'
+  - 'view sp metadata'
