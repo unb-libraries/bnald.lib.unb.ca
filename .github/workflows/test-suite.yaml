@@ -70,26 +70,6 @@ jobs:
         name: Check PHP Coding Standards
         run: vendor/bin/dockworker validate:drupal:custom:php
 
-  drupal-9-readiness:
-    name: Drupal 9 Readiness
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      -
-        name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          coverage: none
-          tools: composer:v2
-          extensions: curl,dom,gd,mbstring,posix,yaml,zip
-      -
-        name: Install dockworker
-        run: composer install --prefer-dist --no-progress --no-suggest
-      -
-        name: Check Custom Code D9 Readiness
-        run: vendor/bin/dockworker validate:drupal:9-upgrade
-
   build-image:
     name: Build Image
     needs: [set-deployment-image-tag]
