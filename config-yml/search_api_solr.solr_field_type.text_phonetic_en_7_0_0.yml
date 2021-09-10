@@ -86,5 +86,40 @@ spellcheck_field_type: null
 collated_field_type: null
 solr_configs: {  }
 text_files:
-  stopwords: "a\nan\nand\nare\nas\nat\nbe\nbut\nby\nfor\nif\nin\ninto\nis\nit\nno\nnot\nof\non\nor\ns\nsuch\nt\nthat\nthe\ntheir\nthen\nthere\nthese\nthey\nthis\nto\nwas\nwill\nwith\n"
+  stopwords: |
+    a
+    an
+    and
+    are
+    as
+    at
+    be
+    but
+    by
+    for
+    if
+    in
+    into
+    is
+    it
+    no
+    not
+    of
+    on
+    or
+    s
+    such
+    t
+    that
+    the
+    their
+    then
+    there
+    these
+    they
+    this
+    to
+    was
+    will
+    with
   protwords: ''
