@@ -72,7 +72,7 @@
         "drupal/search_api": "1.21",
         "drupal/search_api_autocomplete": "1.5",
         "drupal/search_api_solr": "4.2.2",
-        "drupal/token": "1.9",
+        "drupal/token": "1.10",
         "drupal/tvi": "1.0-rc4",
         "drupal/pdfpreview": "1.0",
         "unb-libraries/drupal-builder": "^9",
