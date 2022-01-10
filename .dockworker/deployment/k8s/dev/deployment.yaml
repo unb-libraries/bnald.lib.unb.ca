@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: drupal
-    appMajor: "8"
+    appMajor: "9"
     instance: bnald.lib.unb.ca
     tier: frontend
     uri: dev-bnald.lib.unb.ca
@@ -27,7 +27,7 @@ spec:
     metadata:
       labels:
         app: drupal
-        appMajor: "8"
+        appMajor: "9"
         instance: bnald.lib.unb.ca
         tier: frontend
         uri: dev-bnald.lib.unb.ca
