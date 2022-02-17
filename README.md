@@ -1,6 +1,6 @@
 ![bnald.lib.unb.ca screenshot](https://github.com/unb-libraries/bnald.lib.unb.ca/raw/prod/.dockworker/screenshot.png "bnald.lib.unb.ca screenshot")
 # [bnald.lib.unb.ca](https://bnald.lib.unb.ca/) : Lean Instance Repository
-[![Build Status](https://github.com/unb-libraries/bnald.lib.unb.ca/actions/workflows/test-suite.yaml/badge.svg?branch=prod)](https://github.com/unb-libraries/bnald.lib.unb.ca/actions/workflows/test-suite.yaml)
+[![Build Status](https://github.com/unb-libraries/bnald.lib.unb.ca/actions/workflows/deployment-workflow.yaml/badge.svg?branch=prod)](https://github.com/unb-libraries/bnald.lib.unb.ca/actions/workflows/deployment-workflow.yaml)
 [![GitHub license](https://img.shields.io/github/license/unb-libraries/bnald.lib.unb.ca)](https://github.com/unb-libraries/bnald.lib.unb.ca/blob/prod/LICENSE)
 ![GitHub repo size](https://img.shields.io/github/repo-size/unb-libraries/bnald.lib.unb.ca?label=lean%20repo%20size)
 
@@ -33,8 +33,8 @@ This application was created at [![UNB Libraries](https://github.com/unb-librari
 <a href="https://github.com/JacobSanford"><img src="https://avatars.githubusercontent.com/u/244894?v=3" title="Jacob Sanford" width="128" height="128"></a>
 <a href="https://github.com/patschilf"><img src="https://avatars.githubusercontent.com/u/46682967?v=3" title="patschilf" width="128" height="128"></a>
 <a href="https://github.com/jtmcd75"><img src="https://avatars.githubusercontent.com/u/10372283?v=3" title="Jeremy McDermott" width="128" height="128"></a>
-<a href="https://github.com/camilocodes"><img src="https://avatars.githubusercontent.com/u/12695787?v=3" title="Camilo V." width="128" height="128"></a>
 <a href="https://github.com/bricas"><img src="https://avatars.githubusercontent.com/u/18400?v=3" title="Brian Cassidy" width="128" height="128"></a>
+<a href="https://github.com/camilocodes"><img src="https://avatars.githubusercontent.com/u/12695787?v=3" title="Camilo V." width="128" height="128"></a>
 
 ## License
 - As part of our 'open' ethos, UNB Libraries licenses its applications and workflows to be freely available to all whenever possible.
