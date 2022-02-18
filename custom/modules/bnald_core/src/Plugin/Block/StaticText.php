@@ -22,7 +22,7 @@ class StaticText extends BlockBase implements BlockPluginInterface {
    */
   public function build() {
     $config = $this->getConfiguration();
-    $text = isset($config['text']) ? $config['text'] : '';
+    $text = $config['text'] ?? '';
     return [
       '#type' => 'html_tag',
       '#tag' => 'div',
@@ -40,7 +40,7 @@ class StaticText extends BlockBase implements BlockPluginInterface {
       '#type' => 'textarea',
       '#title' => $this->t('Text'),
       '#description' => $this->t('The text to display'),
-      '#default_value' => isset($config['text']) ? $config['text'] : '',
+      '#default_value' => $config['text'] ?? '',
     ];
     return $form;
   }
