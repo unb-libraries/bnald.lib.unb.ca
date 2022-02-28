@@ -83,7 +83,8 @@
     "drupal/search_api_solr": "4.2.7",
     "drupal/token": "1.10",
     "drupal/tvi": "1.0-rc4",
-    "unb-libraries/drupal-builder": "^9"
+    "unb-libraries/drupal-builder": "^9",
+    "unb-libraries/saml_features": "dev-8.x-1.x"
   },
   "require-dev": {
     "unb-libraries/drupal-development-libraries": "^9"
