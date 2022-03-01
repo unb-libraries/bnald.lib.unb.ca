@@ -1,10 +1,10 @@
 // If you wish to compile/extend Bootstrap then uncomment line below and disable subtheme CDN
-@import '../../../../../vendor/twbs/bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'colors';
 
 body {
   background-color: $color_background_primary;
   color: $color_text_primary;
+  margin-top: 0;
   font-size: 16px;
   font-family: "Source Sans Pro", Sans-Serif;
 }
