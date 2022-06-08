@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: weekly-backup-bnald-lib-unb-ca
@@ -70,7 +70,7 @@ spec:
               persistentVolumeClaim:
                 claimName: backup-bnald-lib-unb-ca
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: monthly-backup-bnald-lib-unb-ca
