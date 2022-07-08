@@ -29,6 +29,9 @@ spec:
                   name: DEPLOY_ENV
                   value: prod
                 -
+                  name: CYPRESS_REPORTER_VERBOSITY
+                  value: '20'
+                -
                   name: CYPRESS_SPEC_FILE
                   valueFrom:
                     secretKeyRef:
