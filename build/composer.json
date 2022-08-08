@@ -81,7 +81,7 @@
     "drupal/search_api": "1.25",
     "drupal/search_api_autocomplete": "1.6",
     "drupal/search_api_solr": "4.2.8",
-    "drupal/token": "1.10",
+    "drupal/token": "1.11",
     "drupal/tvi": "1.0-rc4",
     "unb-libraries/drupal-builder": "^9",
     "unb-libraries/saml_features": "dev-8.x-1.x"
