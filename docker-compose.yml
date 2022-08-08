@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   bnald.lib.unb.ca:
     build:
@@ -19,7 +21,6 @@ services:
       - ./config-yml:/app/configuration
       - ./custom/modules:/app/html/modules/custom
       - ./custom/themes:/app/html/themes/custom
-      - ./tests:/app/tests
   drupal-mysql-lib-unb-ca:
     image: mysql:5.7
     restart: unless-stopped
@@ -65,6 +66,30 @@ services:
       - "4099:8025"
     networks:
       - bnald.lib.unb.ca
+  status:
+    build:
+      context: git@github.com:unb-libraries/status.lib.unb.ca.git#prod
+    restart: unless-stopped
+    expose:
+      - "80"
+    ports:
+      - "5099:80"
+    environment:
+      - LOCAL_HOSTNAME=local-status.bnald.lib.unb.ca
+      - LOCAL_PORT=5099
+    volumes:
+      - cypress-data:/app/html/data
+    networks:
+      - bnald.lib.unb.ca
+  cypress:
+    build:
+      context: git@github.com:unb-libraries/cypress.status.lib.unb.ca.git#prod
+    environment:
+      - CYPRESS_OPTIONS=-v 20
+    entrypoint: /scripts/runAggregate.sh
+    volumes:
+      - ./tests/cypress:/usr/src/cypress/e2e
+      - cypress-data:/usr/src/reports
 networks:
   bnald.lib.unb.ca:
     name: bnald.lib.unb.ca
@@ -72,3 +97,4 @@ volumes:
   drupal-data:
   mysql-data:
   solr-data:
+  cypress-data:
