@@ -89,7 +89,10 @@ services:
     entrypoint: /scripts/runAggregate.sh
     volumes:
       - ./tests/cypress:/usr/src/cypress/e2e
+      - ./tests/cypress.config.js:/usr/src/cypress.config.js
       - cypress-data:/usr/src/reports
+    networks:
+      - bnald.lib.unb.ca
 networks:
   bnald.lib.unb.ca:
     name: bnald.lib.unb.ca
