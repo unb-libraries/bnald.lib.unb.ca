@@ -88,8 +88,8 @@ services:
       - CYPRESS_OPTIONS=-v 20
     entrypoint: /scripts/runAggregate.sh
     volumes:
-      - ./tests/cypress:/usr/src/cypress/e2e
-      - ./tests/cypress.config.js:/usr/src/cypress.config.js
+      - ./tests/cypress/local/e2e:/usr/src/cypress/e2e
+      - ./tests/cypress/local/config.js:/usr/src/cypress.config.js
       - cypress-data:/usr/src/reports
     networks:
       - bnald.lib.unb.ca
