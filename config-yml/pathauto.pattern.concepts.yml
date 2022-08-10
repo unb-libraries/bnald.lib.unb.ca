@@ -6,7 +6,6 @@ dependencies:
     - taxonomy.vocabulary.concepts
     - views.view.concepts
   module:
-    - ctools
     - taxonomy
 id: concepts
 label: Concepts

@@ -6,7 +6,6 @@ dependencies:
     - taxonomy.vocabulary.printers
     - views.view.printers
   module:
-    - ctools
     - taxonomy
 id: printers
 label: 'Printed By'

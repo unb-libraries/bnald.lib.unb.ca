@@ -6,7 +6,6 @@ dependencies:
     - taxonomy.vocabulary.provinces
     - views.view.provinces
   module:
-    - ctools
     - taxonomy
 id: provinces
 label: Provinces

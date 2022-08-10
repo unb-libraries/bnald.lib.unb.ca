@@ -6,7 +6,6 @@ dependencies:
     - taxonomy.vocabulary.jurisdictional_relevance
     - views.view.jurisdictional_relevance
   module:
-    - ctools
     - taxonomy
 id: jurisdictional_relevance
 label: 'Jurisdictional Relevance'
