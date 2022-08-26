@@ -18,12 +18,12 @@ plugin: 'views_exposed_filter_block:legislation_search-simple_search_form'
 settings:
   id: 'views_exposed_filter_block:legislation_search-simple_search_form'
   label: ''
-  provider: views
   label_display: '0'
+  provider: views
   views_label: ''
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
     negate: false
     context_mapping: {  }
+    pages: '<front>'

@@ -45,8 +45,8 @@ field_type:
           class: solr.LowerCaseFilterFactory
         -
           class: solr.SnowballPorterFilterFactory
-          language: English
           protected: protwords.txt
+          language: English
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
     -
@@ -60,8 +60,8 @@ field_type:
       filters:
         -
           class: solr.ManagedSynonymFilterFactory
-          managed: synonyms
           expand: true
+          managed: synonyms
         -
           class: solr.ManagedStopFilterFactory
           managed: stopwords
@@ -83,8 +83,8 @@ field_type:
           class: solr.LowerCaseFilterFactory
         -
           class: solr.SnowballPorterFilterFactory
-          language: English
           protected: protwords.txt
+          language: English
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
 unstemmed_field_type: null
@@ -160,8 +160,6 @@ text_files:
     was
     will
     with
-  synonyms: |
-    drupal, durpal
   protwords: |
 
   accents: |
@@ -313,3 +311,5 @@ text_files:
     "\uFB05" => "st"
     # ﬆ => st
     "\uFB06" => "st"
+  synonyms: |
+    drupal, durpal

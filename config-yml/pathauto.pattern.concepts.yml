@@ -14,12 +14,12 @@ pattern: 'legislation/concepts/[term:name]'
 selection_criteria:
   84aac1bf-efec-4a83-a464-f53bb9846712:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      concepts: concepts
     negate: false
+    uuid: 84aac1bf-efec-4a83-a464-f53bb9846712
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 84aac1bf-efec-4a83-a464-f53bb9846712
+    bundles:
+      concepts: concepts
 selection_logic: and
 weight: 3
 relationships: {  }

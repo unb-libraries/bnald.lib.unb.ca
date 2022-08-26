@@ -14,12 +14,12 @@ pattern: 'legislation/jurisdictional-relevance/[term:name]'
 selection_criteria:
   53b09095-2f29-43fa-9e87-d1a874e20889:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      jurisdictional_relevance: jurisdictional_relevance
     negate: false
+    uuid: 53b09095-2f29-43fa-9e87-d1a874e20889
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 53b09095-2f29-43fa-9e87-d1a874e20889
+    bundles:
+      jurisdictional_relevance: jurisdictional_relevance
 selection_logic: and
 weight: 3
 relationships: {  }

@@ -14,12 +14,12 @@ pattern: 'sources/printed-by/[term:name]'
 selection_criteria:
   9d2389cc-ce1a-4bf4-a891-ed4890df25dc:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      printers: printers
     negate: false
+    uuid: 9d2389cc-ce1a-4bf4-a891-ed4890df25dc
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 9d2389cc-ce1a-4bf4-a891-ed4890df25dc
+    bundles:
+      printers: printers
 selection_logic: and
 weight: 1
 relationships: {  }

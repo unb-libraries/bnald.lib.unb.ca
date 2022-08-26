@@ -20,134 +20,12 @@ base_table: search_api_index_legislation_bnald_lib_unb_ca
 base_field: search_api_id
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: none
-        options: {  }
-      query:
-        type: views_query
-        options:
-          bypass_access: false
-          skip_access: false
-      exposed_form:
-        type: input_required
-        options:
-          submit_button: Search
-          reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-          text_input_required: ''
-          text_input_required_format: basic_html
-      pager:
-        type: full
-        options:
-          items_per_page: 20
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: Prev
-            next: Next
-            first: First
-            last: Last
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 10
-      style:
-        type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          override: true
-          sticky: true
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            id: id
-            title: title
-            chapter: chapter
-            chapter_sort: chapter_sort
-            year_1: year_1
-            province_1: province_1
-            concepts_1: concepts_1
-            jurisdictional_relevance_1: jurisdictional_relevance_1
-          info:
-            id:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            chapter:
-              sortable: false
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            chapter_sort:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            year_1:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            province_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            concepts_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            jurisdictional_relevance_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
-      row:
-        type: fields
+      title: ''
       fields:
         id:
           id: id
@@ -156,6 +34,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ID
+          entity_type: legislation
+          plugin_id: search_api_field
           label: ID
           exclude: true
           alter:
@@ -230,8 +110,6 @@ display:
             format_plural_values:
               - '1'
               - '@count'
-          entity_type: legislation
-          plugin_id: search_api_field
         title:
           id: title
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -239,6 +117,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Title
+          plugin_id: search_api_field
           label: Title
           exclude: false
           alter:
@@ -300,7 +179,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         province_1:
           id: province_1
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -308,6 +186,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Province
+          plugin_id: search_api_field
           label: Province
           exclude: false
           alter:
@@ -373,7 +252,6 @@ display:
             display_methods:
               provinces:
                 display_method: label
-          plugin_id: search_api_field
         chapter:
           id: chapter
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -381,6 +259,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Chapter
+          plugin_id: search_api_field
           label: Chapter
           exclude: true
           alter:
@@ -443,7 +322,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         chapter_sort:
           id: chapter_sort
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -451,6 +329,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Chapter Sort'
+          plugin_id: search_api_field
           label: Chapter
           exclude: false
           alter:
@@ -513,7 +392,6 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-          plugin_id: search_api_field
         year_1:
           id: year_1
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -521,6 +399,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Year
+          plugin_id: search_api_field
           label: 'Date Passed'
           exclude: false
           alter:
@@ -595,7 +474,6 @@ display:
             format_plural_values:
               - '1'
               - '@count'
-          plugin_id: search_api_field
         concepts_1:
           id: concepts_1
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -603,6 +481,7 @@ display:
           relationship: none
           group_type: group
           admin_label: Concepts
+          plugin_id: search_api_field
           label: Concepts
           exclude: false
           alter:
@@ -668,7 +547,6 @@ display:
             display_methods:
               concepts:
                 display_method: label
-          plugin_id: search_api_field
         jurisdictional_relevance_1:
           id: jurisdictional_relevance_1
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -676,6 +554,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Jurisdictional Relevance'
+          plugin_id: search_api_field
           label: 'Jurisdictional Relevance'
           exclude: false
           alter:
@@ -741,7 +620,79 @@ display:
             display_methods:
               jurisdictional_relevance:
                 display_method: label
-          plugin_id: search_api_field
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 20
+          total_pages: null
+          id: 0
+          tags:
+            next: Next
+            previous: Prev
+            first: First
+            last: Last
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 10
+      exposed_form:
+        type: input_required
+        options:
+          submit_button: Search
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: ''
+          text_input_required_format: basic_html
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
+      sorts:
+        year:
+          id: year
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: year
+          exposed: false
+        chapter_sort:
+          id: chapter_sort
+          table: search_api_index_legislation_bnald_lib_unb_ca
+          field: chapter_sort
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: chapter_sort
+          exposed: false
+      arguments: {  }
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -750,6 +701,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -760,6 +712,8 @@ display:
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: query
             required: false
             remember: false
@@ -769,8 +723,6 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             placeholder: 'Search by Title, Year and Full Text'
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -787,7 +739,6 @@ display:
           min_length: 3
           fields:
             - full_text
-          plugin_id: search_api_fulltext
         year:
           id: year
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -795,6 +746,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_numeric
           operator: '>='
           value:
             min: ''
@@ -808,6 +760,8 @@ display:
             description: ''
             use_operator: false
             operator: year_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: from
             required: false
             remember: false
@@ -816,11 +770,9 @@ display:
               authenticated: authenticated
               anonymous: '0'
               bnald_editor: '0'
-            placeholder: From
             min_placeholder: From
             max_placeholder: To
-            operator_limit_selection: false
-            operator_list: {  }
+            placeholder: From
           is_grouped: false
           group_info:
             label: ''
@@ -833,7 +785,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_numeric
         year_1:
           id: year_1
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -841,6 +792,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_numeric
           operator: '<='
           value:
             min: ''
@@ -854,6 +806,8 @@ display:
             description: ''
             use_operator: false
             operator: year_1_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: to
             required: false
             remember: false
@@ -862,11 +816,9 @@ display:
               authenticated: authenticated
               anonymous: '0'
               bnald_editor: '0'
-            placeholder: To
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
+            placeholder: To
           is_grouped: false
           group_info:
             label: ''
@@ -879,7 +831,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: search_api_numeric
         province:
           id: province
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -887,6 +838,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value: {  }
           group: 1
@@ -897,6 +849,8 @@ display:
             description: ''
             use_operator: false
             operator: province_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: province
             required: false
             remember: false
@@ -906,8 +860,6 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: Province
@@ -924,12 +876,11 @@ display:
               2: {  }
               3: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: provinces
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: search_api_term
         concepts:
           id: concepts
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -937,6 +888,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value: {  }
           group: 1
@@ -947,6 +899,8 @@ display:
             description: ''
             use_operator: false
             operator: concepts_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: concepts
             required: false
             remember: false
@@ -956,8 +910,6 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -971,12 +923,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: true
-          type: select
-          limit: true
           vid: concepts
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: search_api_term
         jurisdictional_relevance:
           id: jurisdictional_relevance
           table: search_api_index_legislation_bnald_lib_unb_ca
@@ -984,6 +935,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_term
           operator: or
           value: {  }
           group: 1
@@ -994,6 +946,8 @@ display:
             description: ''
             use_operator: false
             operator: jurisdictional_relevance_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: jurisdictional_relevance
             required: false
             remember: false
@@ -1003,8 +957,6 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1018,38 +970,102 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: true
-          type: select
-          limit: true
           vid: jurisdictional_relevance
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: search_api_term
-      sorts:
-        year:
-          id: year
-          table: search_api_index_legislation_bnald_lib_unb_ca
-          field: year
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-        chapter_sort:
-          id: chapter_sort
-          table: search_api_index_legislation_bnald_lib_unb_ca
-          field: chapter_sort
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-      title: ''
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            id: id
+            title: title
+            chapter: chapter
+            chapter_sort: chapter_sort
+            year_1: year_1
+            province_1: province_1
+            concepts_1: concepts_1
+            jurisdictional_relevance_1: jurisdictional_relevance_1
+          default: '-1'
+          info:
+            id:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            chapter:
+              sortable: false
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            chapter_sort:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            year_1:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            province_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            concepts_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            jurisdictional_relevance_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: true
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+      query:
+        type: search_api_query
+        options:
+          bypass_access: false
+          skip_access: false
+      relationships: {  }
+      css_class: bnald-legislation-search
+      use_ajax: false
       header:
         result:
           id: result
@@ -1058,25 +1074,11 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total results'
-          plugin_id: result
       footer: {  }
-      empty:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          plugin_id: text_custom
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
-      css_class: bnald-legislation-search
-      use_ajax: false
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
     cache_metadata:
       max-age: -1
       contexts:
@@ -1087,23 +1089,11 @@ display:
         - user
       tags: {  }
   page:
-    display_plugin: page
     id: page
     display_title: Page
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: legislation/search
-      exposed_block: false
-      menu:
-        type: none
-        title: Search
-        description: 'Search Legislation'
-        expanded: false
-        parent: ''
-        weight: 2
-        context: '0'
-        menu_name: main
       empty:
         area_text_custom:
           id: area_text_custom
@@ -1112,12 +1102,24 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content: 'No Results were found.'
           plugin_id: text_custom
+          empty: true
+          content: 'No Results were found.'
+          tokenize: false
       defaults:
         empty: false
+      exposed_block: false
+      display_extenders: {  }
+      path: legislation/search
+      menu:
+        type: none
+        title: Search
+        description: 'Search Legislation'
+        weight: 2
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1128,24 +1130,11 @@ display:
         - user
       tags: {  }
   simple_search_form:
-    display_plugin: page
     id: simple_search_form
     display_title: 'Simple Search Form'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: legislation/search
-      exposed_block: true
-      menu:
-        type: none
-        title: Search
-        description: 'Search Legislation'
-        expanded: false
-        parent: ''
-        weight: 2
-        context: '0'
-        menu_name: main
-      display_description: 'Used to export a block that can be displayed on main page'
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -1154,6 +1143,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_fulltext
           operator: and
           value: ''
           group: 1
@@ -1164,6 +1154,8 @@ display:
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: query
             required: false
             remember: false
@@ -1173,8 +1165,6 @@ display:
               anonymous: '0'
               bnald_editor: '0'
             placeholder: 'Search by Title, Year and Full Text'
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1191,14 +1181,26 @@ display:
           min_length: 3
           fields:
             - full_text
-          plugin_id: search_api_fulltext
-      defaults:
-        filters: false
-        filter_groups: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        filters: false
+        filter_groups: false
+      display_description: 'Used to export a block that can be displayed on main page'
+      exposed_block: true
+      display_extenders: {  }
+      path: legislation/search
+      menu:
+        type: none
+        title: Search
+        description: 'Search Legislation'
+        weight: 2
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:

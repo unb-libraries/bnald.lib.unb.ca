@@ -14,12 +14,12 @@ pattern: 'sources/printed-in/[term:name]'
 selection_criteria:
   d544f4fc-2e9a-4bf1-8333-1e28ad8e7ab9:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      print_locations: print_locations
     negate: false
+    uuid: d544f4fc-2e9a-4bf1-8333-1e28ad8e7ab9
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: d544f4fc-2e9a-4bf1-8333-1e28ad8e7ab9
+    bundles:
+      print_locations: print_locations
 selection_logic: and
 weight: 1
 relationships: {  }

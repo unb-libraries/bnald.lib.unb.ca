@@ -15,7 +15,7 @@ plugin: static_text
 settings:
   id: static_text
   label: Copyright
-  provider: bnald_core
   label_display: '0'
+  provider: bnald_core
   text: '&copy; <a href="https://lib.unb.ca/" target="_blank">UNB Libraries</a>'
 visibility: {  }
