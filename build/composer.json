@@ -23,6 +23,7 @@
     "sort-packages": true
   },
   "conflict": {
+    "drupal/ctools": "^4.0.0",
     "drupal/drupal": "*"
   },
   "description": "Drupal 8 component of bnald.lib.unb.ca",
