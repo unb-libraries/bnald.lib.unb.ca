@@ -66,31 +66,12 @@ services:
       - "4099:8025"
     networks:
       - bnald.lib.unb.ca
-  status:
-    build:
-      context: git@github.com:unb-libraries/status.lib.unb.ca.git#prod
-    restart: unless-stopped
-    expose:
-      - "80"
-    ports:
-      - "5099:80"
-    environment:
-      - LOCAL_HOSTNAME=local-status.bnald.lib.unb.ca
-      - LOCAL_PORT=5099
-    volumes:
-      - cypress-data:/app/html/data
-    networks:
-      - bnald.lib.unb.ca
   cypress:
-    build:
-      context: git@github.com:unb-libraries/cypress.status.lib.unb.ca.git#prod
+    image: ghcr.io/unb-libraries/cypress-drupal:10.x-9.x-1.x
     environment:
-      - CYPRESS_OPTIONS=-v 20
-    entrypoint: /scripts/runAggregate.sh
+      - BASE_URL=http://bnald.lib.unb.ca
     volumes:
-      - ./tests/cypress/local/e2e:/usr/src/cypress/e2e
-      - ./tests/cypress/local/config.js:/usr/src/cypress.config.js
-      - cypress-data:/usr/src/reports
+      - ./tests/cypress/default/e2e:/cypress/e2e
     networks:
       - bnald.lib.unb.ca
 networks:
