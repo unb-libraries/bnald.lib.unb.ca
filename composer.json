@@ -16,7 +16,8 @@
     "twbs/bootstrap-sass": "^3.4.0"
   },
   "require-dev": {
-    "unb-libraries/dockworker-drupal": "^5"
+    "unb-libraries/dockworker-drupal": "^5",
+    "unb-libraries/dockworker-cypress": "1.x-dev"
   },
   "scripts": {
     "post-update-cmd": [

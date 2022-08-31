@@ -68,6 +68,7 @@ services:
       - bnald.lib.unb.ca
   cypress:
     image: ghcr.io/unb-libraries/cypress-drupal:10.x-9.x-1.x
+    container_name: cypress.bnald.lib.unb.ca
     environment:
       - BASE_URL=http://bnald.lib.unb.ca
     volumes:
