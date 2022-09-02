@@ -1,0 +1,49 @@
+id: users
+label: User accounts
+migration_tags:
+  - e2e
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - tests/cypress/default/fixtures/users.json
+  fields:
+    -
+      name: name
+      label: Username
+      selector: /name
+    -
+      name: pass
+      label: Password
+      selector: /pass
+    -
+      name: email
+      label: Email
+      selector: /email
+    -
+      name: status
+      label: Status
+      selector: /status
+    -
+      name: roles
+      label: Roles
+      selector: /roles
+  ids:
+    name:
+      type: string
+process:
+  name: name
+  pass:
+    -
+      plugin: callback
+      callable:
+        - 'Drupal\bnald_core\migrate\BnaldMigrateHelper'
+        - hashPass
+      source: pass
+  status:
+    plugin: default_value
+    default_value: true
+  roles: roles
+destination:
+  plugin: entity:user

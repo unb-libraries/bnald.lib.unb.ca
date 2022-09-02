@@ -1,0 +1,37 @@
+id: content
+label: 
+migration_tags:
+  - e2e
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - tests/cypress/default/fixtures/content.json
+  fields:
+    -
+      name: nid
+      label: ID
+      selector: /nid
+    -
+      name: type
+      label: Content type
+      selector: /type
+    -
+      name: title
+      label: Title
+      selector: /title
+    -
+      name: body
+      label: Body
+      selector: /body
+  ids:
+    nid:
+      type: integer
+process:
+  nid: nid
+  type: type
+  title: title
+  body: body
+destination:
+  plugin: entity:node

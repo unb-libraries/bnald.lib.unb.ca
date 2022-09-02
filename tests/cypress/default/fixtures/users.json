@@ -1,0 +1,16 @@
+[
+  {
+    "name": "editor",
+    "pass":"1234",
+    "email": "editor@example.com",
+    "roles": [
+      "bnald_editor"
+    ]
+  },
+  {
+    "name": "user",
+    "pass": "2345",
+    "email": "user@example.com",
+    "roles": []
+  }
+]

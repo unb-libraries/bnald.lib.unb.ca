@@ -21,6 +21,7 @@ services:
       - ./config-yml:/app/configuration
       - ./custom/modules:/app/html/modules/custom
       - ./custom/themes:/app/html/themes/custom
+      - ./tests:/app/html/tests/
   drupal-mysql-lib-unb-ca:
     image: mysql:5.7
     restart: unless-stopped
