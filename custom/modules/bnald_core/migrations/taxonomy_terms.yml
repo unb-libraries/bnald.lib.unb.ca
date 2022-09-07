@@ -1,0 +1,64 @@
+id: taxonomy_terms
+label: Taxonomy terms
+migration_tags:
+  - e2e
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - tests/cypress/default/fixtures/taxonomyTerms.json
+  fields:
+    -
+      name: name
+      label: Name
+      selector: /name
+    -
+      name: description
+      label: Description
+      selector: /description
+    -
+      name: vid
+      label: Vocabulary
+      selector: /vid
+    -
+      name: status
+      label: Status
+      selector: /status
+    -
+      name: parent
+      label: Parent
+      selector: /parent
+  ids:
+    name:
+      type: string
+    vid:
+      type: string
+process:
+  name: name
+  description: description
+  vid:
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_vocabulary
+      value_key: name
+      access_check: false
+      source: vid
+  status:
+    plugin: default_value
+    default_value: true
+  parent_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: parent
+    -
+      plugin: migration_lookup
+      migration: taxonomy_terms
+  parent:
+    -
+      plugin: default_value
+      default_value: 0
+      source: '@parent_id'
+destination:
+  plugin: entity:taxonomy_term
