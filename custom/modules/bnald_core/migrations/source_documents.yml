@@ -1,0 +1,65 @@
+id: source_documents
+label: Source documents
+migration_tags:
+  - e2e
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - tests/cypress/default/fixtures/sourceDocuments.json
+  fields:
+    -
+      name: title
+      label: title
+      selector: /title
+    -
+      name: year
+      label: Year
+      selector: /year
+    -
+      name: printer
+      label: Printer
+      selector: /printer
+    -
+      name: location
+      label: Print location
+      selector: /location
+    -
+      name: source
+      label: Source
+      selector: /source
+    -
+      name: user
+      label: User
+      selector: /user
+  ids:
+    title:
+      type: string
+process:
+  title: title
+  year: year
+  printer:
+    plugin: migration_lookup
+    migration: taxonomy_terms
+    no_stub: true
+    source: printer
+  print_location:
+    plugin: migration_lookup
+    migration: taxonomy_terms
+    no_stub: true
+    source: location
+  source: source
+  status:
+    plugin: default_value
+    default_value: true
+  user_id:
+    plugin: default_value
+    default_value: 1
+  created: created
+  changed: created
+destination:
+  plugin: entity:source_document
+migration_dependencies:
+  required:
+    - taxonomy_terms
