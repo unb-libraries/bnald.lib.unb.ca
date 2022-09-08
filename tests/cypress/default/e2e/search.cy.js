@@ -1,4 +1,4 @@
-describe("British North American Legislation Database (BNALD)", () => {
+describe('Search', () => {
   context("Front page search form", () => {
     it('Should forward to legislation search page', () => {
       cy.visit("/")
