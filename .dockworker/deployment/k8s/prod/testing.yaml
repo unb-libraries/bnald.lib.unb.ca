@@ -17,10 +17,11 @@ spec:
         app: cypress
         tier: cron
     spec:
+      backoffLimit: 0
       template:
         spec:
           nodeSelector:
-            deployenv: prod
+            deployenv: dev
           containers:
             -
               name: cron-testing-bnald-lib-unb-ca
