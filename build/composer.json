@@ -49,8 +49,7 @@
         "type:drupal-theme"
       ]
     },
-    "patches": {
-    }
+    "patches": {}
   },
   "license": "MIT",
   "minimum-stability": "dev",
@@ -65,7 +64,7 @@
   "require": {
     "drupal/bootstrap": "3.25",
     "drupal/config_update": "1.7",
-    "drupal/core": "9.4.7",
+    "drupal/core": "9.4.8",
     "drupal/externalauth": "1.4",
     "drupal/google_analytics": "3.1",
     "drupal/health_check": "1.3",
