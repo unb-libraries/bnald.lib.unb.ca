@@ -1,5 +1,5 @@
 const host = 'https://bnald.lib.unb.ca'
-describe('British North American Legislation Database (BNALD)', {baseUrl: host}, () => {
+describe('British North American Legislation Database (BNALD)', {baseUrl: host, groups: ['sites']}, () => {
 
   context('Front page', {baseUrl: host}, () => {
     beforeEach(() => {
