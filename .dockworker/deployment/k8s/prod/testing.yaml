@@ -37,16 +37,6 @@ spec:
                     secretKeyRef:
                       name: bnald-lib-unb-ca-cypress
                       key: file_name
-                - name: MONGODB_CONNECT_URI
-                  valueFrom:
-                    secretKeyRef:
-                      name: mongodb
-                      key: connect-uri
-                - name: MONGODB_CONNECT_URI
-                  valueFrom:
-                    secretKeyRef:
-                      name: mongodb
-                      key: connect-uri
                 - name: DEPLOY_ENV
                   value: testing
                 - name: MONGODB_CONNECT_URI
