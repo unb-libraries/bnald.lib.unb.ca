@@ -1,8 +1,8 @@
-enable_override: 1
+enable_override: true
 view: concepts
 view_display: page
-inherit_settings: 1
-pass_arguments: 0
+inherit_settings: true
+pass_arguments: false
 dependencies:
   config:
     - taxonomy.vocabulary.concepts
