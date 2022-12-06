@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   bnald.lib.unb.ca:
     build:
@@ -8,6 +7,8 @@ services:
     container_name: bnald.lib.unb.ca
     depends_on:
       - drupal-mysql-lib-unb-ca
+      - drupal-redis-lib-unb-ca
+      - drupal-solr-lib-unb-ca
     expose:
       - "80"
     networks:
