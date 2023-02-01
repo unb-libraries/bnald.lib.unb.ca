@@ -7,5 +7,6 @@ scripts/local
 config-yml/.htaccess
 
 # Einbaum
+tests/einbaum/node_modules
 tests/einbaum/screenshots
 tests/einbaum/videos
