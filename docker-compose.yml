@@ -69,13 +69,15 @@ services:
     networks:
       - bnald.lib.unb.ca
   cypress:
-    image: ghcr.io/unb-libraries/cypress-drupal:10.x-9.x-1.x
-    container_name: cypress.bnald.lib.unb.ca
+    image: ghcr.io/unb-libraries/einbaum/drupal:12.x-1.x
+    container_name: einbaum.bnald.lib.unb.ca
+    depends_on:
+      - bnald.lib.unb.ca
     environment:
       - BASE_URL=http://bnald.lib.unb.ca
     volumes:
-      - ./tests/cypress/default/e2e:/cypress/e2e
-      - ./tests/cypress/default/fixtures:/cypress/fixtures
+      - ./tests/einbaum/e2e:/einbaum/e2e
+      - ./tests/einbaum/fixtures:/einbaum/fixtures
     networks:
       - bnald.lib.unb.ca
 networks:

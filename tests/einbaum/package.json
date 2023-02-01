@@ -1,0 +1,9 @@
+{
+  "name": "einbaum.bnald.lib.unb.ca",
+  "version": "0.9",
+  "author": "UNB Libraries Systems <libsystems@unb.ca>",
+  "dependencies": {
+    "@unb-libraries/cypress-drupal": "github:unb-libraries/cypress-drupal#12.x-9.x-1.x",
+    "@unb-libraries/einbaum": "github:unb-libraries/einbaum"
+  }
+}
