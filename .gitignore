@@ -5,3 +5,7 @@ tests/behat/features/bootstrap
 scripts/local
 .idea
 config-yml/.htaccess
+
+# Einbaum
+tests/einbaum/screenshots
+tests/einbaum/videos

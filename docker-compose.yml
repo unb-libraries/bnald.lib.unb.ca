@@ -78,6 +78,8 @@ services:
     volumes:
       - ./tests/einbaum/e2e:/einbaum/e2e
       - ./tests/einbaum/fixtures:/einbaum/fixtures
+      - ./tests/einbaum/screenshots:/einbaum/cypress/screenshots
+      - ./tests/einbaum/videos:/einbaum/cypress/videos
     networks:
       - bnald.lib.unb.ca
 networks:
