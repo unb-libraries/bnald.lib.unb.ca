@@ -9,3 +9,5 @@ dependencies:
   - tvi
   - pathauto
   - search_api_solr
+test_dependencies:
+  - migrate_plus
