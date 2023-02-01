@@ -7,7 +7,7 @@ source:
   data_fetcher_plugin: file
   data_parser_plugin: json
   urls:
-    - tests/cypress/default/fixtures/taxonomyTerms.json
+    - tests/einbaum/fixtures/taxonomyTerms.json
   fields:
     -
       name: name

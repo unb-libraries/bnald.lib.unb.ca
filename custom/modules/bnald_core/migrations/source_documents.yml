@@ -7,8 +7,11 @@ source:
   data_fetcher_plugin: file
   data_parser_plugin: json
   urls:
-    - tests/cypress/default/fixtures/sourceDocuments.json
+    - tests/einbaum/fixtures/sourceDocuments.json
   fields:
+    - name: id
+      label: ID
+      selector: /id
     -
       name: title
       label: title
@@ -34,8 +37,8 @@ source:
       label: User
       selector: /user
   ids:
-    title:
-      type: string
+    id:
+      type: integer
 process:
   title: title
   year: year

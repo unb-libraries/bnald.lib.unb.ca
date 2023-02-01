@@ -1,5 +1,5 @@
 id: content
-label: 
+label: Content
 migration_tags:
   - e2e
 source:
@@ -7,7 +7,7 @@ source:
   data_fetcher_plugin: file
   data_parser_plugin: json
   urls:
-    - tests/cypress/default/fixtures/content.json
+    - tests/einbaum/fixtures/content.json
   fields:
     -
       name: nid
