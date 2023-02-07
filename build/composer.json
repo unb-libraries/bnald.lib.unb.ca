@@ -14,8 +14,7 @@
     "allow-plugins": {
       "composer/installers": true,
       "cweagans/composer-patches": true,
-      "drupal/core-composer-scaffold": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "drupal/core-composer-scaffold": true
     },
     "discard-changes": true,
     "preferred-install": {
@@ -24,9 +23,10 @@
     "sort-packages": true
   },
   "conflict": {
+    "drupal/ctools": "^4.0.0",
     "drupal/drupal": "*"
   },
-  "description": "Drupal component of bnald.lib.unb.ca",
+  "description": "Drupal 8 component of bnald.lib.unb.ca",
   "extra": {
     "enable-patching": true,
     "installer-paths": {
@@ -81,7 +81,7 @@
     "drupal/search_api_solr": "4.2.10",
     "drupal/token": "1.11",
     "drupal/tvi": "1.0-rc4",
-    "unb-libraries/drupal-builder": "^10",
+    "unb-libraries/drupal-builder": "^9",
     "unb-libraries/saml_features": "dev-9.x-1.x"
   },
   "require-dev": {
