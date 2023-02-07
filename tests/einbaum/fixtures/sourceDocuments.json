@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "title": "Acts of the General Assembly of His Majesty's Province of New Brunswick passed in the year 1788. Saint John, NB: J. Ryan, 1788.",
-    "year": 1788,
+    "title": "Acts of the General Assembly of His Majesty's Province of New Brunswick",
+    "year": 2001,
     "printer": "John Ryan",
     "location": "Saint John",
     "source": "Early Canadiana Online",
@@ -10,10 +10,10 @@
   },
   {
     "id": 2,
-    "title": "Acts of the General Assembly of Her Majesty's Province of New Brunswick passed in the year 1844. Fredericton: John Simpson, 1844.",
-    "year": 1844,
-    "printer": "John Simpson",
-    "location": "Fredericton",
+    "title": "The Provincial Statutes of Lower Canada",
+    "year": 1930,
+    "printer": "William Vondenvelden",
+    "location": "Quebec",
     "source": "Early Canadiana Online",
     "created": "1560259647"
   }

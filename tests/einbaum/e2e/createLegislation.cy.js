@@ -11,7 +11,7 @@ describe.only('Create a "Piece of Legislation" entity', () => {
     },
     formUrl: '/legislation/add',
     formData: {
-      "autocomplete:origin": "Acts of the General Assembly of Her Majesty's Province of New Brunswick passed in the year 1844. Fredericton: John Simpson, 1844",
+      "autocomplete:origin": "Acts of the General Assembly of His Majesty's Province of New Brunswick",
       "text:title": "An Act in addition to an Act, intituled An Act to prevent Nuisances within the City of Saint John. Passed 25th March 1844.",
       chapter: "7 Victoria Chapter 22",
       year: 1844,
