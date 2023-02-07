@@ -1,0 +1,105 @@
+id: legislations
+label: Legislation
+migration_tags:
+  - e2e
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - tests/einbaum/fixtures/legislations.json
+  fields:
+    - name: id
+      label: ID
+      selector: /id
+    - name: title
+      label: Title
+      selector: /title
+    - name: source
+      label: Source
+      selector: /source
+    - name: chapter
+      label: Chapter
+      selector: /chapter
+    - name: year
+      label: Year
+      selector: /year
+    - name: article_count
+      label: Article count
+      selector: /articleCount
+    - name: province
+      label: Province
+      selector: /province
+    - name: summary
+      label: Summary
+      selector: /summary
+    - name: full_text
+      label: Full text
+      selector: /fullText
+    - name: pdf_original
+      label: PDF (original)
+      selector: /pdfOriginal
+    - name: pdf_transcribed
+      label: PDF (transcribed)
+      selector: /pdfTranscribed
+    - name: jurisdictional_relevance
+      label: Jurisdictional relevance
+      selector: /jurisdictionalRelevance
+    - name: concepts
+      label: Concepts
+      selector: /concepts
+    - name: notes
+      label: Notes
+      selector: /notes
+  ids:
+    id:
+      type: integer
+  constants:
+    original: original.pdf
+    transcribed: transcribed.pdf
+process:
+  title: title
+  origin:
+    plugin: entity_lookup
+    entity_type: source_document
+    value_key: title
+    no_stub: true
+    source: source
+  chapter: chapter
+  year: year
+  article_count: article_count
+  province:
+    plugin: migration_lookup
+    migration: taxonomy_terms
+    no_stub: true
+    source: province
+  summary: summary
+  full_text: full_text
+  pdf_original:
+      plugin: entity_lookup
+      entity_type: file
+      value_key: filename
+      source: constants/original
+  pdf_transcribed:
+      plugin: entity_lookup
+      entity_type: file
+      value_key: filename
+      source: constants/transcribed
+  jurisdictional_relevance:
+    plugin: migration_lookup
+    migration: taxonomy_terms
+    no_stub: true
+    source: jurisdictional_relevance
+  concepts:
+    plugin: migration_lookup
+    migration: taxonomy_terms
+    no_stub: true
+    source: concepts
+  notes: notes
+destination:
+  plugin: entity:legislation
+migration_dependencies:
+  required:
+    - source_documents
+    - files
+    - taxonomy_terms

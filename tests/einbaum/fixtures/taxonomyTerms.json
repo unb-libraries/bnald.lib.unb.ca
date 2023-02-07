@@ -8,15 +8,23 @@
     "vid": "Concepts"
   },
   {
+    "name": "Natural Resources",
+    "vid": "Concepts"
+  },
+  {
     "name": "New Brunswick",
     "vid": "Provinces"
   },
   {
-    "name": "Nova Scotia",
+    "name": "Lower Canada",
     "vid": "Provinces"
   },
   {
     "name": "Interprovincial",
+    "vid": "Jurisdictional Relevance"
+  },
+  {
+    "name": "Provincial",
     "vid": "Jurisdictional Relevance"
   },
   {
