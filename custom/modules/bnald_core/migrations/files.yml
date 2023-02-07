@@ -1,0 +1,32 @@
+id: files
+label: Files
+migration_tags:
+  - e2e
+source:
+  plugin: embedded_data
+  data_rows:
+    - id: 1
+      path: /app/html/tests/einbaum/fixtures/files/original.pdf
+    - id: 2
+      path: /app/html/tests/einbaum/fixtures/files/transcribed.pdf
+  ids:
+    id:
+      type: integer
+process:
+  filename:
+    plugin: callback
+    callable: basename
+    source: path
+  destination_path:
+    plugin: concat
+    source:
+      - 'public://files/pdf/'
+      - '@filename'
+  uri:
+    plugin: file_copy
+    source:
+      - path
+      - '@destination_path'
+    file_exists: 'use existing'
+destination:
+  plugin: entity:file
