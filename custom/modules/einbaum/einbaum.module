@@ -15,6 +15,9 @@ function einbaum_field_widget_complete_form_alter(&$field_widget_complete_form, 
   /** @var \Drupal\Core\Field\FieldItemListInterface $items */
   $items = $context['items'];
 
+  /** @var \Drupal\Core\Field\WidgetInterface $widget */
+  $widget = $context['widget'];
+
   $field_storage_definition = $items
     ->getFieldDefinition()
     ->getFieldStorageDefinition();
@@ -26,12 +29,12 @@ function einbaum_field_widget_complete_form_alter(&$field_widget_complete_form, 
     ->getName();
 
   foreach ($properties as $property) {
-    /** @var \Drupal\Core\Field\WidgetInterface $widget */
-    $widget = $context['widget'];
-
     switch ($widget->getPluginId()) {
       case 'entity_reference_autocomplete_tags':
         $key = ['widget', $property];
+        break;
+      case 'file_generic':
+        $key = FALSE;
         break;
       default:
         $key = ['widget', 0, $property];
@@ -40,10 +43,37 @@ function einbaum_field_widget_complete_form_alter(&$field_widget_complete_form, 
         }
     }
 
-    array_push($key, '#attributes', 'data-test');
-    NestedArray::setValue($field_widget_complete_form, $key, $property === $main_property
-      ? $test_id
-      : "{$test_id}__{$property}"
-    );
+    if ($key) {
+      array_push($key, '#attributes', 'data-test');
+      NestedArray::setValue($field_widget_complete_form, $key, $property === $main_property
+        ? $test_id
+        : "{$test_id}__{$property}"
+      );
+    }
   }
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function einbaum_element_info_alter(array &$info) {
+  $info['managed_file']['#process'][] = 'einbaum_managed_file_process';
+}
+
+/**
+ * Additional #process callback for "managed_file" form elements.
+ *
+ * @param array $element
+ *   The element's render array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The render array of the form the element is part of.
+ *
+ * @return array
+ *   A modified element render array.
+ */
+function einbaum_managed_file_process(array &$element, FormStateInterface $form_state, array &$complete_form) {
+  $element['upload']['#attributes']['data-test'] = $element['#field_name'];
+  return $element;
 }
