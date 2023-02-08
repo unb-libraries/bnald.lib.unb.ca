@@ -26,11 +26,21 @@ function einbaum_field_widget_complete_form_alter(&$field_widget_complete_form, 
     ->getName();
 
   foreach ($properties as $property) {
-    $key = ['widget', 0, $property, '#attributes', 'data-test'];
-    if (array_key_exists('delta', $context)) {
-      array_splice($key, 1, 1, $context['delta']);
+    /** @var \Drupal\Core\Field\WidgetInterface $widget */
+    $widget = $context['widget'];
+
+    switch ($widget->getPluginId()) {
+      case 'entity_reference_autocomplete_tags':
+        $key = ['widget', $property];
+        break;
+      default:
+        $key = ['widget', 0, $property];
+        if (array_key_exists('delta', $context)) {
+          array_splice($key, 1, 1, $context['delta']);
+        }
     }
 
+    array_push($key, '#attributes', 'data-test');
     NestedArray::setValue($field_widget_complete_form, $key, $property === $main_property
       ? $test_id
       : "{$test_id}__{$property}"
