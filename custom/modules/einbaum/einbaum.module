@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains einbaum.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\NestedArray;
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter().
+ */
+function einbaum_field_widget_complete_form_alter(&$field_widget_complete_form, FormStateInterface $form_state, $context) {
+  /** @var \Drupal\Core\Field\FieldItemListInterface $items */
+  $items = $context['items'];
+
+  $field_storage_definition = $items
+    ->getFieldDefinition()
+    ->getFieldStorageDefinition();
+
+  $main_property = $field_storage_definition->getMainPropertyName();
+  $properties = $field_storage_definition->getPropertyNames();
+  $test_id = $items
+    ->getFieldDefinition()
+    ->getName();
+
+  foreach ($properties as $property) {
+    $key = ['widget', 0, $property, '#attributes', 'data-test'];
+    if (array_key_exists('delta', $context)) {
+      array_splice($key, 1, 1, $context['delta']);
+    }
+
+    NestedArray::setValue($field_widget_complete_form, $key, $property === $main_property
+      ? $test_id
+      : "{$test_id}__{$property}"
+    );
+  }
+}
