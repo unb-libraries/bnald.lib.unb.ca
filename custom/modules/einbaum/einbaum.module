@@ -9,6 +9,15 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\NestedArray;
 
 /**
+ * Implements hook_form_alter().
+ */
+function einbaum_form_alter(array &$form, FormStateInterface $form_state, string $form_id) {
+  if ($form['actions']['submit']) {
+    $form['actions']['submit']['#attributes']['data-test'] = 'submit';
+  }
+}
+
+/**
  * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter().
  */
 function einbaum_field_widget_complete_form_alter(&$field_widget_complete_form, FormStateInterface $form_state, $context) {
