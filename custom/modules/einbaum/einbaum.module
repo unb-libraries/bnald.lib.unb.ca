@@ -9,6 +9,22 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\NestedArray;
 
 /**
+ * Implements hook_theme().
+ */
+function einbaum_theme($existing, $type, $theme, $path) {
+  return [
+    'status_messages' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+function template_preprocess_status_messages(array &$variables) {
+  $test_id = implode('-', array_keys($variables['message_list']));
+  $variables['attributes']['data-test'] = $test_id;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function einbaum_form_alter(array &$form, FormStateInterface $form_state, string $form_id) {
