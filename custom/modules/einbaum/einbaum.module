@@ -13,10 +13,17 @@ use Drupal\Component\Utility\NestedArray;
  */
 function einbaum_theme($existing, $type, $theme, $path) {
   return [
+    'page_title' => [
+      'render element' => 'elements',
+    ],
     'status_messages' => [
       'render element' => 'elements',
     ],
   ];
+}
+
+function template_preprocess_page_title(array &$variables) {
+  $variables['title_attributes']['data-test'] = 'page-title';
 }
 
 function template_preprocess_status_messages(array &$variables) {
