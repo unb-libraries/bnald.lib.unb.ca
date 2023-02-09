@@ -22,10 +22,22 @@ function einbaum_theme($existing, $type, $theme, $path) {
   ];
 }
 
+/**
+ * Preprocess "page-title" elements.
+ *
+ * @param array $variables
+ *   An array of template variables.
+ */
 function template_preprocess_page_title(array &$variables) {
   $variables['title_attributes']['data-test'] = 'page-title';
 }
 
+/**
+ * Preprocess "status-messages" elements.
+ *
+ * @param array $variables
+ *   An array of template variables.
+ */
 function template_preprocess_status_messages(array &$variables) {
   $test_id = implode('-', array_keys($variables['message_list']));
   $variables['attributes']['data-test'] = $test_id;
