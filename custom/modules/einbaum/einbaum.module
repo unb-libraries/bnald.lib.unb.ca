@@ -13,6 +13,12 @@ use Drupal\Component\Utility\NestedArray;
  */
 function einbaum_theme($existing, $type, $theme, $path) {
   return [
+    'menu_local_task' => [
+      'render element' => 'elements',
+      'preprocess functions' => [
+        'einbaum_template_preprocess_menu_local_task',
+      ]
+    ],
     'page_title' => [
       'render element' => 'elements',
     ],
@@ -20,6 +26,17 @@ function einbaum_theme($existing, $type, $theme, $path) {
       'render element' => 'elements',
     ],
   ];
+}
+
+/**
+ * Preprocess "menu-local-task" elements.
+ *
+ * @param array $variables
+ *   An array of template variables.
+ */
+function einbaum_template_preprocess_menu_local_task(array &$variables) {
+  $title = strtolower($variables['element']['#link']['title']);
+  $variables['element']['#attributes']['data-test'] = "local-task-$title";
 }
 
 /**
