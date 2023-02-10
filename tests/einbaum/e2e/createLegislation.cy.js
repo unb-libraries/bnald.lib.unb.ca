@@ -1,37 +1,60 @@
-describe.only('Create a "Piece of Legislation" entity', () => {
-  Cypress.Workflows.run('createEntity', {
-    entityType: 'legislation',
-    users: {
-      authorized: [
-        'bnald_editor',
-      ],
-      unauthorized: [
-        'user',
-      ],
-    },
-    formUrl: '/legislation/add',
-    formData: {
-      "autocomplete:origin": "Acts of the General Assembly of His Majesty's Province of New Brunswick",
-      "text:title": "An Act in addition to an Act, intituled An Act to prevent Nuisances within the City of Saint John. Passed 25th March 1844.",
-      chapter: "7 Victoria Chapter 22",
-      year: 1844,
-      article_count: 5,
-      "autocomplete:province": "New Brunswick",
-      "text:summary": "This act creates new regulations for public health and safety in Saint John and penalties for the violation.",
-      "text:full_text": "Whereas buildings have been erected in the City of Saint John, covering the whole ground belonging to the owner thereof, without privies...",
-      "fileselect:pdf_original": "original.pdf",
-      "fileselect:pdf_transcribed": "transcribed.pdf",
-      "autocomplete:jurisdictional_relevance": [
-        "Local",
-      ],
-      "autocomplete:concepts": [
-        "Public Health",
-        "Public Order",
-      ],
-      "text:notes": "This is a test entry.",
-    },
-    successMessage: "Created the An Act in addition to an Act, intituled An Act to prevent Nuisances within the City of Saint John. Passed 25th March 1844. Legislation.",
-    successUrl: "/legislation/act-addition-act-intituled-act-prevent-nuisances-within-city-saint-john-passed-25th(-[0-9]+)?",
+describe('Creating a "Piece of Legislation"', () => {
+  context('as "BNALD editor"', () => {
+    before(() => {
+      cy.loginAs('bnald_editor')
+      cy.visit('/legislation/add')
+    })
+    
+    it('should result in a new "Legislation" entity', () => {
+      cy.get('[data-test="origin"]')
+        .enter("Acts of the General Assembly of His Majesty's Province of New Brunswick")
+      cy.get('[data-test="title"]')
+        .enter('An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867.')
+      cy.get('[data-test="chapter"]')
+        .enter('30 Victoria - Chapter 85')
+      cy.get('[data-test="year"]')
+        .enter(1867)
+      cy.get('[data-test="article_count"]')
+        .enter(18)
+      cy.get('[data-test="province"]')
+        .enter('New Brunswick')
+      cy.get('[data-test="summary"]')
+        .enter('This Act incorporates the Richibucto Boom Company, their powers, and the responsibilities surrounding their equipment.')
+      cy.get('[data-test="full_text"]')
+        .enter("Whereas the erection of a Boom or Booms at or near the bridge over the Richibucto River near Anthony Cail's, in the County of Kent, will be a great benefit...")
+      cy.get('[data-test="pdf_original"]')
+        .enter('original.pdf')
+      cy.get('[data-test="pdf_transcribed"]')
+        .enter('transcribed.pdf')
+      cy.get('[data-test="jurisdictional_relevance"]')
+        .enter('Local')
+      cy.get('[data-test="concepts"]')
+        .enter('Natural Resources')
+      
+      cy.get('[data-test="submit"]')
+        .click()
+
+      cy.location('pathname')
+        .should('match', /legislation\/act-incorporate-richibucto-boom-company-passed-17th-june-1867(-\d+)?/)
+      cy.get('[data-test*="status"]')
+        .contains('Created the An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867. Legislation.')
+    })
   })
 
+  context('as another logged-in user', () => {
+    it('should result in an "Access denied" page', () => {
+      cy.loginAs('user')
+      cy.visit('/legislation/add', {failOnStatusCode: false})
+      cy.get('[data-test="page-title"]')
+        .contains('Access denied')
+    })
+  })
+
+  context('as an anonymous user', () => {
+    it('should result in an "Access denied" page', () => {
+      cy.visit('/legislation/add', {failOnStatusCode: false})
+      cy.get('[data-test="page-title"]')
+        .contains('Access denied')
+    })
+  })
 })
