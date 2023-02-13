@@ -64,7 +64,7 @@ function template_preprocess_status_messages(array &$variables) {
  * Implements hook_form_alter().
  */
 function einbaum_form_alter(array &$form, FormStateInterface $form_state, string $form_id) {
-  if ($form['actions']['submit']) {
+  if (array_key_exists('actions', $form) && array_key_exists('submit', $form['actions'])) {
     $form['actions']['submit']['#attributes']['data-test'] = 'submit';
   }
 }
