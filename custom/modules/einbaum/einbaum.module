@@ -31,6 +31,13 @@ function einbaum_theme($existing, $type, $theme, $path) {
     'status_messages' => [
       'render element' => 'elements',
     ],
+    'views_exposed_form' => [
+      'render element' => 'elements',
+      'preprocess functions' => [
+        'template_preprocess_views_exposed_form',
+        'einbaum_template_preprocess_views_exposed_form',
+      ]
+    ],
     'views_view_table' => [
       'render element' => 'elements',
       'preprocess functions' => [
@@ -39,6 +46,20 @@ function einbaum_theme($existing, $type, $theme, $path) {
       ]
     ]
   ];
+}
+
+/**
+ * Preprocess "views-view-table" elements.
+ *
+ * @param array $variables
+ *   An array of template variables.
+ */
+function einbaum_template_preprocess_views_exposed_form(array &$variables) {
+  foreach ($variables['form'] as $key => $value) {
+    if (substr($key, 0, 1) !== '#' && array_key_exists('#type', $value) && !in_array($value['#type'], ['hidden', 'actions'])) {
+      $variables['form'][$key]['#attributes']['data-test'] = "form-element-$key";
+    }
+  }
 }
 
 /**
