@@ -30,7 +30,7 @@ describe('Creating a "Piece of Legislation"', () => {
     })
   })
 
-  context('Form submission', () => {
+  context.only('Form submission', () => {
     before(() => {
       cy.loginAs(editor.name)
       cy.visit(formPath)
@@ -60,5 +60,11 @@ describe('Creating a "Piece of Legislation"', () => {
       cy.get('[data-test*="status"]')
         .contains('Created the An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867. Legislation.')
     })
+
+    it('should appear as the most recently added item', () => {
+      cy.visit('/legislation/recently-added')
+      cy.get('[data-test="view-item-0-view_legislation"]')
+        .should('contain', 'An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867.')
+    });
   })
 })
