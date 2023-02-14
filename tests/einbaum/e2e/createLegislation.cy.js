@@ -7,12 +7,26 @@ describe('Creating a "Piece of Legislation"', () => {
   context('Form access', () => {
     users.forEach(user => {
       const granted = user.name === editor.name
-      specify(`${user.name}: ${granted ? 'granted' : 'denied'}`, () => {
+      specify(`${user.name} should ${!granted ? 'not ' : ''}see form link`, () => {
+        cy.loginAs(user.name)
+        cy.visit('/legislation/recently-added')
+        if (granted) {
+          cy.get('[data-test="local-action-entity-legislation-add-form"] a')
+            .its('0.href')
+            .should('match', RegExp(formPath))
+        }
+        else {
+          cy.get('[data-test="local-action-entity-legislation-add-form"]')
+            .should('not.exist')
+        }
+      });
+
+      specify(`${user.name} should be ${granted ? 'granted' : 'denied'} form access`, () => {
         cy.loginAs(user.name)
         cy.request({url: formPath, failOnStatusCode: false})
           .its('status')
           .should('match', granted ? /20\d/ : /40\d/)
-      });
+      })
     })
   })
 
