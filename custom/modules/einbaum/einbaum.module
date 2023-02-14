@@ -48,10 +48,16 @@ function einbaum_theme($existing, $type, $theme, $path) {
  *   An array of template variables.
  */
 function einbaum_template_preprocess_views_view_table(array &$variables) {
-  foreach ($variables['rows'] as $id => $row) {
-    /** @var \Drupal\Core\Template\Attribute $attribute */
-    $attribute = $row['attributes'];
-    $attribute->setAttribute('data-test', "view-item-$id");
+  foreach ($variables['rows'] as $rid => $row) {
+    /** @var \Drupal\Core\Template\Attribute $row_attribute */
+    $row_attribute = $row['attributes'];
+    $row_attribute->setAttribute('data-test', "view-item-$rid");
+
+    foreach ($row['columns'] as $cid => $column) {
+      /** @var \Drupal\Core\Template\Attribute $column_attribute */
+      $column_attribute = $column['attributes'];
+      $column_attribute->setAttribute('data-test', "view-item-$rid-$cid");
+    }
   }
 }
 
