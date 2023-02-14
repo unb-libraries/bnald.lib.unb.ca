@@ -30,7 +30,9 @@ describe('Creating a "Piece of Legislation"', () => {
     })
   })
 
-  context.only('Form submission', () => {
+  context('Form submission', () => {
+    let path = ''
+
     before(() => {
       cy.loginAs(editor.name)
       cy.visit(formPath)
@@ -56,7 +58,10 @@ describe('Creating a "Piece of Legislation"', () => {
         .click()
 
       cy.location('pathname')
-        .should('match', /legislation\/act-incorporate-richibucto-boom-company-passed-17th-june-1867(-\d+)?/)
+        .then(pathname => {
+          expect(pathname).to.match(/legislation\/act-incorporate-richibucto-boom-company-passed-17th-june-1867(-\d+)?/)
+          path = pathname
+        })
       cy.get('[data-test*="status"]')
         .contains('Created the An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867. Legislation.')
     })
@@ -66,5 +71,16 @@ describe('Creating a "Piece of Legislation"', () => {
       cy.get('[data-test="view-item-0-view_legislation"]')
         .should('contain', 'An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867.')
     });
+
+    it('should show up in search results for "Richibucto"', () => {
+      cy.visit('/legislation/search')
+      cy.get('[data-test="form-element-query"]')
+        .type('Richibucto')
+      cy.get('[data-test="submit"]')
+        .click()
+
+      cy.get('[data-test*="view-item"]')
+        .find(`[href="${path}"]`)
+    })
   })
 })
