@@ -1,35 +1,52 @@
-describe('Deleting a "Piece of Legislation"', () => {
-  context('as another logged-in user', () => {
-    it('should not be permitted', () => {
-      cy.loginAs('user')
-      cy.visit('/legislation/ordinance-amend-laws-relative-winter-roads')
-      cy.get('[data-test="local-task-delete"]')
-        .should('not.exist')
-      cy.visit('/legislation/2/delete', {failOnStatusCode: false})
-      cy.get('[data-test="page-title"]')
-        .should('contain', 'Page not found')
-    });
+import users from "../fixtures/users.json";
+
+const hasPermission = (user) => user.roles.includes('bnald_editor')
+const sortByPermission = (u1, u2) => {
+  return hasPermission(u1) || !hasPermission(u2)
+    ? u1 : u2
+}
+
+describe('Delete a "Piece of Legislation"', () => {
+  let formPath = ''
+  context('Form access', () => {
+    users.sort(sortByPermission).forEach(user => {
+      const granted = hasPermission(user)
+
+      specify(`${user.name}: ${granted ? 'granted' : 'denied'}`, () => {
+        cy.loginAs(user.name)
+        cy.visit('/legislation/ordinance-amend-laws-relative-winter-roads')
+
+        if (granted) {
+          cy.get('[data-test="local-task-delete"]')
+            .contains('Delete')
+            .click()
+
+          cy.url().should('match', /legislation\/\d+\/delete/)
+          if (!formPath) {
+            cy.location('pathname')
+              .then(pathname => formPath = pathname)
+          }
+        }
+        else {
+          cy.get('[data-test="local-task-delete"]')
+            .should('not.exist')
+          if (formPath) {
+            cy.request({url: formPath, failOnStatusCode: false})
+              .its('status')
+              .should('match', /40\d/)
+          }
+        }
+      })
+    })
   })
 
-  context('as anonymous user', () => {
-    it('should not be permitted', () => {
-      cy.visit('/legislation/ordinance-amend-laws-relative-winter-roads')
-      cy.get('[data-test="local-task-delete"]')
-        .should('not.exist')
-      cy.visit('/legislation/2/delete', {failOnStatusCode: false})
-      cy.get('[data-test="page-title"]')
-        .should('contain', 'Page not found')
-    });
-  })
+  context(`Form submission`, () => {
+    const editor = users.find(hasPermission)
 
-  context('as "BNALD editor"', () => {
-    it('should remove a "Legislation" entity', () => {
-      cy.loginAs('bnald_editor')
-      cy.visit('/legislation/ordinance-amend-laws-relative-winter-roads')
-      cy.get('[data-test="local-task-delete"]')
-        .click()
-      cy.url()
-        .should('match', /legislation\/\d+\/delete/)
+    it('should remove the entity', () => {
+      cy.loginAs(editor.name)
+      cy.visit(formPath)
+
       cy.get('[data-test="submit"]')
         .click()
       cy.get('[data-test*="status"]')
