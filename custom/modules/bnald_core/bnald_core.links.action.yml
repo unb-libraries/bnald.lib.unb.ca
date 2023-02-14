@@ -3,6 +3,7 @@ entity.legislation.add_form:
   title: 'Add Legislation'
   appears_on:
     - entity.legislation.collection
+    - view.recently_added.page_1
 entity.source_document.add_form:
   route_name: entity.source_document.add_form
   title: 'Add Source Document'
