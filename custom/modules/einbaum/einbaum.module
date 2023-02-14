@@ -31,7 +31,28 @@ function einbaum_theme($existing, $type, $theme, $path) {
     'status_messages' => [
       'render element' => 'elements',
     ],
+    'views_view_table' => [
+      'render element' => 'elements',
+      'preprocess functions' => [
+        'template_preprocess_views_view_table',
+        'einbaum_template_preprocess_views_view_table',
+      ]
+    ]
   ];
+}
+
+/**
+ * Preprocess "views-view-table" elements.
+ *
+ * @param array $variables
+ *   An array of template variables.
+ */
+function einbaum_template_preprocess_views_view_table(array &$variables) {
+  foreach ($variables['rows'] as $id => $row) {
+    /** @var \Drupal\Core\Template\Attribute $attribute */
+    $attribute = $row['attributes'];
+    $attribute->setAttribute('data-test', "view-item-$id");
+  }
 }
 
 /**
