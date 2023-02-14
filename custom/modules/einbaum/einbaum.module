@@ -13,6 +13,12 @@ use Drupal\Component\Utility\NestedArray;
  */
 function einbaum_theme($existing, $type, $theme, $path) {
   return [
+    'menu_local_action' => [
+      'render element' => 'elements',
+      'preprocess functions' => [
+        'einbaum_template_preprocess_menu_local_action',
+      ]
+    ],
     'menu_local_task' => [
       'render element' => 'elements',
       'preprocess functions' => [
@@ -26,6 +32,20 @@ function einbaum_theme($existing, $type, $theme, $path) {
       'render element' => 'elements',
     ],
   ];
+}
+
+/**
+ * Preprocess "menu-local-action" elements.
+ *
+ * @param array $variables
+ *   An array of template variables.
+ */
+function einbaum_template_preprocess_menu_local_action(array &$variables) {
+  /** @var \Drupal\Core\Url $url */
+  $url = $variables['element']['#link']['url'];
+  $route_name = $url->getRouteName();
+  $variables['element']['#attributes']['data-test'] = 'local-action-' .
+    preg_replace('/[^a-zA-Z0-9\']/', '-', $route_name);
 }
 
 /**
