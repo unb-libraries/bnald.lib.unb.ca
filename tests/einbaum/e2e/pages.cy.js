@@ -7,17 +7,24 @@ describe('Page access', () => {
 
       const access = (page, users, granted = true) => {
         users.forEach(user => {
-          cy.loginAs(user.name)
+          if (user.name !== 'anonymous') {
+            cy.loginAs(user.name)
+          }
           cy.request({url: page.path, failOnStatusCode: false})
             .its('status')
             .should('match', granted ? /20\d/ : /40\d/)
         })
       }
 
-      const authorized = page.role ? users.filter(user => user.roles.includes(page.role)) : users
-      const unauthorized = page.role ? users.filter(user => !user.roles.includes(page.role)) : []
+      const authorized = !page.public && page.role
+        ? users.filter(user => user.roles.includes(page.role))
+        : !page.public
+          ? users.filter(user => user.name !== 'anonymous')
+          : users
+      const authorizedNames = authorized.map(user => user.name)
+      const unauthorized = users.filter(user => !authorizedNames.includes(user.name))
       const grantedUserNames = unauthorized.length > 0
-        ? authorized.map(user => user.name).join(',')
+        ? authorizedNames.join(',')
         : 'everyone'
 
       specify(`grant access to ${grantedUserNames}`, () => {

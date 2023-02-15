@@ -1,19 +1,23 @@
 [
   {
     "path": "/legislation/recently-added",
-    "title": "Recently Added Legislation"
+    "title": "Recently Added Legislation",
+    "public": true
   },
   {
     "path": "/legislation/search",
-    "title": "Search Legislation"
+    "title": "Search Legislation",
+    "public": true
   },
   {
     "path": "/legislation/add",
     "title": "Add legislation",
+    "public": false,
     "role": "bnald_editor"
   },
   {
     "path": "/legislation/act-prevent-destruction-moose-province",
-    "title": "An Act to prevent the destruction of Moose in this Province."
+    "title": "An Act to prevent the destruction of Moose in this Province.",
+    "public": true
   }
 ]
