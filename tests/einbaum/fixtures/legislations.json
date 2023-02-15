@@ -39,5 +39,22 @@
       "Local"
     ],
     "notes": ""
+  },
+  {
+    "id": -1,
+    "origin": "Acts of the General Assembly of His Majesty's Province of New Brunswick",
+    "title": "An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867.",
+    "path": "/legislation/act-incorporate-richibucto-boom-company-passed-17th-june-1867",
+    "chapter": "30 Victoria - Chapter 85",
+    "year": 1867,
+    "article_count": 18,
+    "province": "New Brunswick",
+    "summary": "This Act incorporates the Richibucto Boom Company, their powers, and the responsibilities surrounding their equipment.',killed during this time.",
+    "full_text": "Whereas the erection of a Boom or Booms at or near the bridge over the Richibucto River near Anthony Cail's, in the County of Kent, will be a great benefit...",
+    "pdf_original": "original.pdf",
+    "pdf_transcribed": "transcribed.pdf",
+    "jurisdictional_relevance": "Local",
+    "concepts": "Natural Resources",
+    "query": "Richibucto"
   }
 ]

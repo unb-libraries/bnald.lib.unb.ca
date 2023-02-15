@@ -58,6 +58,11 @@ source:
     original: original.pdf
     transcribed: transcribed.pdf
 process:
+  _id:
+    plugin: skip_on_value
+    value: -1
+    method: row
+    source: id
   title: title
   origin:
     plugin: entity_lookup

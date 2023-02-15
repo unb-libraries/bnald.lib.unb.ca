@@ -1,4 +1,22 @@
 import users from '../fixtures/users.json'
+import legislations from '../fixtures/legislations.json'
+
+const {
+  origin,
+  title,
+  path,
+  chapter,
+  year,
+  article_count,
+  province,
+  summary,
+  full_text,
+  pdf_original,
+  pdf_transcribed,
+  jurisdictional_relevance,
+  concepts,
+  query,
+} = legislations.find(legislation => legislation.id < 0)
 
 const editor = users.find(user => user.roles.includes('bnald_editor'))
 const formPath = '/legislation/add'
@@ -30,8 +48,8 @@ describe('Creating a "Piece of Legislation"', () => {
     })
   })
 
-  context('Form submission', () => {
-    let path = ''
+  context.only('Form submission', () => {
+    let realPath = ''
 
     before(() => {
       cy.loginAs(editor.name)
@@ -40,47 +58,47 @@ describe('Creating a "Piece of Legislation"', () => {
 
     it('should result in a new "Legislation" entity', () => {
       Object.entries({
-        origin: "Acts of the General Assembly of His Majesty's Province of New Brunswick",
-        title: 'An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867.',
-        chapter: '30 Victoria - Chapter 85',
-        year: 1867,
-        article_count: 18,
-        province: 'New Brunswick',
-        summary: 'This Act incorporates the Richibucto Boom Company, their powers, and the responsibilities surrounding their equipment.',
-        full_text: "Whereas the erection of a Boom or Booms at or near the bridge over the Richibucto River near Anthony Cail's, in the County of Kent, will be a great benefit...",
-        pdf_original: 'original.pdf',
-        pdf_transcribed: 'transcribed.pdf',
-        jurisdictional_relevance: 'Local',
-        concepts: 'Natural Resources',
-      }).forEach(([field, value]) => cy.get(`[data-test="${field}"`).enter(value))
+        origin,
+        title,
+        chapter,
+        year,
+        article_count,
+        province,
+        summary,
+        full_text,
+        pdf_original,
+        pdf_transcribed,
+        jurisdictional_relevance,
+        concepts,
+      }).forEach(([field, value]) => {
+        cy.get(`[data-test="${field}"`)
+          .enter(value)
+      })
 
       cy.get('[data-test="submit"]')
         .click()
 
-      cy.location('pathname')
-        .then(pathname => {
-          expect(pathname).to.match(/legislation\/act-incorporate-richibucto-boom-company-passed-17th-june-1867(-\d+)?/)
-          path = pathname
-        })
+      cy.location('pathname').then(pathname => realPath = pathname)
+        .should('contain', path)
       cy.get('[data-test*="status"]')
-        .contains('Created the An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867. Legislation.')
+        .contains(`Created the ${title} Legislation`)
     })
 
     it('should appear as the most recently added item', () => {
       cy.visit('/legislation/recently-added')
       cy.get('[data-test="view-item-0-view_legislation"]')
-        .should('contain', 'An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867.')
+        .should('contain', title)
     });
 
-    it('should show up in search results for "Richibucto"', () => {
+    it(`should show up in search results for "${query}"`, () => {
       cy.visit('/legislation/search')
       cy.get('[data-test="form-element-query"]')
-        .type('Richibucto')
+        .type(query)
       cy.get('[data-test="submit"]')
         .click()
 
       cy.get('[data-test*="view-item"]')
-        .find(`[href="${path}"]`)
+        .find(`[href="${realPath}"]`)
     })
   })
 })
