@@ -33,7 +33,11 @@ source:
     name:
       type: string
 process:
-  name: name
+  name:
+    plugin: skip_on_value
+    value: anonymous
+    method: row
+    source: name
   pass:
     -
       plugin: callback

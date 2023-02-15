@@ -12,5 +12,8 @@
     "pass": "2345",
     "email": "user@example.com",
     "roles": []
+  },
+  {
+    "name": "anonymous"
   }
 ]
