@@ -2,7 +2,12 @@
   {
     "path": "/legislation/recently-added",
     "title": "Recently Added Legislation",
-    "public": true
+    "public": true,
+    "actions": {
+      "bnald_editor": {
+        "entity-legislation-add-form": "add legislation"
+      }
+    }
   },
   {
     "path": "/legislation/search",
@@ -18,6 +23,13 @@
   {
     "path": "/legislation/act-prevent-destruction-moose-province",
     "title": "An Act to prevent the destruction of Moose in this Province.",
-    "public": true
+    "public": true,
+    "actions": {
+      "bnald_editor": {
+        "view": "view",
+        "edit": "edit",
+        "delete": "delete"
+      }
+    }
   }
 ]

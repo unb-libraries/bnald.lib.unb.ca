@@ -31,6 +31,31 @@ describe('Page access', () => {
         access(page, authorized)
         access(page, unauthorized, false)
       })
+
+      if (page.actions) {
+        users.forEach(user => {
+          const actions = user.roles
+            .reduce((actions, role) => {
+              return {
+                ...actions,
+                ...page.actions[role],
+              }
+            }, {})
+          const actionLabels = Object.values(actions).join(',')
+
+          specify(`${user.name} ${actionLabels ? `can ${actionLabels}` : 'has no actions'}`, () => {
+            if (user.name !== 'anonymous') {
+              cy.loginAs(user.name)
+            }
+            cy.visit(page.path)
+            cy.get('[data-test*="admin-action-"]')
+              .should('have.lengthOf', Object.keys(actions).length)
+            Object.keys(actions).forEach(action => {
+              cy.get(`[data-test="admin-action-${action}"]`)
+            })
+          })
+        })
+      }
     })
   })
 })
