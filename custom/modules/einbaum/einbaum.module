@@ -92,7 +92,7 @@ function einbaum_template_preprocess_menu_local_action(array &$variables) {
   /** @var \Drupal\Core\Url $url */
   $url = $variables['element']['#link']['url'];
   $route_name = $url->getRouteName();
-  $variables['element']['#attributes']['data-test'] = 'local-action-' .
+  $variables['element']['#attributes']['data-test'] = 'admin-action-' .
     preg_replace('/[^a-zA-Z0-9\']/', '-', $route_name);
 }
 
@@ -104,7 +104,7 @@ function einbaum_template_preprocess_menu_local_action(array &$variables) {
  */
 function einbaum_template_preprocess_menu_local_task(array &$variables) {
   $title = strtolower($variables['element']['#link']['title']);
-  $variables['element']['#attributes']['data-test'] = "local-task-$title";
+  $variables['element']['#attributes']['data-test'] = "admin-action-$title";
 }
 
 /**
