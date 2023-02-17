@@ -1,21 +1,19 @@
-import users from "../fixtures/users.json";
+import { mooseLegislation } from '../fixtures/legislations.json'
+import { editor } from "../fixtures/users.json";
 
 describe('Delete a "Piece of Legislation"', () => {
-  context(`Form submission`, () => {
+  it('is deleted via form submission', () => {
+    const { title, path } = mooseLegislation
 
-    it('should remove the entity', () => {
-      const editor = users.find(user => user.roles.includes('bnald_editor'))
+    cy.loginAs(editor.name)
+    cy.visit(path)
+    cy.get('[data-test="admin-action-delete"]')
+      .click()
 
-      cy.loginAs(editor.name)
-      cy.visit('/legislation/act-prevent-destruction-moose-province')
-      cy.get('[data-test="admin-action-delete"]')
-        .click()
+    cy.get('[data-test="submit"]')
+      .click()
 
-      cy.get('[data-test="submit"]')
-        .click()
-
-      cy.get('[data-test*="status"]')
-        .contains('The legislation An Act to prevent the destruction of Moose in this Province. has been deleted.')
-    })
+    cy.get('[data-test*="status"]')
+      .contains(`The legislation ${title} has been deleted.`)
   })
 })

@@ -1,5 +1,9 @@
-import pages from '../fixtures/pages.json'
-import users from '../fixtures/users.json'
+import pagesFixture from '../fixtures/pages.json'
+import usersFixture from '../fixtures/users.json'
+
+const pages = Object.values(pagesFixture)
+const users = Object.values(usersFixture)
+const { anonymous } = usersFixture
 
 describe('Page', () => {
   pages.forEach(page => {
@@ -7,7 +11,7 @@ describe('Page', () => {
 
       const access = (page, users, granted = true) => {
         users.forEach(user => {
-          if (user.name !== 'anonymous') {
+          if (user.name !== anonymous.name) {
             cy.loginAs(user.name)
           }
           cy.request({url: page.path, failOnStatusCode: false})
@@ -20,7 +24,7 @@ describe('Page', () => {
         const authorized = !page.public && page.role
           ? users.filter(user => user.roles.includes(page.role))
           : !page.public
-            ? users.filter(user => user.name !== 'anonymous')
+            ? users.filter(user => user.name !== anonymous.name)
             : users
         const authorizedNames = authorized.map(user => user.name)
         const unauthorized = users.filter(user => !authorizedNames.includes(user.name))
@@ -44,7 +48,7 @@ describe('Page', () => {
             const actionLabels = Object.values(actions).join(',')
 
             specify(`${user.name}: ${actionLabels ? actionLabels : 'none'}`, () => {
-              if (user.name !== 'anonymous') {
+              if (user.name !== anonymous.name) {
                 cy.loginAs(user.name)
               }
               cy.visit(page.path)

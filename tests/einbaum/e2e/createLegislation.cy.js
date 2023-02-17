@@ -1,5 +1,8 @@
-import users from '../fixtures/users.json'
-import legislations from '../fixtures/legislations.json'
+import usersFixture from '../fixtures/users.json'
+import legislationsFixture from '../fixtures/legislations.json'
+import { legislationAddForm } from '../fixtures/pages.json'
+
+const { editor } = usersFixture
 
 const {
   origin,
@@ -16,17 +19,15 @@ const {
   jurisdictional_relevance,
   concepts,
   query,
-} = legislations.find(legislation => legislation.id < 0)
-
-const editor = users.find(user => user.roles.includes('bnald_editor'))
-const formPath = '/legislation/add'
+} = Object.values(legislationsFixture)
+  .find(legislation => legislation.id < 0)
 
 describe('Creating a "Piece of Legislation"', () => {
   let realPath = ''
 
   before(() => {
     cy.loginAs(editor.name)
-    cy.visit(formPath)
+    cy.visit(legislationAddForm.path)
   })
 
   specify(`is created via form submission`, () => {
