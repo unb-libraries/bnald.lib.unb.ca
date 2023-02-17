@@ -1,50 +1,50 @@
-[
-  {
+{
+  "conPubHealth": {
     "name": "Public Health",
     "vid": "Concepts"
   },
-  {
+  "conPubOrder": {
     "name": "Public Order",
     "vid": "Concepts"
   },
-  {
+  "conNatRes": {
     "name": "Natural Resources",
     "vid": "Concepts"
   },
-  {
+  "provNB": {
     "name": "New Brunswick",
     "vid": "Provinces"
   },
-  {
+  "provLowCan": {
     "name": "Lower Canada",
     "vid": "Provinces"
   },
-  {
+  "jurIntprov": {
     "name": "Interprovincial",
     "vid": "Jurisdictional Relevance"
   },
-  {
+  "jurProv": {
     "name": "Provincial",
     "vid": "Jurisdictional Relevance"
   },
-  {
+  "jurLoc": {
     "name": "Local",
     "vid": "Jurisdictional Relevance"
   },
-  {
+  "printSimpson": {
     "name": "John Simpson",
     "vid": "Printers"
   },
-  {
+  "printRyan": {
     "name": "John Ryan",
     "vid": "Printers"
   },
-  {
+  "locFr": {
     "name": "Fredericton",
     "vid": "Print Locations"
   },
-  {
+  "locSJ": {
     "name": "Saint John",
     "vid": "Print Locations"
   }
-]
+}

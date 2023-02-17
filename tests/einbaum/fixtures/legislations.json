@@ -1,5 +1,5 @@
-[
-  {
+{
+  "mooseLegislation": {
     "id": 1,
     "title": "An Act to prevent the destruction of Moose in this Province.",
     "source": "The Provincial Statutes of Lower Canada",
@@ -19,7 +19,7 @@
     ],
     "notes": ""
   },
-  {
+  "winterRoadsLegislation": {
     "id": 2,
     "title": "An Ordinance to amend the Laws relative to Winter Roads.",
     "source": "The Provincial Statutes of Lower Canada",
@@ -40,7 +40,7 @@
     ],
     "notes": ""
   },
-  {
+  "richibuctoBoomLegislation": {
     "id": -1,
     "origin": "Acts of the General Assembly of His Majesty's Province of New Brunswick",
     "title": "An Act to incorporate the Richibucto Boom Company. Passed 17th June 1867.",
@@ -57,4 +57,4 @@
     "concepts": "Natural Resources",
     "query": "Richibucto"
   }
-]
+}
