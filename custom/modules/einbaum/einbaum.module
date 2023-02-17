@@ -28,6 +28,13 @@ function einbaum_theme($existing, $type, $theme, $path) {
     'page_title' => [
       'render element' => 'elements',
     ],
+    'pager' => [
+      'render element' => 'elements',
+      'preprocess functions' => [
+        'template_preprocess_pager',
+        'einbaum_template_preprocess_pager',
+      ]
+    ],
     'status_messages' => [
       'render element' => 'elements',
     ],
@@ -105,6 +112,29 @@ function einbaum_template_preprocess_menu_local_action(array &$variables) {
 function einbaum_template_preprocess_menu_local_task(array &$variables) {
   $title = strtolower($variables['element']['#link']['title']);
   $variables['element']['#attributes']['data-test'] = "admin-action-$title";
+}
+
+/**
+ * Preprocess "pager" elements.
+ *
+ * @param array $variables
+ *   An array of template variables.
+ */
+function einbaum_template_preprocess_pager(array &$variables) {
+  foreach ($variables['items'] as $key => $item) {
+    if($key === 'pages') {
+      foreach ($variables['items'][$key] as $index => $page) {
+        /** @var \Drupal\Core\Template\Attribute $attribute */
+        $attribute = $variables['items'][$key][$index]['attributes'];
+        $attribute->setAttribute('data-test', "pager-$index");
+      }
+    }
+    else {
+      /** @var \Drupal\Core\Template\Attribute $attribute */
+      $attribute = $variables['items'][$key]['attributes'];
+      $attribute->setAttribute('data-test', "pager-$key");
+    }
+  }
 }
 
 /**
