@@ -40,6 +40,12 @@ class EntityTestDataManager implements EntityTestDataManagerInterface {
    * {@inheritDoc}
    */
   public function deleteLatest(string $entity_type_id) {
+    $s = \Drupal::entityTypeManager()->getStorage($entity_type_id);
+    $id = $s->getQuery()
+      ->pager(1)
+      ->sort('id', 'DESC')
+      ->execute();
+    $s->delete($s->loadMultiple($id));
   }
 
 }
