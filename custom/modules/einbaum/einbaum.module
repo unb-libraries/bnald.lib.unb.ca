@@ -121,18 +121,20 @@ function einbaum_template_preprocess_menu_local_task(array &$variables) {
  *   An array of template variables.
  */
 function einbaum_template_preprocess_pager(array &$variables) {
-  foreach ($variables['items'] as $key => $item) {
-    if($key === 'pages') {
-      foreach ($variables['items'][$key] as $index => $page) {
-        /** @var \Drupal\Core\Template\Attribute $attribute */
-        $attribute = $variables['items'][$key][$index]['attributes'];
-        $attribute->setAttribute('data-test', "pager-$index");
+  if (array_key_exists('items', $variables)) {
+    foreach ($variables['items'] as $key => $item) {
+      if($key === 'pages') {
+        foreach ($variables['items'][$key] as $index => $page) {
+          /** @var \Drupal\Core\Template\Attribute $attribute */
+          $attribute = $variables['items'][$key][$index]['attributes'];
+          $attribute->setAttribute('data-test', "pager-$index");
+        }
       }
-    }
-    else {
-      /** @var \Drupal\Core\Template\Attribute $attribute */
-      $attribute = $variables['items'][$key]['attributes'];
-      $attribute->setAttribute('data-test', "pager-$key");
+      else {
+        /** @var \Drupal\Core\Template\Attribute $attribute */
+        $attribute = $variables['items'][$key]['attributes'];
+        $attribute->setAttribute('data-test', "pager-$key");
+      }
     }
   }
 }
