@@ -1,0 +1,4 @@
+services:
+  entity_test_data.manager:
+    class: Drupal\einbaum\Entity\EntityTestDataManager
+    arguments: ['@entity_type.manager']
