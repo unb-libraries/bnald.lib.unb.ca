@@ -74,4 +74,9 @@ describe('Creating a "Piece of Legislation"', () => {
     cy.get('[data-test*="view-item"]')
       .find(`[href="${realPath}"]`)
   })
+
+  after(() => {
+    const cmd = "Drupal::service('entity_test_data.manager')->deleteLatest('legislation')"
+    cy.exec(`docker exec bnald.lib.unb.ca drush ev "${cmd}"`, {log: false})
+  })
 })
