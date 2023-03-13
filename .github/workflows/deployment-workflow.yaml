@@ -163,8 +163,10 @@ jobs:
         name: Start container and check logs for errors
         run: vendor/bin/dockworker local:start --no-tail-logs --only-start --force-recreate --only-primary
       -
-        name: Run tests
-        run: vendor/bin/dockworker tests:all
+        name: Cypress run
+        uses: cypress-io/github-action@v5.3.0
+        with:
+          command: vendor/bin/dockworker einbaum --headless
 
   push-branch-tag-image-repository:
     name: Push Branch Tag to Repository
