@@ -170,13 +170,13 @@ jobs:
           files: "tests/einbaum/einbaum.config.js"
       -
         name: Install Cypress dependencies
-        if: "steps.check_files.outputs.file_exists == 'true"
+        if: "steps.check_files.outputs.file_exists == 'true'"
         uses: cypress-io/github-action@v5.3.0
         with:
           runTests: false
       -
         name: Run tests
-        if: "steps.check_files.outputs.file_exists == 'true"
+        if: "steps.check_files.outputs.file_exists == 'true'"
         run: vendor/bin/dockworker einbaum --headless
 
   push-branch-tag-image-repository:
