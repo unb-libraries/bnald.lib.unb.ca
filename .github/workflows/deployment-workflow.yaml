@@ -163,20 +163,7 @@ jobs:
         name: Start container and check logs for errors
         run: vendor/bin/dockworker local:start --no-tail-logs --only-start --force-recreate --only-primary
       -
-        name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v2
-        with:
-          files: "tests/einbaum/einbaum.config.js"
-      -
-        name: Install Cypress dependencies
-        if: "steps.check_files.outputs.file_exists == 'true'"
-        uses: cypress-io/github-action@v5.3.0
-        with:
-          runTests: false
-      -
         name: Run tests
-        if: "steps.check_files.outputs.file_exists == 'true'"
         run: vendor/bin/dockworker einbaum --headless
 
   push-branch-tag-image-repository:
