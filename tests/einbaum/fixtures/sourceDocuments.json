@@ -1,0 +1,20 @@
+{
+  "newBrunswickActs": {
+    "id": 1,
+    "title": "Acts of the General Assembly of His Majesty's Province of New Brunswick",
+    "year": 2001,
+    "printer": "John Ryan",
+    "location": "Saint John",
+    "source": "Early Canadiana Online",
+    "created": "1557248053"
+  },
+  "lowerCanadaStatues": {
+    "id": 2,
+    "title": "The Provincial Statutes of Lower Canada",
+    "year": 1930,
+    "printer": "William Vondenvelden",
+    "location": "Quebec",
+    "source": "Early Canadiana Online",
+    "created": "1560259647"
+  }
+}

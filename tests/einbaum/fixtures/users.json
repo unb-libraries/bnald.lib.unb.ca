@@ -1,0 +1,20 @@
+{
+  "editor": {
+    "name": "editor",
+    "pass":"1234",
+    "email": "editor@example.com",
+    "roles": [
+      "bnald_editor"
+    ]
+  },
+  "authenticated": {
+    "name": "user",
+    "pass": "2345",
+    "email": "user@example.com",
+    "roles": []
+  },
+  "anonymous": {
+    "name": "anonymous",
+    "roles": []
+  }
+}
