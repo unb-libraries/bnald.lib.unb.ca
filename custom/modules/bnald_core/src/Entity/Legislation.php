@@ -9,6 +9,7 @@ use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\file\FileInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\UserInterface;
 
@@ -246,7 +247,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function setPdfTranscribed($pdf) {
+  public function setPdfTranscribed(FileInterface $pdf) {
     return $this->set('pdf_transcribed', $pdf);
   }
 
@@ -260,7 +261,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function setPdfOriginal($pdf) {
+  public function setPdfOriginal(FileInterface $pdf) {
     return $this->set('pdf_original', $pdf);
   }
 
@@ -275,7 +276,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function appendJurisdictionalRelevance($term_to_add) {
+  public function appendJurisdictionalRelevance(TermInterface $term_to_add) {
     $terms = $this->get('jurisdictional_relevance');
     $terms->appendItem($term_to_add);
     $this->set('jurisdictional_relevance', $terms);
@@ -285,7 +286,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function removeJurisdictionalRelevance($term_to_remove) {
+  public function removeJurisdictionalRelevance(TermInterface $term_to_remove) {
     $terms = $this->get('jurisdictional_relevance');
     foreach ($terms as $index => $term) {
       if ($term === $term_to_remove) {
@@ -307,7 +308,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function appendConcept($term_to_add) {
+  public function appendConcept(TermInterface $term_to_add) {
     $terms = $this->get('concepts');
     $terms->appendItem($term_to_add);
     $this->set('concepts', $terms);
@@ -317,7 +318,7 @@ class Legislation extends RevisionableContentEntityBase implements LegislationIn
   /**
    * {@inheritdoc}
    */
-  public function removeConcept($term_to_remove) {
+  public function removeConcept(TermInterface $term_to_remove) {
     $terms = $this->get('concepts');
     foreach ($terms as $index => $term) {
       if ($term === $term_to_remove) {
