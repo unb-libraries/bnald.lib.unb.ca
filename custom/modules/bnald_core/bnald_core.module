@@ -7,8 +7,8 @@
 
 include_once 'bnald_core.legislation.chapter_sort.inc';
 
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\bnald_core\Entity\LegislationInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_help().

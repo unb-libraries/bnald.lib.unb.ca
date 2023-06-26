@@ -2,12 +2,12 @@
 
 namespace Drupal\bnald_core\Form;
 
+use Drupal\bnald_core\Entity\SourceDocumentInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\bnald_core\Entity\SourceDocumentInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

@@ -2,10 +2,10 @@
 
 namespace Drupal\bnald_core;
 
-use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\bnald_core\Entity\SourceDocumentInterface;
+use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Defines the storage handler class for Source Document entities.

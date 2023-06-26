@@ -2,13 +2,12 @@
 
 namespace Drupal\bnald_core\Controller;
 
+use Drupal\bnald_core\Entity\SourceDocumentInterface;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\bnald_core\Entity\SourceDocumentInterface;
 
 /**
  * Class SourceDocumentController.

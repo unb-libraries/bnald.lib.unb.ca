@@ -2,11 +2,11 @@
 
 namespace Drupal\bnald_core\Form;
 
+use Drupal\bnald_core\Entity\LegislationInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\bnald_core\Entity\LegislationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

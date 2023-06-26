@@ -3,8 +3,8 @@
 namespace Drupal\bnald_core\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\file\FileInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\EntityOwnerInterface;
