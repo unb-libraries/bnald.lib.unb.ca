@@ -81,7 +81,7 @@
     "drupal/samlauth": "3.8",
     "drupal/search_api": "1.29",
     "drupal/search_api_autocomplete": "1.7",
-    "drupal/search_api_solr": "4.2.11",
+    "drupal/search_api_solr": "4.2.12",
     "drupal/token": "1.11",
     "drupal/tvi": "1.0-rc4",
     "unb-libraries/drupal-builder": "^9",
