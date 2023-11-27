@@ -756,7 +756,16 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.4'
+              changefreq: ''
+              arguments:
+                jurisdictional_relevance_target_id: jurisdictional_relevance_target_id
+              max_links: 100
       path: legislation/jurisdictional-relevance/%
     cache_metadata:
       max-age: -1

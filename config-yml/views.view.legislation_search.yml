@@ -1087,7 +1087,9 @@ display:
         - url
         - url.query_args
         - user
-      tags: {  }
+      tags:
+        - 'config:search_api.index.legislation_bnald_lib_unb_ca'
+        - 'search_api_list:legislation_bnald_lib_unb_ca'
   page:
     id: page
     display_title: Page
@@ -1109,7 +1111,15 @@ display:
       defaults:
         empty: false
       exposed_block: false
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '1.0'
+              changefreq: daily
+              arguments: {  }
+              max_links: 100
       path: legislation/search
       menu:
         type: none
@@ -1128,7 +1138,9 @@ display:
         - url
         - url.query_args
         - user
-      tags: {  }
+      tags:
+        - 'config:search_api.index.legislation_bnald_lib_unb_ca'
+        - 'search_api_list:legislation_bnald_lib_unb_ca'
   simple_search_form:
     id: simple_search_form
     display_title: 'Simple Search Form'
@@ -1208,4 +1220,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:search_api.index.legislation_bnald_lib_unb_ca'
+        - 'search_api_list:legislation_bnald_lib_unb_ca'
