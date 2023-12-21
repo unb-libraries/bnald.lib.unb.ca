@@ -66,7 +66,7 @@
   "require": {
     "drupal/bootstrap": "3.26",
     "drupal/config_update": "1.7",
-    "drupal/core": "9.5.10",
+    "drupal/core": "9.5.11",
     "drupal/externalauth": "1.4",
     "drupal/file_mdm": "2.6",
     "drupal/google_analytics": "^4.0",
