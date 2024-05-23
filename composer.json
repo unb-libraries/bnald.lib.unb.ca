@@ -1,7 +1,13 @@
 {
+  "autoload": {
+    "psr-4": {
+      "Dockworker\\": ".dockworker/src"
+    }
+  },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "php-http/discovery": true
     },
     "preferred-install": {
       "*": "dist"
@@ -16,12 +22,11 @@
     "twbs/bootstrap-sass": "^3.4.0"
   },
   "require-dev": {
-    "unb-libraries/dockworker-drupal": "^5",
-    "unb-libraries/dockworker-cypress": "1.x-dev"
+    "unb-libraries/dockworker-drupal": "^6"
   },
   "scripts": {
     "post-update-cmd": [
-      "vendor/bin/dockworker dockworker:git:setup-hooks"
+      "vendor/bin/dockworker git:setup-hooks"
     ]
   }
 }

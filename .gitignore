@@ -1,12 +1,13 @@
 .gitkeep
 vendor
-composer.lock
+/composer.lock
 tests/behat/features/bootstrap
 scripts/local
 .idea
-config-yml/.htaccess
+configuration/.htaccess
 
 # Einbaum
 tests/einbaum/node_modules
 tests/einbaum/screenshots
 tests/einbaum/videos
+/build/vendor

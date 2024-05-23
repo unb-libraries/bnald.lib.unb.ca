@@ -1,28 +1,73 @@
 dockworker:
-  version: '5'
+  version: '6'
   application:
-    name: bnald.lib.unb.ca
-    finish_marker: '99_zz_notify_user_URI'
-    project_prefix: BNALD
-    upstream_images:
-      - ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
-    uuid: 3099
-  deployment:
-    environments:
+    name: British North American Legislative Database, 1758-1867
+    uri: https://bnald.lib.unb.ca
+    description: >
+      British North American Legislative Database, 1758-1867 provides an archive
+      for characteristics of all the legislation passed by the pre-Confederation
+      assemblies of eastern British North America.
+    topics:
+      - british north america
+      - legislation
+      - pre-confederation
+      - history
+      - research
+    identifiers:
+      id: bnald.lib.unb.ca
+      slug: bnald-lib-unb-ca
+      short_slug: bnald
+      uuid: 3099
+    framework:
+      name: Drupal
+      version: 9
+      startup_finished_marker: '99_zz_notify_user_URI'
+      endpoint:
+        name: http
+        port: 80
+        readiness_timeout: 15
+    license:
+      license: MIT
+      holder: University of New Brunswick Libraries
+    shell:
+      path: /bin/sh
+  endpoints:
+    env:
       - dev
       - prod
-    workflow:
-      source: dockworker-drupal
-      type: deployment-workflow
-  drupal:
-    major: 9
-  github:
-    repo: bnald.lib.unb.ca
-    owner: unb-libraries
-  image:
-    push_branches:
-      - dev
-      - prod
-    name: ghcr.io/unb-libraries/bnald.lib.unb.ca
-    date_tag_image: true
-    repository: ghcr
+    deployments:
+      bnald-lib-unb-ca:
+        default: true
+        managed: true
+        name: bnald-lib-unb-ca
+      drupal-mysql-lib-unb-ca:
+        managed: false
+        name: mysql
+      drupal-redis-lib-unb-ca:
+        managed: false
+        name: redis
+      drupal-solr-lib-unb-ca:
+        managed: false
+        name: solr
+  workflows:
+    vcs:
+      type: github
+      owner: unb-libraries
+      name: bnald.lib.unb.ca
+    jira:
+      project_keys:
+        - BNALD
+    image:
+      name: ghcr.io/unb-libraries/bnald.lib.unb.ca
+      parent: ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
+      repository: GitHub
+      push-branches:
+        - dev
+        - prod
+    e2e_tests:
+        - id: core
+          frequency: '*/5 * * * *'
+          source_files:
+            - .dockworker/tests/e2e/bnald.lib.unb.ca.yml
+          namespaces:
+            - prod

@@ -1,10 +1,9 @@
-version: '3'
 services:
-  bnald.lib.unb.ca:
+  bnald-lib-unb-ca:
     build:
       context: .
     restart: unless-stopped
-    container_name: bnald.lib.unb.ca
+    container_name: bnald-lib-unb-ca
     depends_on:
       - drupal-mysql-lib-unb-ca
       - drupal-redis-lib-unb-ca
@@ -19,7 +18,7 @@ services:
       - ./env/drupal.env
     volumes:
       - drupal-data:/app/html/sites/default
-      - ./config-yml:/app/configuration
+      - ./configuration:/app/configuration
       - ./custom/modules:/app/html/modules/custom
       - ./custom/themes:/app/html/themes/custom
       - ./tests:/app/html/tests/
@@ -66,20 +65,6 @@ services:
       - "8025"
     ports:
       - "4099:8025"
-    networks:
-      - bnald.lib.unb.ca
-  cypress:
-    image: ghcr.io/unb-libraries/einbaum/drupal:12.x-1.x
-    container_name: einbaum.bnald.lib.unb.ca
-    depends_on:
-      - bnald.lib.unb.ca
-    environment:
-      - BASE_URL=http://bnald.lib.unb.ca
-    volumes:
-      - ./tests/einbaum/e2e:/einbaum/e2e
-      - ./tests/einbaum/fixtures:/einbaum/fixtures
-      - ./tests/einbaum/screenshots:/einbaum/cypress/screenshots
-      - ./tests/einbaum/videos:/einbaum/cypress/videos
     networks:
       - bnald.lib.unb.ca
 networks:
