@@ -67,6 +67,8 @@ services:
       - "4099:8025"
     networks:
       - bnald.lib.unb.ca
+    profiles:
+      - mailhog
 networks:
   bnald.lib.unb.ca:
     name: bnald.lib.unb.ca
