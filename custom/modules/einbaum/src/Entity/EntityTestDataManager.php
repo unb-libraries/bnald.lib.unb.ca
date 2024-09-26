@@ -44,6 +44,7 @@ class EntityTestDataManager implements EntityTestDataManagerInterface {
     $id = $s->getQuery()
       ->pager(1)
       ->sort('id', 'DESC')
+      ->accessCheck(FALSE)
       ->execute();
     $s->delete($s->loadMultiple($id));
   }

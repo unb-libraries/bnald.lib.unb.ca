@@ -52,6 +52,7 @@ class LegislationStorage extends SqlContentEntityStorage implements LegislationS
     return $this->database->update('legislation_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
+      ->accessCheck(FALSE)
       ->execute();
   }
 

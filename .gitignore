@@ -5,6 +5,7 @@ tests/behat/features/bootstrap
 scripts/local
 .idea
 configuration/.htaccess
+/build/vendor
 
 # Einbaum
 tests/einbaum/node_modules

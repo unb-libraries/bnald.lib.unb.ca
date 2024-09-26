@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\user\Role;
+use Drupal\user\RoleInterface;
+
 /**
  * @file
  * Contains bnald_core.install.
@@ -12,7 +15,7 @@
  */
 function bnald_core_install() {
   $anonymous_user_role = \Drupal\user\Entity\Role::load(
-    Drupal\user\RoleInterface::ANONYMOUS_ID);
+    RoleInterface::ANONYMOUS_ID);
   $anonymous_user_role
     ->grantPermission('view published legislation entities');
 
@@ -30,7 +33,7 @@ function bnald_core_install() {
  */
 function bnald_core_uninstall() {
   $anonymous_user_role = \Drupal\user\Entity\Role::load(
-    Drupal\user\RoleInterface::ANONYMOUS_ID);
+    RoleInterface::ANONYMOUS_ID);
   $anonymous_user_role
     ->revokePermission('view published legislation entities');
 

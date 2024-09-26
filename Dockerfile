@@ -1,7 +1,7 @@
-FROM ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
+FROM ghcr.io/unb-libraries/drupal:10.x-1.x-unblib
 
 # Install additional OS packages.
-ENV ADDITIONAL_OS_PACKAGES="postfix php7-ldap php7-xmlreader php7-zip imagemagick php7-redis"
+ENV ADDITIONAL_OS_PACKAGES="postfix php-ldap php-xmlreader php-zip imagemagick php81-pecl-redis"
 ENV DRUPAL_SITE_ID="bnald"
 ENV DRUPAL_SITE_URI="bnald.lib.unb.ca"
 ENV DRUPAL_SITE_UUID="c8857708-03ab-4f57-beeb-a60bd827e72f"

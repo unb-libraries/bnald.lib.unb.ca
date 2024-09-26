@@ -52,6 +52,7 @@ class SourceDocumentStorage extends SqlContentEntityStorage implements SourceDoc
     return $this->database->update('source_document_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
+      ->accessCheck(FALSE)
       ->execute();
   }
 

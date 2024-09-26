@@ -2,7 +2,7 @@ name: 'BNALD Core'
 type: module
 description: 'Core functionality for BNALD, such as Entity Types'
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 package: 'BNALD'
 dependencies:
   - pdfpreview

@@ -27,6 +27,9 @@ module:
   history: 0
   image: 0
   imagemagick: 0
+  jquery_ui: 0
+  jquery_ui_draggable: 0
+  jquery_ui_resizable: 0
   language: 0
   link: 0
   menu_ui: 0
@@ -65,10 +68,9 @@ module:
   minimal: 1000
 theme:
   stark: 0
-  stable: 0
+  stable9: 0
   bootstrap: 0
-  classy: 0
-  bartik: 0
+  olivero: 0
   bnald_lib_unb_ca: 0
-  seven: 0
+  claro: 0
 profile: minimal
