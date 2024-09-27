@@ -6,5 +6,6 @@ dependencies:
     - bnald_core
 name: Provinces
 vid: provinces
-description: ''
+description: null
 weight: 0
+new_revision: false

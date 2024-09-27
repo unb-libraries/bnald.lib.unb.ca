@@ -1,7 +1,11 @@
 uuid: 785fea49-aef5-47a4-ba9b-f2669cf8c6fb
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - bnald_core
+    - samlauth
+    - system
 id: anonymous
 label: 'Anonymous User'
 weight: 0

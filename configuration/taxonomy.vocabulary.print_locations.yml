@@ -6,5 +6,6 @@ dependencies:
     - bnald_core
 name: 'Print Locations'
 vid: print_locations
-description: ''
+description: null
 weight: 0
+new_revision: false

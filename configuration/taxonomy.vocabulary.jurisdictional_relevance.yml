@@ -6,5 +6,6 @@ dependencies:
     - bnald_core
 name: 'Jurisdictional Relevance'
 vid: jurisdictional_relevance
-description: ''
+description: null
 weight: 0
+new_revision: false

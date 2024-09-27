@@ -6,5 +6,6 @@ dependencies:
     - bnald_core
 name: Concepts
 vid: concepts
-description: ''
+description: null
 weight: 0
+new_revision: false

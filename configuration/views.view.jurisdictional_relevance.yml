@@ -9,7 +9,7 @@ dependencies:
 id: jurisdictional_relevance
 label: 'Legislation by: Jurisdictional Relevance'
 module: views
-description: 'Find Legislation tagged with a given ''Jurisdictional Relevance'' term'
+description: "Find Legislation tagged with a given 'Jurisdictional Relevance' term"
 tag: ''
 base_table: legislation
 base_field: id
@@ -530,6 +530,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 20
           total_pages: null
           id: 0
@@ -616,7 +617,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true

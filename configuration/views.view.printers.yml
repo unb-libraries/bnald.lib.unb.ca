@@ -10,7 +10,7 @@ dependencies:
 id: printers
 label: 'Source Documents by: Printer'
 module: views
-description: 'Find Source Documents tagged with a given ''Printers'' term'
+description: "Find Source Documents tagged with a given 'Printers' term"
 tag: ''
 base_table: source_document
 base_field: id
@@ -407,6 +407,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 20
           total_pages: null
           id: 0
@@ -463,7 +464,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true

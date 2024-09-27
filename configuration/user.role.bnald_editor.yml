@@ -2,8 +2,21 @@ uuid: 018cc832-0408-4f65-9586-bed82c9501c2
 langcode: en
 status: true
 dependencies:
+  config:
+    - filter.format.restricted_html
+    - node.type.page
+    - taxonomy.vocabulary.concepts
+    - taxonomy.vocabulary.jurisdictional_relevance
+    - taxonomy.vocabulary.print_locations
+    - taxonomy.vocabulary.printers
+    - taxonomy.vocabulary.provinces
   module:
     - bnald_core
+    - file
+    - filter
+    - node
+    - system
+    - taxonomy
 id: bnald_editor
 label: 'BNALD Editor'
 weight: 3

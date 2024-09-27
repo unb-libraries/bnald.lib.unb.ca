@@ -5,6 +5,7 @@ dependencies:
   module:
     - bnald_core
     - google_analytics
+    - samlauth
     - system
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
