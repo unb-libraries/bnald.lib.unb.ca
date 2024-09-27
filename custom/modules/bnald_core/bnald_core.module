@@ -37,28 +37,6 @@ function bnald_core_legislation_presave(LegislationInterface $legislation) {
 }
 
 /**
- * Implements hook_link_alter().
- */
-function bnald_core_link_alter(&$variables) {
-  $url = $variables['url'];
-  if (!$url->isRouted()) {
-    return;
-  }
-
-  $route_name = $url->getRouteName();
-  switch ($route_name) {
-    case 'user.login':
-      $variables['text'] = t('@text', [
-        '@text' => 'Admin Login'
-      ]);
-      break;
-
-    default:
-      return;
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function bnald_core_theme($existing, $type, $theme, $path) {
