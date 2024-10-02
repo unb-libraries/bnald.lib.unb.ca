@@ -17,7 +17,8 @@
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "drupal/core-composer-scaffold": true,
       "phpstan/extension-installer": true,
-      "php-http/discovery": true
+      "php-http/discovery": true,
+      "tbachert/spi": true
     },    
     "discard-changes": true,
     "preferred-install": {
