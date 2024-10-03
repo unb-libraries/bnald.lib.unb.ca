@@ -12,7 +12,7 @@ dependencies:
 id: simple_search_form
 theme: bnald_lib_unb_ca
 region: content
-weight: 0
+weight: -3
 provider: null
 plugin: 'views_exposed_filter_block:legislation_search-simple_search_form'
 settings:
