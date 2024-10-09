@@ -182,13 +182,18 @@ label {
   }
 
   .form-item.form-group.form-item-query {
-    display: block;
-    width: 100%;
-
+    display: inline-block;
+    width: 90%;
+    
     input{
       width: 100%;
       margin-bottom: 5px;
     }
+  }
+
+  .form-actions {
+    margin-top: 1.5rem;
+    margin-left: 1rem;
   }
 }
 
