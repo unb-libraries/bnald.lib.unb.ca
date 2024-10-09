@@ -180,26 +180,62 @@ label {
   .form-item.form-group {
     display: none;
   }
-
+  
   .form-item.form-group.form-item-query {
     display: inline-block;
     width: 90%;
-    
-    input{
+
+    @media (max-width: 1199px)  {    
+      width: 88% !important;
+    }
+
+    @media (max-width: 991px)  {    
+      width: 84% !important;
+    }
+
+    @media (max-width: 763px)  {    
+      width: 80% !important;
+    }
+
+    @media (max-width: 615px)  {    
+      width: 76% !important;
+    }
+
+    @media (max-width: 551px)  {    
+      display: block;
+      width: 100% !important;
+    }
+
+    input {
       width: 100%;
       margin-bottom: 5px;
     }
   }
-
+  
   .form-actions {
+    display: inline-block;
     margin-top: 1.5rem;
     margin-left: 1rem;
+    
+    @media (max-width: 551px)  {    
+      display: block;
+      margin: 0;
+      
+      button {
+        width: 100% !important;
+        margin-bottom: 1.5rem;
+      }
+    }
   }
   
 }
 
 .path-frontpage .block-static-text {
   margin-bottom: 3rem;
+
+  @media (max-width: 551px) {
+    text-align: center !important;
+  }
 }
 
 .bnald-legislation-search .views-exposed-form {
