@@ -1,0 +1,21 @@
+uuid: 2da3d8a1-b6ad-4f16-a0c2-2eb6b6150411
+langcode: en
+status: true
+dependencies:
+  module:
+    - bnald_core
+  theme:
+    - bnald_lib_unb_ca
+id: bnald_lib_unb_ca_statictext
+theme: bnald_lib_unb_ca
+region: content
+weight: -2
+provider: null
+plugin: static_text
+settings:
+  id: static_text
+  label: 'Static Text'
+  label_display: '0'
+  provider: bnald_core
+  text: "<a href='/legislation/search'>Advanced search</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='/using-database'>Using the database</a>\r\n"
+visibility: {  }

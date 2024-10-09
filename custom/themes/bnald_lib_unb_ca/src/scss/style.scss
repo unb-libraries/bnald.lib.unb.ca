@@ -175,7 +175,7 @@ label {
 
 .path-frontpage #views-exposed-form-legislation-search-simple-search-form {
   margin-top: 30px;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 
   .form-item.form-group {
     display: none;
@@ -195,6 +195,11 @@ label {
     margin-top: 1.5rem;
     margin-left: 1rem;
   }
+  
+}
+
+.path-frontpage .block-static-text {
+  margin-bottom: 3rem;
 }
 
 .bnald-legislation-search .views-exposed-form {
