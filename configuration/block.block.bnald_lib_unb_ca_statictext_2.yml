@@ -1,4 +1,4 @@
-uuid: 2da3d8a1-b6ad-4f16-a0c2-2eb6b6150411
+uuid: e629025f-65ac-405f-bcba-2eba4e0c9ed4
 langcode: en
 status: true
 dependencies:
@@ -7,20 +7,20 @@ dependencies:
     - system
   theme:
     - bnald_lib_unb_ca
-id: bnald_lib_unb_ca_statictext
+id: bnald_lib_unb_ca_statictext_2
 theme: bnald_lib_unb_ca
 region: content
-weight: -3
+weight: 1
 provider: null
 plugin: static_text
 settings:
   id: static_text
-  label: 'Advanced Search / Using the Database (front)'
+  label: 'Using the Database (legislation search)'
   label_display: '0'
   provider: bnald_core
-  text: "<a href='/legislation/search'>Advanced search</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='/using-database'>Using the database</a>\r\n"
+  text: "<a href='/using-database'>Using the database</a>\r\n"
 visibility:
   request_path:
     id: request_path
     negate: false
-    pages: '<front>'
+    pages: /legislation/search
