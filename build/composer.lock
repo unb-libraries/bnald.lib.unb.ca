@@ -4115,16 +4115,16 @@
         },
         {
             "name": "league/container",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/container.git",
-                "reference": "7ea728b013b9a156c409c6f0fc3624071b742dec"
+                "reference": "d3cebb0ff4685ff61c749e54b27db49319e2ec00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/container/zipball/7ea728b013b9a156c409c6f0fc3624071b742dec",
-                "reference": "7ea728b013b9a156c409c6f0fc3624071b742dec",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/d3cebb0ff4685ff61c749e54b27db49319e2ec00",
+                "reference": "d3cebb0ff4685ff61c749e54b27db49319e2ec00",
                 "shasum": ""
             },
             "require": {
@@ -4185,7 +4185,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/container/issues",
-                "source": "https://github.com/thephpleague/container/tree/4.2.4"
+                "source": "https://github.com/thephpleague/container/tree/4.2.5"
             },
             "funding": [
                 {
@@ -4193,7 +4193,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-10T12:42:13+00:00"
+            "time": "2025-05-20T12:55:37+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -10016,16 +10016,16 @@
         },
         {
             "name": "mglaman/phpstan-drupal",
-            "version": "1.3.7",
+            "version": "1.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mglaman/phpstan-drupal.git",
-                "reference": "91cb3860d816316dd98503ef258bc386f5fc22b7"
+                "reference": "17bb121e35d90cc7d233b6f5adbcd569ae75d9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mglaman/phpstan-drupal/zipball/91cb3860d816316dd98503ef258bc386f5fc22b7",
-                "reference": "91cb3860d816316dd98503ef258bc386f5fc22b7",
+                "url": "https://api.github.com/repos/mglaman/phpstan-drupal/zipball/17bb121e35d90cc7d233b6f5adbcd569ae75d9c5",
+                "reference": "17bb121e35d90cc7d233b6f5adbcd569ae75d9c5",
                 "shasum": ""
             },
             "require": {
@@ -10100,7 +10100,7 @@
             "description": "Drupal extension and rules for PHPStan",
             "support": {
                 "issues": "https://github.com/mglaman/phpstan-drupal/issues",
-                "source": "https://github.com/mglaman/phpstan-drupal/tree/1.3.7"
+                "source": "https://github.com/mglaman/phpstan-drupal/tree/1.3.8"
             },
             "funding": [
                 {
@@ -10116,7 +10116,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-15T16:10:17+00:00"
+            "time": "2025-05-20T20:18:13+00:00"
         },
         {
             "name": "micheh/phpcs-gitlab",
@@ -10479,16 +10479,16 @@
         },
         {
             "name": "open-telemetry/exporter-otlp",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/exporter-otlp.git",
-                "reference": "19adf03d2b0f91f9e9b1c7f93db6c755c737cf6c"
+                "reference": "8b3ca1f86d01429c73b407bf1a2075d9c187001e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/exporter-otlp/zipball/19adf03d2b0f91f9e9b1c7f93db6c755c737cf6c",
-                "reference": "19adf03d2b0f91f9e9b1c7f93db6c755c737cf6c",
+                "url": "https://api.github.com/repos/opentelemetry-php/exporter-otlp/zipball/8b3ca1f86d01429c73b407bf1a2075d9c187001e",
+                "reference": "8b3ca1f86d01429c73b407bf1a2075d9c187001e",
                 "shasum": ""
             },
             "require": {
@@ -10539,7 +10539,7 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2025-05-12T00:36:35+00:00"
+            "time": "2025-05-21T12:02:20+00:00"
         },
         {
             "name": "open-telemetry/gen-otlp-protobuf",
@@ -10606,16 +10606,16 @@
         },
         {
             "name": "open-telemetry/sdk",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/sdk.git",
-                "reference": "939d3a28395c249a763676458140dad44b3a8011"
+                "reference": "cd0d7367599717fc29e04eb8838ec061e6c2c657"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/sdk/zipball/939d3a28395c249a763676458140dad44b3a8011",
-                "reference": "939d3a28395c249a763676458140dad44b3a8011",
+                "url": "https://api.github.com/repos/opentelemetry-php/sdk/zipball/cd0d7367599717fc29e04eb8838ec061e6c2c657",
+                "reference": "cd0d7367599717fc29e04eb8838ec061e6c2c657",
                 "shasum": ""
             },
             "require": {
@@ -10692,7 +10692,7 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2025-05-07T12:32:21+00:00"
+            "time": "2025-05-22T02:33:34+00:00"
         },
         {
             "name": "open-telemetry/sem-conv",
@@ -11513,16 +11513,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.26",
+            "version": "1.12.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "84cbf8f018e01834b9b1ac3dacf3b9780e209e53"
+                "reference": "3a6e423c076ab39dfedc307e2ac627ef579db162"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/84cbf8f018e01834b9b1ac3dacf3b9780e209e53",
-                "reference": "84cbf8f018e01834b9b1ac3dacf3b9780e209e53",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/3a6e423c076ab39dfedc307e2ac627ef579db162",
+                "reference": "3a6e423c076ab39dfedc307e2ac627ef579db162",
                 "shasum": ""
             },
             "require": {
@@ -11567,7 +11567,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-14T11:08:32+00:00"
+            "time": "2025-05-21T20:51:45+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
