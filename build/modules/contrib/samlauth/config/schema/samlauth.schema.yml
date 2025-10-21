@@ -1,0 +1,198 @@
+# Schema for the main configuration object of the samlauth module.
+# Labels are tuned to the application configuration screen, so e.g. sp_entity_id
+# and idp_entity_id are both 'Entity ID', because they're inside a fieldset.
+samlauth.authentication:
+  type: config_object
+  mapping:
+    login_menu_item_title:
+      type: label
+      label: 'Login menu item title'
+    logout_menu_item_title:
+      type: label
+      label: 'Logout menu item title'
+    login_link_title:
+      type: label
+      label: 'SAML login link title'
+    login_auto_redirect:
+      type: boolean
+      label: 'Auto redirect Drupal login screen to SAML'
+    login_redirect_url:
+      type: string
+      label: 'Login redirect URL'
+    logout_redirect_url:
+      type: string
+      label: 'Logout redirect URL'
+    error_redirect_url:
+      type: string
+      label: 'Error redirect URL'
+    error_throw:
+      type: boolean
+      label: 'Bypass error handling'
+    login_error_keep_session:
+      type: boolean
+      label: 'Keep SAML session upon Drupal login failure'
+    local_login_saml_error:
+      type: boolean
+      label: 'Tell disallowed users they must log in using SAML'
+    logout_different_user:
+      type: boolean
+      label: 'Log out different user upon re-authentication'
+    drupal_login_roles:
+      type: sequence
+      label: Roles allowed to use Drupal login also when associated with a SAML login
+      sequence:
+        type: string
+        label: 'Role'
+    sp_entity_id:
+      type: string
+      label: 'Entity ID'
+    sp_name_id_format:
+      type: string
+      label: 'NameID format'
+    sp_x509_certificate:
+      type: string
+      label: 'X.509 certificate'
+    sp_new_certificate:
+      type: string
+      label: 'New X.509 certificate'
+    sp_private_key:
+      type: string
+      label: 'Private Key'
+    metadata_valid_secs:
+      type: integer
+      label: 'Metadata validity'
+    metadata_cache_http:
+      type: boolean
+      label: 'Cache HTTP responses containing metadata'
+    idp_entity_id:
+      type: string
+      label: 'Entity ID'
+    idp_single_sign_on_service:
+      type: string
+      label: 'Single Sign-On Service'
+    idp_single_log_out_service:
+      type: string
+      label: 'Single Logout Service'
+    idp_change_password_service:
+      type: string
+      label: 'Change password URL'
+    idp_certs:
+      type: sequence
+      label: 'X.509 certificate(s)'
+      sequence:
+        type: string
+        label: 'Certificate'
+    idp_cert_encryption:
+      type: string
+      label: 'Encryption certificate'
+    unique_id_attribute:
+      type: string
+      label: 'Unique ID attribute'
+    map_users:
+      type: boolean
+      label: 'Enable custom matching'
+    map_users_name:
+      type: boolean
+      label: 'Enable matching on name'
+    map_users_mail:
+      type: boolean
+      label: 'Enable matching on email'
+    map_users_roles:
+      type: sequence
+      label: 'Roles allowed for linking'
+      sequence:
+        type: string
+        label: 'Role'
+    create_users:
+      type: boolean
+      label: 'Create users from SAML data'
+    sync_name:
+      type: boolean
+      label: 'Synchronize user name on every login'
+    sync_mail:
+      type: boolean
+      label: 'Synchronize email address on every login'
+    user_name_attribute:
+      type: string
+      label: 'User name attribute'
+    user_mail_attribute:
+      type: string
+      label: 'User email attribute'
+    request_set_name_id_policy:
+      type: boolean
+      label: 'Specify NameID policy'
+    strict:
+      type: boolean
+      label: 'Strict validation of responses'
+    security_metadata_sign:
+      type: boolean
+      label: 'Sign metadata'
+    security_authn_requests_sign:
+      type: boolean
+      label: 'Sign authentication requests'
+    security_logout_requests_sign:
+      type: boolean
+      label: 'Sign logout requests'
+    security_logout_responses_sign:
+      type: boolean
+      label: 'Sign logout responses'
+    security_nameid_encrypt:
+      type: boolean
+      label: 'Encrypt NameID in logout requests'
+    security_signature_algorithm:
+      type: string
+      label: 'Signature algorithm'
+    security_encryption_algorithm:
+      type: string
+      label: 'Encryption algorithm'
+    security_messages_sign:
+      type: boolean
+      label: 'Require messages to be signed'
+    security_assertions_signed:
+      type: boolean
+      label: 'Require assertions to be signed'
+    security_assertions_encrypt:
+      type: boolean
+      label: 'Require assertions to be encrypted'
+    security_nameid_encrypted:
+      type: boolean
+      label: 'Require NameID to be encrypted'
+    security_want_name_id:
+      type: boolean
+      label: 'Require NameID'
+    security_request_authn_context:
+      type: boolean
+      label: 'Specify authentication context (as "password")'
+    security_lowercase_url_encoding:
+      type: boolean
+      label: "'Raw' encode signatures when signing messages"
+    security_logout_reuse_sigs:
+      type: boolean
+      label: "Retrieve logout signature parameters from $_SERVER['REQUEST']"
+    security_allow_repeat_attribute_name:
+      type: boolean
+      label: 'Allow duplicate attribute names'
+    debug_display_error_details:
+      type: boolean
+      label: 'Show detailed errors to the user'
+    debug_log_in:
+      type: boolean
+      label: 'Log incoming messages before validation'
+    debug_log_saml_in:
+      type: boolean
+      label: 'Log incoming SAML messages'
+    debug_log_saml_out:
+      type: boolean
+      label: 'Log outgoing SAML messages'
+    debug_phpsaml:
+      type: boolean
+      label: 'Enable debugging in SAML Toolkit library'
+    use_proxy_headers:
+      type: boolean
+      label: "Use 'X-Forwarded-*' headers (deprecated)"
+    use_base_url:
+      type: boolean
+      label: 'Use Drupal base URL in toolkit library'
+    bypass_relay_state_check:
+      type: boolean
+      label: 'Bypass safety check for dynamic redirect URLs'

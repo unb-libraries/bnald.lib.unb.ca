@@ -1,0 +1,33 @@
+# Much of this module's configuration must be filled from scratch by the
+# administrator - or provided in an install routine that sets dynamic values
+# for e.g. the SP Entity ID, if new site installation is automated. In the
+# latter case, change the 'caching / validity' settings to be production
+# defaults. Below values accommodate testing.
+#
+# This is TRUE on older installs; FALSE on new installs; doesn't matter much
+# if metadata.xml is not reachable to the public.
+metadata_cache_http: false
+# Not set on older installs; 1 minute on new installs. The default (not set)
+# is evaluated to 172800 == 2 days by the SAML Toolkit, so it's probably good
+# to set the same (or delete / not set this config value) on production systems.
+metadata_valid_secs: 60
+# This is TRUE on older installs; FALSE on new installs.
+local_login_saml_error: false
+#
+# Enable some security settings by default, since it is possible but not
+# recommended for the module to operate without them. This deviates from the
+# SAML Toolkit default values.
+security_authn_requests_sign: true
+security_logout_requests_sign: true
+security_logout_responses_sign: true
+strict: true
+# FYI: naming oops: this means "require to be signed", not "sign".
+security_messages_sign: true
+# The following (badly named) option is False by default in the SAML toolkit
+# but is causing issues for e.g. ADFS IdPs, and the module maintainer is
+# convinced that (unlike other options) noone is harmed by just always having
+# it be True.
+security_lowercase_url_encoding: true
+security_request_authn_context: true
+# False on older installs; will be removed (and be 'standard true') in v4.x.
+use_base_url: true

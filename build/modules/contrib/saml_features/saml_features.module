@@ -1,0 +1,224 @@
+<?php
+
+/**
+ * @file
+ * Contains saml_features.module.
+ */
+
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_help().
+ */
+function saml_features_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the saml_features module.
+    case 'help.page.saml_features':
+      $output = "<h3>" . t('About') . "</h3>";
+      $output .= "<ul><li>" . t("Adds URL Alias <kbd>/login</kbd> to Saml Authentication's <b>saml_login</b> route");
+      $output .= "</li><li>" . t("Replaces Drupal core login form error message references with Saml-based versions");
+      $output .= "</li><li>" . t("Adds an alert to the Drupal core user login form that links to the Saml login route");
+      $output .= "</li><li>" . t("STU references in the login text may be toggled on/off");
+      $output .= "</li><li>" . t("Preventing users from editing user form field data may be toggled on/off ");
+      $output .= t("(while also providing an exemption permission)");
+      $output .= "</li><li>" . t("Toggle options may be configured in the module's <b>admin settings form</b> ");
+      $output .= t("(accessed via the <i>Configure</i> link)") . "</li></ul>";
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the user edit form.
+ */
+function saml_features_form_user_form_alter(&$form, FormStateInterface $form_state) {
+  $config = Drupal::config('saml_features.adminsettings');
+  $user = Drupal::currentUser();
+
+  if (!empty($config->get('display_metadata_alert'))) {
+    $msg = Markup::Create(
+      'Directory Info metadata is maintained centrally, displayed on our
+      Staff Directory and should generally mirror UNB\'s Colleague-driven data.
+      <a href="https://lib.unb.ca/contact-unb-libraries-staff?recipient=pollockl">Contact Lisa Pollock</a>
+      if you encounter errors.'
+    );
+    Drupal::messenger()->addWarning($msg);
+  }
+
+  // Restrict Notify user of new account setting based on SAML Features admin config.
+  if (!empty($form['account']) && empty($config->get('enable_user_email_notify'))) {
+    $form['account']['notify']['#disabled'] = TRUE;
+    // Append label note.
+    $form['account']['notify']['#title'] = t('@original_label
+      <em>(disabled by site administrator via SAML Features)</em>', [
+        '@original_label' => $form['account']['notify']['#title']->__toString(),
+      ]
+    );
+  }
+
+  if (empty($config->get('user_form_protect')) || $user->hasPermission('user protect exempt')) {
+    // Abort form field edit restrictions (note root has user protect exempt permission).
+    return;
+  }
+
+  foreach (Element::children($form) as $key) {
+    switch ($key) {
+      case 'account':
+        if ($form_state->getFormObject()->getOperation() != 'register') {
+          // Disable username + password fields on Edit (but not Add) form.
+          $form[$key]['name']['#access'] = FALSE;
+          $form[$key]['pass']['#access'] = FALSE;
+          $form[$key]['current_pass']['#access'] = FALSE;
+        }
+        // Disable selected account fields.
+        if (!$user->hasPermission('edit any user details')) {
+          $form[$key]['mail']['#disabled'] = TRUE;
+        }
+        $form[$key]['notify']['#disabled'] = TRUE;
+        break;
+
+      case 'actions':
+        // Disable Submit (i.e. Save) button.
+        $form[$key]['submit']['#disabled'] = TRUE;
+        // Deny Cancel account link access.
+        $form[$key]['delete']['#access'] = FALSE;
+        break;
+
+      default:
+        // Disable Groups fields (LIB feature).
+        $form[$key]['#disabled'] = TRUE;
+        break;
+    }
+  }
+
+  if (isset($form['account']['saml_notice'])) {
+    // Wrap samlauth module's notice in a proper block element.
+    $form['account']['saml_notice']['#prefix'] = '<div class="form-item">';
+    $form['account']['saml_notice']['#suffix'] = '</div>';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function saml_features_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $site_name = \Drupal::config('system.site')->get('name');
+  $config = \Drupal::config('saml_features.adminsettings');
+  $institution_txt = $config->get('exclude_stu') ? 'UNB' : 'UNB/STU';
+
+  $form['name']['#description'] = t("Enter your $site_name username <em>(non-$institution_txt accounts)</em>");
+  if (!\Drupal::currentUser()->isAuthenticated()) {
+    $options = [
+      'query' => \Drupal::request()->query->all(),
+    ];
+    $messenger = \Drupal::messenger();
+    $messenger->addMessage(
+      t("<strong>$institution_txt accounts</strong> must sign in using <strong>@auth_link</strong>.",
+        [
+          '@auth_link' => Link::fromTextAndUrl(
+            t('Secure Services Login'),
+            Url::fromUri('base:/saml/login', $options)
+          )->toString(),
+        ]
+      ),
+      $messenger::TYPE_WARNING,
+      FALSE
+    );
+    array_push($form['#validate'], '_saml_features_validate_final');
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function saml_features_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+  $applicable_routes = ['entity.user.canonical', 'entity.user.edit_form'];
+
+  if (in_array($route_name, $applicable_routes)) {
+    $user = Drupal::currentUser();
+    if (!$user->hasPermission('user protect exempt')) {
+      unset($data['tabs'][0]['entity.user.edit_form']);
+    }
+  }
+
+  // The tab we're adding is dependent on a user's access to add content.
+  $cacheability
+    ->addCacheContexts([
+      'user.permissions',
+    ]);
+}
+
+/**
+ * Form validation callback.
+ *
+ * Alter text of error messages, removing request/reset password url references.
+ * Based from https://www.drupal.org/sandbox/ekes/emaillogin.
+ *
+ * @see saml_features_form_user_login_form_alter()
+ */
+function _saml_features_validate_final(array &$form, FormStateInterface $form_state) {
+  $changed = FALSE;
+  $config = \Drupal::config('saml_features.adminsettings');
+  $institution_txt = $config->get('exclude_stu') ? 'UNB' : 'UNB/STU';
+
+  if (($errors = $form_state->getErrors()) && !empty($errors['name']) && $errors['name'] instanceof TranslatableMarkup) {
+    $error = $errors['name']->getUntranslatedString();
+    if (strpos($error, 'Unrecognized username or password') !== false) {
+      $options = [
+        'query' => \Drupal::request()->query->all(),
+      ];
+      $base_url = \Drupal::request()->getSchemeAndHttpHost();
+      $errors['name'] = t("Unrecognized username or password. Please try again later.<br>
+        <strong>$institution_txt accounts:</strong> please log in at @auth_link.",
+        [
+          '@auth_link' => Link::fromTextAndUrl(
+            $base_url . '/login',
+            Url::fromUri('base:/saml/login', $options)
+          )->toString(),
+        ]
+      );
+      $changed = TRUE;
+    }
+    elseif (strpos($error, 'failed login attempts for this account. It is temporarily blocked') !== false) {
+      $errors['name'] = t('There have been more than 5 failed login attempts for this account and
+        it is temporarily blocked. Please try again later.');
+      $changed = TRUE;
+    }
+    elseif (strpos($error, 'sign in with SSO') !== false) {
+      $errors['name'] = t("$institution_txt account detected: please sign in using <strong>@auth_link</strong>.",
+        [
+          '@auth_link' => Link::fromTextAndUrl(
+            t('Secure Services Login'),
+            Url::fromUri('base:/saml/login')
+          )->toString(),
+        ]
+      );
+      $changed = TRUE;
+
+      // SAML warning message redundant in this context.
+      $messenger = \Drupal::messenger();
+      $messenger->deleteByType($messenger::TYPE_WARNING);
+    }
+  } else {
+    // Quick & dirty purge SAML warning message on authentication error.
+    $messenger = \Drupal::messenger();
+    $messenger->deleteByType($messenger::TYPE_WARNING);
+  }
+
+  if ($changed) {
+    // It's clear and reset or set the protected variable by name with
+    // FormState::setFormState().
+    $form_state->clearErrors();
+    foreach ($errors as $name => $error) {
+      $form_state->setErrorByName($name, $error);
+    }
+  }
+}

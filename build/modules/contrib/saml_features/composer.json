@@ -1,0 +1,15 @@
+{
+  "name": "unb-libraries/saml_features",
+  "description": "Add UNB Libraries login features to SAML-Authenticated sites",
+  "type": "drupal-module",
+  "require": {
+    "drupal/samlauth": ">=3.0-alpha2"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "UNB Libraries",
+      "email": "libsupport@unb.ca"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Contains noreqnewpass.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function noreqnewpass_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (($form_id == 'user_login_block' || $form_id == 'user_login_form')) {
+    // Retrieve the configuration.
+    $config = \Drupal::config('noreqnewpass.settings_form');
+
+    if ($config->get('noreqnewpass_disable')) {
+      $key = array_search('::validateFinal', $form['#validate']);
+      $form['#validate'][$key] = 'noreqnewpass_user_login_final_validate';
+    }
+  }
+}
+
+/**
+ * Just for remove request password url at error messages.
+ */
+function noreqnewpass_user_login_final_validate(array &$form, FormStateInterface $form_state) {
+  $flood_config = \Drupal::config('user.flood');
+  $flood = \Drupal::service('flood');
+  
+  if (!$form_state->get('uid')) {
+    // Always register an IP-based failed login event.
+    $flood->register('user.failed_login_ip', $flood_config->get('ip_window'));
+    // Register a per-user failed login event.
+    if ($flood_control_user_identifier = $form_state->get('flood_control_user_identifier')) {
+      $flood->register('user.failed_login_user', $flood_config->get('user_window'), $flood_control_user_identifier);
+    }
+
+    if ($flood_control_triggered = $form_state->get('flood_control_triggered')) {
+      if ($flood_control_triggered == 'user') {
+        $form_state->setErrorByName('name', \Drupal::translation()->formatPlural($flood_config->get('user_limit'), 'There has been more than one failed login attempt for this account. It is temporarily blocked. Try again later.', 'There have been more than @count failed login attempts for this account. It is temporarily blocked. Try again later.'));
+      }
+      else {
+        // We did not find a uid, so the limit is IP-based.
+        $form_state->setErrorByName('name', t('Too many failed login attempts from your IP address. This IP address is temporarily blocked. Try again later.'));
+      }
+    }
+    else {
+      // Use $form_state->getUserInput() in the error message to guarantee
+      // that we send exactly what the user typed in. The value from
+      // $form_state->getValue() may have been modified by validation
+      // handlers that ran earlier than this one.
+      $user_input = $form_state->getUserInput();
+      $query = isset($user_input['name']) ? ['name' => $user_input['name']] : [];
+      $form_state->setErrorByName('name', t('Unrecognized username or password.'));
+      // Check if the user account exists
+      $storage = \Drupal::entityTypeManager()->getStorage('user');
+      $accounts = $storage->loadByProperties(['name' => $form_state->getValue('name')]);
+      if (!empty($accounts)) {
+        \Drupal::logger('user')->notice('Login attempt failed for %user.', ['%user' => $form_state->getValue('name')]);
+      }
+      else {
+        // If the username entered is not a valid user,
+        // only store the IP address.
+        $ip = \Drupal::request()->getClientIp();
+        \Drupal::logger('user')->notice('Login attempt failed from %ip.', ['%ip' => $ip]);
+      }
+    }
+  }
+  elseif ($flood_control_user_identifier = $form_state->get('flood_control_user_identifier')) {
+    // Clear past failures for this user so as not to block a user who might
+    // log in and out more than once in an hour.
+    $flood->clear('user.failed_login_user', $flood_control_user_identifier);
+  }
+}
