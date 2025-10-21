@@ -87,7 +87,7 @@
     "drupal/externalauth": "^2",
     "drupal/file_mdm": "^3",
     "drupal/google_analytics": "^4",
-    "drupal/health_check": "^1",
+    "drupal/health_check": "^3",
     "drupal/imagemagick": "^4",
     "drupal/jquery_ui": "^1",
     "drupal/jquery_ui_draggable": "^2",
