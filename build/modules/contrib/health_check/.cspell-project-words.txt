@@ -1,4 +1,0 @@
-# Maintainer names
-Korhonen
-Roni
-Kantis
