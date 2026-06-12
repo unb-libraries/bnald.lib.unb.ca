@@ -16,7 +16,6 @@ module:
   einbaum: 0
   externalauth: 0
   field: 0
-  field_ui: 0
   file: 0
   file_mdm: 0
   file_mdm_exif: 0
@@ -32,6 +31,7 @@ module:
   jquery_ui_resizable: 0
   language: 0
   link: 0
+  menu_link_content: 1
   menu_ui: 0
   mysql: 0
   node: 0
@@ -39,12 +39,14 @@ module:
   options: 0
   page_cache: 0
   path: 0
+  pathauto: 1
   path_alias: 0
   pdfpreview: 0
   quickedit: 0
   rdf: 0
   redis: 0
   samlauth: 0
+  saml_features: 11
   search: 0
   search_api: 0
   search_api_autocomplete: 0
@@ -60,11 +62,7 @@ module:
   tvi: 0
   update: 0
   user: 0
-  views_ui: 0
-  menu_link_content: 1
-  pathauto: 1
   views: 10
-  saml_features: 11
   minimal: 1000
 theme:
   stark: 0
