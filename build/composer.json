@@ -27,7 +27,7 @@
     "sort-packages": true
   },
   "conflict": {
-    "drupal/ctools": "^4.0.0",
+    "drupal/ctools": "^4.1.x-dev",
     "drupal/drupal": "*"
   },
   "description": "Drupal 8 component of bnald.lib.unb.ca",
@@ -67,7 +67,11 @@
         "type:drupal-custom-theme"
       ]
     },
-    "patches": {}
+    "patches": {
+      "drupal/bootstrap": {
+        "Drupal 11 schema fixes": "/build/patches/bootstrap_8.x-3.x_schema.patch"
+      }
+    }
   },
   "license": "MIT",
   "minimum-stability": "dev",
@@ -80,10 +84,10 @@
     }
   ],
   "require": {
-    "drupal/bootstrap": "3.32",
-    "drupal/core": "^10",
-    "drupal/core-composer-scaffold": "^10",
-    "drupal/core-recommended": "^10",
+    "drupal/bootstrap": "3.40",
+    "drupal/core": "^11",
+    "drupal/core-composer-scaffold": "^11",
+    "drupal/core-recommended": "^11",
     "drupal/externalauth": "^2",
     "drupal/file_mdm": "^3",
     "drupal/google_analytics": "^4",
@@ -96,7 +100,7 @@
     "drupal/pathauto": "^1",
     "drupal/pdfpreview": "^1",
     "drupal/quickedit": "^1",
-    "drupal/rdf": "^2",
+    "drupal/rdf": "^3",
     "drupal/redis": "^1",
     "drupal/samlauth": "^3",
     "drupal/search_api": "^1",
@@ -106,10 +110,10 @@
     "drupal/token": "^1",
     "drupal/tvi": "^2",
     "unb-libraries/saml_features": "dev-10.x-1.x",
-    "unb-libraries/composer-drupal-scaffold": "^10"
+    "unb-libraries/composer-drupal-scaffold": "^11"
   },
   "require-dev": {
-    "unb-libraries/drupal-development-libraries": "^10"
+    "unb-libraries/drupal-development-libraries": "^11"
   },
   "type": "project"
 }

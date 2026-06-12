@@ -1,0 +1,11 @@
+diff --git a/config/schema/bootstrap.schema.yml b/config/schema/bootstrap.schema.yml
+index 1d5461a..3b91665 100644
+--- a/config/schema/bootstrap.schema.yml
++++ b/config/schema/bootstrap.schema.yml
+@@ -3,3 +3,6 @@
+ bootstrap.settings:
+   type: theme_settings
+   label: 'Bootstrap settings'
++  mapping:
++    schemas:
++      type: ignore

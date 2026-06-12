@@ -1,5 +1,5 @@
 core: 8.x
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 type: theme
 base theme: bootstrap
 
@@ -9,6 +9,10 @@ package: 'bnald_lib_unb_ca'
 
 libraries:
   - bnald_lib_unb_ca/global-styling
+
+dependencies:
+  - drupal:filter
+  - drupal:editor
 
 regions:
   header: 'Header'

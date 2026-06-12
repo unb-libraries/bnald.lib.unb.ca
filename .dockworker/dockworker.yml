@@ -20,7 +20,7 @@ dockworker:
       uuid: 3099
     framework:
       name: Drupal
-      version: 9
+      version: 11
       startup_finished_marker: '99_zz_notify_user_URI'
       endpoint:
         name: http
@@ -59,7 +59,7 @@ dockworker:
         - BNALD
     image:
       name: ghcr.io/unb-libraries/bnald.lib.unb.ca
-      parent: ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
+      parent: ghcr.io/unb-libraries/drupal:11.x-1.x-unblib
       repository: GitHub
       push-branches:
         - dev
