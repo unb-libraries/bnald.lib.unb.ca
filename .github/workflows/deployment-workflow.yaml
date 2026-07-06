@@ -13,8 +13,6 @@ jobs:
       image-name: 'ghcr.io/unb-libraries/bnald.lib.unb.ca'
       k8s-deployment-name: 'bnald-lib-unb-ca'
       push-branches: '["dev","prod"]'
-      php-version: '8.4'
-      composer-version: '2.9.5'
       platforms: 'linux/amd64'
     secrets:
       KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
