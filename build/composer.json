@@ -18,8 +18,9 @@
       "drupal/core-composer-scaffold": true,
       "phpstan/extension-installer": true,
       "php-http/discovery": true,
+      "symfony/runtime": true,
       "tbachert/spi": true
-    },    
+    },
     "discard-changes": true,
     "preferred-install": {
       "*": "dist"
