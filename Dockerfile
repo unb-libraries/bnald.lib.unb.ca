@@ -25,16 +25,12 @@ COPY ./custom/modules ${DRUPAL_ROOT}/modules/custom
 
 # Container metadata.
 LABEL ca.unb.lib.generator="drupal11" \
-  com.microscaling.docker.dockerfile="/Dockerfile" \
-  com.microscaling.license="MIT" \
-  org.label-schema.build-date=$BUILD_DATE \
-  org.label-schema.description="bnald.lib.unb.ca provides an archive for characteristics of all the legislation passed by the pre-Confederation assemblies of eastern British North America." \
-  org.label-schema.name="bnald.lib.unb.ca" \
-  org.label-schema.schema-version="1.0" \
-  org.label-schema.url="https://bnald.lib.unb.ca" \
-  org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url="https://github.com/unb-libraries/bnald.lib.unb.ca" \
-  org.label-schema.vendor="University of New Brunswick Libraries" \
-  org.label-schema.version=$VERSION \
+  org.opencontainers.image.title="bnald.lib.unb.ca" \
+  org.opencontainers.image.description="bnald.lib.unb.ca provides an archive for characteristics of all the legislation passed by the pre-Confederation assemblies of eastern British North America." \
+  org.opencontainers.image.vendor="University of New Brunswick Libraries" \
   org.opencontainers.image.authors="UNB Libraries <libsupport@unb.ca>" \
-  org.opencontainers.image.source="https://github.com/unb-libraries/bnald.lib.unb.ca"
+  org.opencontainers.image.url="https://bnald.lib.unb.ca" \
+  org.opencontainers.image.source="https://github.com/unb-libraries/bnald.lib.unb.ca" \
+  org.opencontainers.image.version="$VERSION" \
+  org.opencontainers.image.revision="$VCS_REF" \
+  org.opencontainers.image.created="$BUILD_DATE"
