@@ -1,7 +1,7 @@
 FROM ghcr.io/unb-libraries/drupal:11.x-1.x-unblib
 
 # Install additional OS packages.
-ENV ADDITIONAL_OS_PACKAGES="postfix php-ldap php-xmlreader php-zip imagemagick php84-pecl-redis"
+ENV ADDITIONAL_OS_PACKAGES="postfix php${PHP_VERSION}-ldap php${PHP_VERSION}-xmlreader php${PHP_VERSION}-zip imagemagick php${PHP_VERSION}-pecl-redis"
 ENV DRUPAL_SITE_ID="bnald"
 ENV DRUPAL_SITE_URI="bnald.lib.unb.ca"
 ENV DRUPAL_SITE_UUID="c8857708-03ab-4f57-beeb-a60bd827e72f"
