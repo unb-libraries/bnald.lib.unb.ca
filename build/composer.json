@@ -22,6 +22,16 @@
       "tbachert/spi": true
     },
     "discard-changes": true,
+    "policy": {
+      "advisories": {
+        "ignore-id": {
+          "SA-CONTRIB-2026-236": {
+            "on-audit": false,
+            "reason": "drupal/bootstrap stays pinned at 3.40; composer audit still reports it."
+          }
+        }
+      }
+    },
     "preferred-install": {
       "*": "dist"
     },
